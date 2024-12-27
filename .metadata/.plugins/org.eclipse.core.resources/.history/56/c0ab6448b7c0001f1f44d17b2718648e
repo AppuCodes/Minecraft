@@ -1,0 +1,236 @@
+package net.minecraft.utils;
+
+import static org.lwjgl.opengl.GL11.*;
+
+import java.nio.*;
+
+import org.lwjgl.BufferUtils;
+
+public class GLU
+{
+    private static final float[] IDENTITY_MATRIX = new float[]
+    {
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1
+    };
+    
+    private static final FloatBuffer matrix = BufferUtils.createFloatBuffer(16);
+    
+    public static void perspective(float fov, float aspect, float zNear, float zFar)
+    {
+        float sine, cotangent, deltaZ, radians = (float) (fov / 2 * Math.PI / 180);
+        deltaZ = zFar - zNear;
+        sine = (float) Math.sin(radians);
+        
+        if (deltaZ != 0 && sine != 0 && aspect != 0)
+        {
+            cotangent = (float) Math.cos(radians) / sine;
+            makeIdentity(matrix);
+            matrix.put(0, cotangent / aspect);
+            matrix.put(5, cotangent);
+            matrix.put(10, -(zFar + zNear) / deltaZ);
+            matrix.put(11, -1);
+            matrix.put(14, -2 * zNear * zFar / deltaZ);
+            matrix.put(15, 0);
+            glMultMatrixf(matrix);
+        }
+    }
+    
+    private static void makeIdentity(FloatBuffer buffer)
+    {
+        int oldPos = buffer.position();
+        buffer.put(IDENTITY_MATRIX);
+        buffer.position(oldPos);
+    }
+    
+    public static int gluBuild2DMipmaps(final int target, final int components, final int width, final int height,
+            final int format, final int type, final ByteBuffer data)
+    {
+        if (width < 1 || height < 1)
+            return GL_INVALID_VALUE;
+
+        final int bpp = bytesPerPixel(format, type);
+        if (bpp == 0)
+            return GL_INVALID_ENUM;
+
+        final int maxSize = glGetInteger(GL_MAX_TEXTURE_SIZE);
+
+        int w = nearestPower(width);
+        if (w > maxSize)
+            w = maxSize;
+
+        int h = nearestPower(height);
+        if (h > maxSize)
+            h = maxSize;
+
+// Get current glPixelStore state
+        PixelStoreState pss = new PixelStoreState();
+
+// set pixel packing
+        glPixelStorei(GL_PACK_ROW_LENGTH, 0);
+        glPixelStorei(GL_PACK_ALIGNMENT, 1);
+        glPixelStorei(GL_PACK_SKIP_ROWS, 0);
+        glPixelStorei(GL_PACK_SKIP_PIXELS, 0);
+
+        ByteBuffer image;
+        int retVal = 0;
+        boolean done = false;
+
+        if (w != width || h != height)
+        {
+// must rescale image to get "top" mipmap texture image
+            image = BufferUtils.createByteBuffer((w + 4) * h * bpp);
+            int error = gluScaleImage(format, width, height, type, data, w, h, type, image);
+            if (error != 0)
+            {
+                retVal = error;
+                done = true;
+            }
+
+            /* set pixel unpacking */
+            glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
+            glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+            glPixelStorei(GL_UNPACK_SKIP_ROWS, 0);
+            glPixelStorei(GL_UNPACK_SKIP_PIXELS, 0);
+        } else
+        {
+            image = data;
+        }
+
+        ByteBuffer bufferA = null;
+        ByteBuffer bufferB = null;
+
+        int level = 0;
+        while (!done)
+        {
+            if (image != data)
+            {
+                /* set pixel unpacking */
+                glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
+                glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+                glPixelStorei(GL_UNPACK_SKIP_ROWS, 0);
+                glPixelStorei(GL_UNPACK_SKIP_PIXELS, 0);
+            }
+
+            glTexImage2D(target, level, components, w, h, 0, format, type, image);
+
+            if (w == 1 && h == 1)
+                break;
+
+            final int newW = (w < 2) ? 1 : w >> 1;
+            final int newH = (h < 2) ? 1 : h >> 1;
+
+            final ByteBuffer newImage;
+
+            if (bufferA == null)
+                newImage = (bufferA = BufferUtils.createByteBuffer((newW + 4) * newH * bpp));
+            else if (bufferB == null)
+                newImage = (bufferB = BufferUtils.createByteBuffer((newW + 4) * newH * bpp));
+            else
+                newImage = bufferB;
+
+            int error = gluScaleImage(format, w, h, type, image, newW, newH, type, newImage);
+            if (error != 0)
+            {
+                retVal = error;
+                done = true;
+            }
+
+            image = newImage;
+            if (bufferB != null)
+                bufferB = bufferA;
+
+            w = newW;
+            h = newH;
+            level++;
+        }
+
+        pss.save();
+
+        return retVal;
+    }
+    
+    protected static int bytesPerPixel(int format, int type)
+    {
+        int n, m;
+        
+        switch (format)
+        {
+            case GL_COLOR_INDEX:
+            case GL_STENCIL_INDEX:
+            case GL_DEPTH_COMPONENT:
+            case GL_RED:
+            case GL_GREEN:
+            case GL_BLUE:
+            case GL_ALPHA:
+            case GL_LUMINANCE:
+                n = 1;
+                break;
+            case GL_LUMINANCE_ALPHA:
+                n = 2;
+                break;
+            case GL_RGB:
+                n = 3;
+                break;
+            case GL_RGBA:
+                n = 4;
+                break;
+            default:
+                n = 0;
+        }
+        
+        switch (type)
+        {
+            case GL_UNSIGNED_BYTE:
+                m = 1;
+                break;
+            case GL_BYTE:
+                m = 1;
+                break;
+            case GL_BITMAP:
+                m = 1;
+                break;
+            case GL_UNSIGNED_SHORT:
+                m = 2;
+                break;
+            case GL_SHORT:
+                m = 2;
+                break;
+            case GL_UNSIGNED_INT:
+                m = 4;
+                break;
+            case GL_INT:
+                m = 4;
+                break;
+            case GL_FLOAT:
+                m = 4;
+                break;
+            default:
+                m = 0;
+        }
+        
+        return n * m;
+    }
+    
+    protected static int nearestPower(int value)
+    {
+        int i = 1;
+        
+        if (value == 0)
+            return -1;
+
+        for (;;)
+        {
+            if (value == 1)
+                return i;
+            
+            else if (value == 3)
+                return i << 2;
+            
+            value >>= 1;
+            i <<= 1;
+        }
+    }
+}

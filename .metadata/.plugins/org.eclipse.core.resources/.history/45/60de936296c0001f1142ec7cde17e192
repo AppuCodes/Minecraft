@@ -1,0 +1,76 @@
+package net.minecraft.utils;
+
+import net.minecraft.render.gui.screens.AABB;
+
+public class BoundingBox
+{
+	public double x, y, z, length, height, width;
+	
+	public BoundingBox(double x, double y, double z, double length, double height, double width)
+	{
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.length = length;
+		this.height = height;
+		this.width = width;
+	}
+	
+    public double xCollide(BoundingBox box, double x)
+    {
+        /* if the boxes are colliding on the Y axis */
+        if (box.maxY <= this.minY || box.minY >= this.maxY)
+        {
+            return x;
+        }
+
+        /* if the boxes are colliding on the Z axis */
+        if (box.maxZ <= this.minZ || box.minZ >= this.maxZ)
+        {
+            return x;
+        }
+
+        // Check for collision if the X axis of the current box is bigger
+        if (x > 0.0F && box.maxX <= this.minX)
+        {
+            double max = this.minX - box.maxX - this.epsilon;
+            if (max < x)
+            {
+                x = max;
+            }
+        }
+
+        // Check for collision if the X axis of the current box is smaller
+        if (x < 0.0F && box.minX >= this.maxX)
+        {
+            double max = this.maxX - box.minX + this.epsilon;
+            if (max > x)
+            {
+                x = max;
+            }
+        }
+
+        return x;
+    }
+	
+	public BoundingBox expand(double x, double y, double z)
+	{
+		BoundingBox box = new BoundingBox(this.x, this.y, this.z, length, height, width);
+		
+		if (x < 0) box.x += x;
+		else box.length += x;
+		
+		if (y < 0) box.y += y;
+		else box.height += y;
+		
+		if (z < 0) box.z += z;
+		else box.width += z;
+		
+		return box;
+	}
+	
+	public BoundingBox grow(double x, double y, double z)
+	{
+		return new BoundingBox(this.x - x, this.y - y, this.z - z, length + x, height + y, width + z);
+	}
+}

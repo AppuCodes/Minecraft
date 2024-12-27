@@ -1,0 +1,20 @@
+package net.minecraft.level.lighting;
+
+import net.minecraft.level.Level;
+import net.minecraft.render.global.RenderGlobal;
+import net.minecraft.utils.vectors.Vec3d;
+
+public class LightEngine
+{
+    /* 0 = dark, 16 = bright */
+    public static int getLight(int x, int y, int z, Level level)
+    {
+        return level.getBlock(x, y + 1, z) == (byte) 0 ? skyLight(level) : 8;
+    }
+    
+    private static int skyLight(Level level)
+    {
+        Vec3d skyColor = RenderGlobal.getSkyColor(0);
+        return 16;
+    }
+}

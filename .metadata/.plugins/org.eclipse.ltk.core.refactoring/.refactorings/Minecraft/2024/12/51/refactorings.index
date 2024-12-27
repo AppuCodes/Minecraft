@@ -1,0 +1,12 @@
+1734663720776	Rename type 'SoundManager'
+1734663724356	Rename type 'SoundMastr'
+1734804002643	Delete element
+1734805882987	Rename package 'net.minecraft.sound'
+1734805892307	Move compilation unit
+1734805898466	Delete element
+1734805912286	Rename type 'Block'
+1734816314697	Delete element
+1734820149051	Copy package
+1734820153639	Delete element
+1734820170728	Rename package 'net.minecraft.gui'
+1734820188639	Rename package 'net.minecraft.level.render'

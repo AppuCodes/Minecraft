@@ -1,0 +1,21 @@
+package net.minecraft.render.global;
+
+import net.minecraft.*;
+import net.minecraft.utils.Ticker;
+
+public class BuilderThread
+{
+    public static void start()
+    {
+        Thread buildy = new Thread(() ->
+        {
+            while (Window.isOpen())
+            {
+                
+            }
+        });
+        
+        buildy.setName("Buildy Thread");
+        buildy.start();
+    }
+}

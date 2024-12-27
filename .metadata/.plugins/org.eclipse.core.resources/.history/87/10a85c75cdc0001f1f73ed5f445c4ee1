@@ -1,0 +1,14 @@
+package net.minecraft.level.blocks;
+
+import net.minecraft.level.blocks.Blocks.Block;
+
+public class GrassBlock extends Block
+{
+
+    public GrassBlock(String name, int id)
+    {
+        super(name, id);
+        // TODO Auto-generated constructor stub
+    }
+
+}

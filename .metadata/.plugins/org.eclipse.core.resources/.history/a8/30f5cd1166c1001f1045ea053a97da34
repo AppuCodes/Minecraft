@@ -1,0 +1,12 @@
+package net.minecraft.level.lighting;
+
+import net.minecraft.level.Level;
+
+public class LightEngine
+{
+    /* 0 = dark, 16 = bright */
+    public static int getLight(int x, int y, int z, Level level)
+    {
+        return level.getBlock(x, y + 1, z) != (byte) 0 ? 8 : 16;
+    }
+}

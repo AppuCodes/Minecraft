@@ -1,0 +1,35 @@
+package net.minecraft.sound;
+
+import static org.lwjgl.openal.AL10.*;
+
+public class SoundSource
+{
+    private long time = System.nanoTime();
+    private int id, buffer, length;
+    
+    public SoundSource(int buffer, long length)
+    {
+        this.buffer = buffer;
+        this.length = length;
+        id = alGenSources();
+        alSourcef(id, AL_GAIN, 1);
+        alSourcef(id, AL_PITCH, 1);
+        alSourcef(id, AL_POSITION, 1);
+    }
+    
+    public void play()
+    {
+        alSourcei(id, AL_BUFFER, buffer);
+        alSourcePlay(id);
+    }
+    
+    public boolean finished()
+    {
+        return true;
+    }
+    
+    public void close()
+    {
+        alDeleteSources(id);
+    }
+}

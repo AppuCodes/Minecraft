@@ -1,0 +1,42 @@
+package net.minecraft.utils.vectors;
+
+public class Vec3d
+{
+    public double x, y, z;
+    
+    public Vec3d(double x, double y, double z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+    
+    /* converts to chunk coordinates */
+    public Vec3i chunkify()
+    {
+        if (x < 0) x -= 16; if (z < 0) z -= 16;
+        x /= 16; y = 0; z /= 16;
+        return this;
+    }
+    
+    public double distanceTo(Vec3d vector)
+    {
+        double x = this.x - vector.x,
+            y = this.y - vector.y,
+            z = this.z - vector.z;
+        x *= x; y *= y; z *= z;
+        return Math.sqrt(x + y + z);
+    }
+    
+    public boolean equals(Object obj)
+    {
+        return obj instanceof Vec3d vector && (vector.x == x && vector.y == y && vector.z == z);
+    }
+    
+    /* debugging purposes */
+    public String toString()
+    {
+        StringBuilder builder = new StringBuilder();
+        return builder.append(x).append(", ").append(y).append(", ").append(z).toString();
+    }
+}

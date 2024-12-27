@@ -1,0 +1,18 @@
+package net.minecraft;
+
+public class TickyThread
+{
+    public static void start()
+    {
+        Thread ticky = new Thread(() ->
+        {
+            while (Window.isOpen())
+            {
+                
+            }
+        });
+        
+        ticky.setName("Ticky Thread");
+        ticky.start();
+    }
+}

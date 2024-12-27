@@ -1,0 +1,6 @@
+package net.minecraft.options;
+
+public class KeyBinding
+{
+    
+}

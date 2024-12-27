@@ -1,0 +1,13 @@
+package net.minecraft.level.blocks;
+
+import net.minecraft.level.blocks.Blocks.Block;
+
+public class WaterLiquid extends Block
+{
+    public WaterLiquid(String name, int id, int texture)
+    {
+        super(name, id, texture);
+    }
+    
+    protected float blockHeight() { return 0.8; }
+}

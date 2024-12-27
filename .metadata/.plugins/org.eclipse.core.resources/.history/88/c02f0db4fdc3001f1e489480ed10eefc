@@ -1,0 +1,129 @@
+package net.minecraft.render.global;
+
+import static org.lwjgl.opengl.GL11.*;
+
+import java.nio.FloatBuffer;
+
+import org.lwjgl.BufferUtils;
+
+import net.minecraft.Minecraft;
+import net.minecraft.level.Level;
+import net.minecraft.options.GameOptions;
+import net.minecraft.render.*;
+import net.minecraft.utils.vectors.Vec3d;
+
+public class RenderGlobal
+{
+    private static Tessellator sun = new Tessellator(16 * 16), moon = new Tessellator(16 * 16);
+    private static FloatBuffer fog = BufferUtils.createFloatBuffer(16);
+    private static Vec3d prevColor;
+    
+    public static void draw(float partialTicks)
+    {
+        Vec3d color = getSkyColor(Minecraft.level, partialTicks), brightened = brighten(color);
+        
+        if (!color.equals(prevColor))
+        {
+            glClearColor((float) color.x, (float) color.y, (float) color.z, 1);
+            updateFog(brightened);
+        }
+        
+        drawSky(color, brightened, partialTicks);
+        prevColor = color;
+    }
+    
+    private static void updateFog(Vec3d color)
+    {
+        fog.clear();
+        fog.put(new float[] {(float) color.x, (float) color.y, (float) color.z, 1}).flip();
+        glFogi(GL_FOG_MODE, GL_LINEAR);
+        glFogf(GL_FOG_START, 16);
+        glFogf(GL_FOG_END, (GameOptions.RENDER_DISTANCE.getValue() - 1) * 16);
+        glFogfv(GL_FOG_COLOR, fog);
+    }
+    
+    private static void drawSky(Vec3d color, Vec3d brightened, float partialTicks)
+    {
+        glDisable(GL_DEPTH_TEST);
+        glDisable(GL_FOG);
+        glPushMatrix();
+        glRotatef(Minecraft.player.pitch, 1, 0, 0);
+        
+        glBegin(GL_QUADS);
+        glColor3d(brightened.x, brightened.y, brightened.z);
+        glVertex3f(1, 0, -0.2F);
+        glVertex3f(-1, 0, -0.2F);
+        glVertex3f(-1, -1, -0.2F);
+        glVertex3f(1, -1, -0.2F);
+        glColor3d(color.x, color.y, color.z);
+        glVertex3f(1, 0.05F, -0.2F);
+        glVertex3f(-1, 0.05F, -0.2F);
+        glColor3d(brightened.x, brightened.y, brightened.z);
+        glVertex3f(-1, 0, -0.2F);
+        glVertex3f(1, 0, -0.2F);
+        glVertex3f(-1, -0.2F, 1);
+        glVertex3f(1, -0.2F, 1);
+        glVertex3f(1, -0.2F, -1);
+        glVertex3f(-1, -0.2F, -1);
+        glEnd();
+        
+        glPopMatrix();
+        glColor4f(1, 1, 1, 1);
+        drawCelestials(Minecraft.level, partialTicks);
+        glEnable(GL_FOG);
+        glEnable(GL_DEPTH_TEST);
+    }
+    
+    private static void drawCelestials(Level level, float partialTicks)
+    {
+//        glPushMatrix();
+//        glRotatef(Minecraft.player.pitch, 1, 0, 0);
+//        glRotatef(Minecraft.player.yaw, 0, 1, 0);
+//        glRotatef(-90, 0, 1, 0);
+//        glRotatef(level.renderer.celestialAngle(partialTicks) * 360, 1, 0, 0);
+//        Textures.load("env/sun");
+//        float f17 = 30;
+//        glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+//        glEnable(GL_TEXTURE_2D);
+//        glBegin(GL_QUADS);
+//        glVertex3f((-f17), 100, (-f17)); glTexCoord2i(0, 0);
+//        glVertex3f(f17, 100, (-f17)); glTexCoord2i(1, 0);
+//        glVertex3f(f17, 100, f17); glTexCoord2i(1, 1);
+//        glVertex3f((-f17), 100, f17); glTexCoord2i(0, 1);
+//        glEnd();
+//        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//        glDisable(GL_TEXTURE_2D);
+//        glPopMatrix();
+    }
+    
+    private static Vec3d getSkyColor(Level level, float partialTicks)
+    {
+        double mul = getBrightness(level, partialTicks);
+        return new Vec3d(0.4 * mul, 0.65 * mul, mul);
+    }
+    
+    public static double getBrightness(Level level, float partialTicks)
+    {
+        float angle = level.renderer.celestialAngle(partialTicks);
+        return Math.clamp((Math.cos(angle * Math.PI * 2) * 2) + 0.5, 0, 1);
+    }
+    
+    private static Vec3d brighten(Vec3d color)
+    {
+        Vec3d newColor = color.clone();
+        newColor.x /= 0.8F; newColor.y /= 0.8F; newColor.z /= 0.8F;
+        if (newColor.x > 1) newColor.x = 1; if (newColor.y > 1) newColor.y = 1; if (newColor.z > 1) newColor.z = 1;
+        return newColor;
+    }
+    
+//    static
+//    {
+//        float f17 = 30;
+//        sun.begin();
+//        sun.vertex((-f17), 100, (-f17)); sun.tex(0, 0);
+//        sun.vertex(f17, 100, (-f17)); sun.tex(1, 0);
+//        sun.vertex(f17, 100, f17); sun.tex(1, 1);
+//        sun.vertex((-f17), 100, f17); sun.tex(0, 1);
+//        sun.end();
+//    }
+}

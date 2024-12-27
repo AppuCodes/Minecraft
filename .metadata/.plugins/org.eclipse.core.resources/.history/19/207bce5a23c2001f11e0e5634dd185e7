@@ -1,0 +1,13 @@
+package net.minecraft.level.lighting;
+
+import net.minecraft.level.Level;
+import net.minecraft.level.blocks.Blocks;
+
+public class LightEngine
+{
+    /* 0 = dark, 16 = bright */
+    public static int getLight(int x, int y, int z, Level level)
+    {
+        return level.getBlock(x, y + 1, z) == (byte) 0 ? 16 : (level.getBlock(x, y, z) == Blocks.WATER.id ? 12 : 0);
+    }
+}

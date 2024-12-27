@@ -1,0 +1,90 @@
+package net.minecraft.level;
+
+import net.minecraft.Minecraft;
+import net.minecraft.level.blocks.Blocks;
+import net.minecraft.render.*;
+import net.minecraft.utils.Vector3i;
+
+public class Chunk
+{
+    private Tessellator tessel = new Tessellator(256 * 256);
+    private byte[][][] blocks = new byte[16][128][16];
+    public boolean update = false;
+    public int displayList;
+    public Vector3i pos;
+    
+    /* pos is in chunk coordinates */
+    public Chunk(Vector3i pos)
+    {
+        this.pos = pos;
+    }
+    
+    public void draw()
+    {
+        tessel.draw();
+    }
+    
+    protected void build()
+    {
+        LevelRenderer renderer = Minecraft.level.renderer;
+        tessel.begin();
+        
+        for (int x = 0; x < 16; x++)
+        {
+            for (int y = 0; y < 128; y++)
+            {
+                for (int z = 0; z < 16; z++)
+                {
+                    byte block = getBlock(x, y, z);
+                    
+                    if (block != 0)
+                    {
+                        int renderX = pos.x * 16, renderY = pos.y * 16, renderZ = pos.z * 16;
+                        
+                        Blocks.getBlock(block).draw(renderX + x, renderY + y, renderZ + z, tessel, Minecraft.level);
+                    }
+                }
+            }
+        }
+        
+        renderer.waterRebuild = true;
+        tessel.end();
+        update = false;
+    }
+    
+    public byte getBlock(int x, int y, int z)
+    {
+        x %= 16; z %= 16;
+        if (x < 0) x = 16 + x; if (z < 0) z = 16 + z;
+        return y < 0 ? 0 : blocks[x][y][z];
+    }
+    
+    public void setBlock(int x, int y, int z, byte block)
+    {
+        x %= 16; z %= 16;
+        if (x < 0) x = 16 + x; if (z < 0) z = 16 + z;
+        if (y >= 0) blocks[x][y][z] = block;
+    }
+    
+    public Chunk unload()
+    {
+        LevelRenderer renderer = Minecraft.level.renderer;
+        
+        for (int i = 0; i < renderer.waters.size(); i++)
+        {
+            WaterPos water = renderer.waters.get(i);
+            
+            if (water != null && water.chunk.equals(this))
+                renderer.waters.remove(water);
+        }
+        
+        return this;
+    }
+    
+    public boolean equals(Object obj)
+    {
+        return obj instanceof Chunk chunk && pos.equals(chunk.pos);
+    }
+    
+    public static record WaterPos(int x, int y, int z, Chunk chunk) {}
+}

@@ -1,0 +1,38 @@
+package net.minecraft.sound.music;
+
+import java.util.Random;
+
+import net.minecraft.Window;
+import net.minecraft.sound.*;
+
+public class MusicHandler
+{
+    private static Random random = new Random();
+    
+    public static String[] survivalMusic = new String[] {"clark", "danny", "dry_hands", "haggstrom", "key", "living_mice", "mice_on_venus", "oxygene", "subwoofer_lullaby", "sweden", "wet_hands"},
+                           creativeMusic = new String[] {"aria_math", "biome_fest", "blind_spots", "dreiton", "haunt_muskie", "taswell"},
+                           festiveMusic = new String[] {"flake", "kyoto"};
+    
+    public static void init()
+    {
+        SoundMaster.init(); SoundMaster.setProperties(0, 0, 0);
+        
+        new Thread(() ->
+        {
+            while (Window.isOpen())
+            {
+                SoundSource source = SoundMaster.loadSound(survivalMusic[random.nextInt(survivalMusic.length)]);
+                source.play(true);
+                pause(random.nextInt(600, 900));
+            }
+        }).start();
+    }
+    
+    private static void pause(long seconds)
+    {
+        try
+        {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {}
+    }
+}

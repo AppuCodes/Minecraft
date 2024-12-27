@@ -1,0 +1,84 @@
+package net.minecraft.render;
+
+import static org.lwjgl.opengl.GL11.*;
+
+import java.nio.FloatBuffer;
+
+import org.lwjgl.BufferUtils;
+
+public class Tessellator
+{
+    private FloatBuffer vertexBuffer = null, texBuffer = null, colorBuffer = null;
+    private boolean colored = false, textured = false, building = false;
+    private float red = 1, green = 1, blue = 1;
+    private int vertices = 0, size = 0;
+    private float texU = 0, texV = 0;
+    
+    public Tessellator(int size)
+    {
+        vertexBuffer = BufferUtils.createFloatBuffer(size * 3);
+        texBuffer = BufferUtils.createFloatBuffer(size * 2);
+        colorBuffer = BufferUtils.createFloatBuffer(size * 3);
+        this.size = size;
+    }
+    
+    public void vertex(float x, float y, float z)
+    {
+        vertexBuffer.put((vertices * 3), x);
+        vertexBuffer.put((vertices * 3) + 1, y);
+        vertexBuffer.put((vertices * 3) + 2, z);
+        
+        if (textured)
+        {
+            texBuffer.put((vertices * 2), texU);
+            texBuffer.put((vertices * 2) + 1, texV);
+        }
+        
+        if (colored)
+        {
+            colorBuffer.put((vertices * 3), red);
+            colorBuffer.put((vertices * 3) + 1, green);
+            colorBuffer.put((vertices * 3) + 2, blue);
+        }
+        
+        if (++vertices == size) begin();
+    }
+    
+    public void draw()
+    {
+        glVertexPointer(3, GL_FLOAT, GL_POINTS, vertexBuffer);
+        
+        if (textured)
+            glTexCoordPointer(2, GL_FLOAT, GL_POINTS, texBuffer);
+        
+        if (colored)
+            glColorPointer(3, GL_FLOAT, GL_POINTS, colorBuffer);
+        
+        glDrawArrays(GL_QUADS, GL_POINTS, vertices);
+    }
+    
+    public void tex(float texU, float texV)
+    {
+        textured = true;
+        this.texU = texU; this.texV = texV;
+    }
+    
+    public void color(float red, float green, float blue)
+    {
+        colored = true;
+        this.red = red; this.green = green; this.blue = blue;
+    }
+    
+    public void begin()
+    {
+        vertexBuffer.clear(); texBuffer.clear(); colorBuffer.clear();
+        textured = colored = false;
+        vertices = 0;
+    }
+    
+    public void end()
+    {
+        vertexBuffer.flip();
+        texBuffer.flip();
+    }
+}

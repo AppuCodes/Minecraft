@@ -1,0 +1,37 @@
+package net.minecraft.utils;
+
+public class BoundingBox
+{
+	public double x, y, z, length, height, width;
+	
+	public BoundingBox(double x, double y, double z, double length, double height, double width)
+	{
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.length = length;
+		this.height = height;
+		this.width = width;
+	}
+	
+	public BoundingBox expand(double x, double y, double z)
+	{
+		BoundingBox box = new BoundingBox(this.x, this.y, this.z, length, height, width);
+		
+		if (x < 0) box.x += x;
+		else box.length += x;
+		
+		if (y < 0) box.y += y;
+		else box.height += y;
+		
+		if (z < 0) box.z += z;
+		else box.width += z;
+		
+		return box;
+	}
+	
+	public BoundingBox grow(double x, double y, double z)
+	{
+		return new BoundingBox(this.x - x, this.y - y, this.z - z, this.length + x, this.height + y, this.width + z);
+	}
+}

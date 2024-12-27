@@ -1,0 +1,31 @@
+package net.minecraft.utils;
+
+public class Vector3i
+{
+    public int x, y, z;
+    
+    public Vector3i(int x, int y, int z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+    
+    /* converts to chunk coordinates */
+    public Vector3i chunkify()
+    {
+        x /= 16; y = 0; z /= 16;
+        System.out.println(-64 / 16);
+        return this;
+    }
+    
+    public boolean negative()
+    {
+        return x < 0 || y < 0 || z < 0;
+    }
+    
+    public boolean equals(Object obj)
+    {
+        return obj instanceof Vector3i vector && (vector.x == x && vector.y == y && vector.z == z);
+    }
+}

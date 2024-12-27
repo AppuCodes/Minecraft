@@ -1,0 +1,145 @@
+package net.minecraft;
+
+import org.lwjgl.opengl.GL11;
+
+import net.minecraft.level.Level;
+import net.minecraft.level.entities.Player;
+import net.minecraft.options.*;
+import net.minecraft.sounds.SoundMaster;
+import net.minecraft.sounds.music.MusicHandler;
+import net.minecraft.utils.*;
+
+public class Minecraft
+{
+    public static final Logger LOGGER = new Logger("Minecraft");
+    public static Player player;
+    public static Level level;
+    
+    protected static void init(Session session)
+    {
+        LOGGER.info("Booting up with player " + session.name() + ".");
+        Window.create("Minecraft 0.1");
+        SoundMaster.init(); MusicHandler.init();
+        
+        level = new Level();
+        player = new Player(level, session.name());
+        
+        Window.lockMouse();
+        handleKeyboard();
+        
+        while (Window.isOpen())
+        {
+            Window.startFrame();
+            Window.guiScreen();
+            Ticker.advance();
+            
+            for (int i = 0; i < Ticker.ticks; i++)
+                tick();
+            
+            Window.worldScreen();
+            level.draw();
+            GL11.glTranslatef(-1.5f,0.0f,-8.0f);                  // Rotate The Triangle On The Y axis ( NEW )
+            GL11.glBegin(GL11.GL_TRIANGLES);                              // Start Drawing A Triangle
+            GL11.glColor3f(1.0f,0.0f,0.0f);                      // Red
+            GL11.glVertex3f( 0.0f, 1.0f, 0.0f);                  // Top Of Triangle (Front)
+            GL11.glColor3f(0.0f,1.0f,0.0f);                      // Green
+            GL11.glVertex3f(-1.0f,-1.0f, 1.0f);                  // Left Of Triangle (Front)
+            GL11.glColor3f(0.0f,0.0f,1.0f);                      // Blue
+            GL11.glVertex3f( 1.0f,-1.0f, 1.0f);                  // Right Of Triangle (Front)
+            GL11.glColor3f(1.0f,0.0f,0.0f);                      // Red
+            GL11.glVertex3f( 0.0f, 1.0f, 0.0f);                  // Top Of Triangle (Right)
+            GL11.glColor3f(0.0f,0.0f,1.0f);                      // Blue
+            GL11.glVertex3f( 1.0f,-1.0f, 1.0f);                  // Left Of Triangle (Right)
+            GL11.glColor3f(0.0f,1.0f,0.0f);                      // Green
+            GL11.glVertex3f( 1.0f,-1.0f, -1.0f);                 // Right Of Triangle (Right)
+            GL11.glColor3f(1.0f,0.0f,0.0f);                      // Red
+            GL11.glVertex3f( 0.0f, 1.0f, 0.0f);                  // Top Of Triangle (Back)
+            GL11.glColor3f(0.0f,1.0f,0.0f);                      // Green
+            GL11.glVertex3f( 1.0f,-1.0f, -1.0f);                 // Left Of Triangle (Back)
+            GL11.glColor3f(0.0f,0.0f,1.0f);                      // Blue
+            GL11.glVertex3f(-1.0f,-1.0f, -1.0f);                 // Right Of Triangle (Back)
+            GL11.glColor3f(1.0f,0.0f,0.0f);                      // Red
+            GL11.glVertex3f( 0.0f, 1.0f, 0.0f);                  // Top Of Triangle (Left)
+            GL11.glColor3f(0.0f,0.0f,1.0f);                      // Blue
+            GL11.glVertex3f(-1.0f,-1.0f,-1.0f);                  // Left Of Triangle (Left)
+            GL11.glColor3f(0.0f,1.0f,0.0f);                      // Green
+            GL11.glVertex3f(-1.0f,-1.0f, 1.0f);                  // Right Of Triangle (Left)
+            GL11.glEnd();                                            // Done Drawing The Pyramid
+                                 // Reset The Current Modelview Matrix
+            GL11.glTranslatef(1.5f,0.0f,-9.0f);                      // Move Right 1.5 Units And Into The Screen 7.0
+            GL11.glRotatef(1,1.0f,1.0f,1.0f);                    // Rotate The Quad On The X axis ( NEW )
+            GL11.glBegin(GL11.GL_QUADS);                                  // Draw A Quad
+            GL11.glColor3f(0.0f,1.0f,0.0f);                      // Set The Color To Blue
+            GL11.glVertex3f( 1.0f, 1.0f,-1.0f);                  // Top Right Of The Quad (Top)
+            GL11.glVertex3f(-1.0f, 1.0f,-1.0f);                  // Top Left Of The Quad (Top)
+            GL11.glVertex3f(-1.0f, 1.0f, 1.0f);                  // Bottom Left Of The Quad (Top)
+            GL11.glVertex3f( 1.0f, 1.0f, 1.0f);                  // Bottom Right Of The Quad (Top)
+            GL11.glColor3f(1.0f,0.5f,0.0f);                      // Set The Color To Orange
+            GL11.glVertex3f( 1.0f,-1.0f, 1.0f);                  // Top Right Of The Quad (Bottom)
+            GL11.glVertex3f(-1.0f,-1.0f, 1.0f);                  // Top Left Of The Quad (Bottom)
+            GL11.glVertex3f(-1.0f,-1.0f,-1.0f);                  // Bottom Left Of The Quad (Bottom)
+            GL11.glVertex3f( 1.0f,-1.0f,-1.0f);                  // Bottom Right Of The Quad (Bottom)
+            GL11.glColor3f(1.0f,0.0f,0.0f);                      // Set The Color To Red
+            GL11.glVertex3f( 1.0f, 1.0f, 1.0f);                  // Top Right Of The Quad (Front)
+            GL11.glVertex3f(-1.0f, 1.0f, 1.0f);                  // Top Left Of The Quad (Front)
+            GL11.glVertex3f(-1.0f,-1.0f, 1.0f);                  // Bottom Left Of The Quad (Front)
+            GL11.glVertex3f( 1.0f,-1.0f, 1.0f);                  // Bottom Right Of The Quad (Front)
+            GL11.glColor3f(1.0f,1.0f,0.0f);                      // Set The Color To Yellow
+            GL11.glVertex3f( 1.0f,-1.0f,-1.0f);                  // Top Right Of The Quad (Back)
+            GL11.glVertex3f(-1.0f,-1.0f,-1.0f);                  // Top Left Of The Quad (Back)
+            GL11.glVertex3f(-1.0f, 1.0f,-1.0f);                  // Bottom Left Of The Quad (Back)
+            GL11.glVertex3f( 1.0f, 1.0f,-1.0f);                  // Bottom Right Of The Quad (Back)
+            GL11.glColor3f(0.0f,0.0f,1.0f);                      // Set The Color To Blue
+            GL11.glVertex3f(-1.0f, 1.0f, 1.0f);                  // Top Right Of The Quad (Left)
+            GL11.glVertex3f(-1.0f, 1.0f,-1.0f);                  // Top Left Of The Quad (Left)
+            GL11.glVertex3f(-1.0f,-1.0f,-1.0f);                  // Bottom Left Of The Quad (Left)
+            GL11.glVertex3f(-1.0f,-1.0f, 1.0f);                  // Bottom Right Of The Quad (Left)
+            GL11.glColor3f(1.0f,0.0f,1.0f);                      // Set The Color To Violet
+            GL11.glVertex3f( 1.0f, 1.0f,-1.0f);                  // Top Right Of The Quad (Right)
+            GL11.glVertex3f( 1.0f, 1.0f, 1.0f);                  // Top Left Of The Quad (Right)
+            GL11.glVertex3f( 1.0f,-1.0f, 1.0f);                  // Bottom Left Of The Quad (Right)
+            GL11.glVertex3f( 1.0f,-1.0f,-1.0f);                  // Bottom Right Of The Quad (Right)
+            GL11.glEnd();                                            // Done Drawing The Quad
+
+            
+            
+            Window.endFrame();
+        }
+        
+        SoundMaster.close();
+    }
+    
+    protected static void tick()
+    {
+        player.tick();
+    }
+    
+    protected static void handleKeyboard()
+    {
+        Window.keyboardEvent((key, scanCode, action, mods) ->
+        {
+            if (action == 1)
+            {
+                for (KeyBinding bind : GameOptions.KEYS)
+                {
+                    if (key == bind.key)
+                        bind.press();
+                }
+            }
+            
+            else if (action == 0)
+            {
+                for (KeyBinding bind : GameOptions.KEYS)
+                {
+                    if (key == bind.key)
+                        bind.release();
+                }
+            }
+        });
+    }
+    
+    public static void main(String[] args)
+    {
+        init(new Session("Notch"));
+    }
+}

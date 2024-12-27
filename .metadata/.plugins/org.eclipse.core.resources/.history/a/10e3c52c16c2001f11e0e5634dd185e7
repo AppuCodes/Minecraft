@@ -1,0 +1,6 @@
+package net.minecraft.level.blocks;
+
+public class WaterLiquid
+{
+
+}

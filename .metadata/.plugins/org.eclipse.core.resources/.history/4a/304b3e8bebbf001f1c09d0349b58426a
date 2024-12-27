@@ -1,0 +1,11 @@
+package net.minecraft.options;
+
+import static org.lwjgl.glfw.GLFW.*;
+
+public class GameOptions
+{
+    public static KeyBinding KEY_FORWARD = new KeyBinding("Forward", GLFW_KEY_W),
+            KEY_BACKWARD = new KeyBinding("Backward", GLFW_KEY_S),
+            KEY_LEFT = new KeyBinding("Left", GLFW_KEY_A),
+            KEY_RIGHT = new KeyBinding("Right", GLFW_KEY_D);
+}

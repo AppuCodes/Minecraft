@@ -1,0 +1,39 @@
+package net.minecraft.sound;
+
+import static org.lwjgl.openal.AL10.alGenBuffers;
+import static org.lwjgl.openal.ALC10.*;
+
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+
+import org.lwjgl.openal.*;
+
+public class SoundMaster
+{
+    private static ArrayList<Integer> buffers = new ArrayList<>();
+    private static ALCCapabilities capabilities;
+    private static long device, context;
+    
+    public static void init()
+    {
+        String defaultDeviceName = alcGetString(0, ALC_DEFAULT_DEVICE_SPECIFIER);
+        device = alcOpenDevice(defaultDeviceName);
+        capabilities = ALC.createCapabilities(device);
+        context = alcCreateContext(device, (IntBuffer) null);
+        alcMakeContextCurrent(context);
+        // capabilities = ALC.createCapabilities(device);
+    }
+    
+    public static void close()
+    {
+        alcMakeContextCurrent(0);
+        alcDestroyContext(context);
+        alcCloseDevice(device);
+    }
+    
+    public static void loadSound(String name)
+    {
+        int buffer = alGenBuffers();
+        buffers.add(buffer);
+    }
+}

@@ -1,0 +1,59 @@
+package net.minecraft.sound;
+
+import static org.lwjgl.openal.AL10.*;
+import static org.lwjgl.openal.ALC10.*;
+
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+
+import org.lwjgl.openal.*;
+import org.lwjgl.system.MemoryUtil;
+
+public class SoundMaster
+{
+    private static ArrayList<Integer> buffers = new ArrayList<>();
+    private static ALCCapabilities capabilities;
+    private static long device, context;
+    
+    public static void init()
+    {
+        String defaultDeviceName = alcGetString(0, ALC_DEFAULT_DEVICE_SPECIFIER);
+        device = alcOpenDevice(defaultDeviceName);
+        capabilities = ALC.createCapabilities(device);
+        context = alcCreateContext(device, (IntBuffer) null);
+        alcMakeContextCurrent(context);
+        AL.createCapabilities(capabilities);
+    }
+    
+    public static SoundSource loadSound(String name)
+    {
+        int buffer = alGenBuffers();
+        buffers.add(buffer);
+        WaveData wave = WaveData.create(name);
+        alBufferData(buffer, wave.format, wave.bytes, wave.sampleRate);
+        wave.dispose();
+        return new SoundSource(buffer);
+    }
+    
+    public static void unloadSound(int buffer)
+    {
+        buffers.remove(buffer);
+        alDeleteBuffers(buffer);
+    }
+    
+    public static void setListenerData(float x, float y, float z)
+    {
+        alListener3f(AL_POSITION, x, y, z);
+        alListener3f(AL_VELOCITY, 0, 0, 0);
+    }
+    
+    public static void close()
+    {
+        for (int buffer : buffers)
+            alDeleteBuffers(buffer);
+        
+        alcMakeContextCurrent(MemoryUtil.NULL);
+        alcDestroyContext(context);
+        alcCloseDevice(device);
+    }
+}

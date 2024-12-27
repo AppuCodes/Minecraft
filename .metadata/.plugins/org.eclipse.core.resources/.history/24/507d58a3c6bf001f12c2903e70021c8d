@@ -1,0 +1,6 @@
+package net.minecraft.utils;
+
+public class Vector3i
+{
+
+}

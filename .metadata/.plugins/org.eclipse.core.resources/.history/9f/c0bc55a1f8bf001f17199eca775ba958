@@ -1,0 +1,34 @@
+package net.minecraft.utils;
+
+import java.util.concurrent.TimeUnit;
+
+public class Ticker
+{
+    private static final long NS_PER_SECOND = TimeUnit.SECONDS.toNanos(1);
+    public float fps, passedTime, partialTicks, scale = 1;
+    private long lastTime = System.nanoTime();
+    private static final float TPS = 20;
+    public int ticks;
+    
+    public void advanceTime()
+    {
+        long now = System.nanoTime();
+        long passedNs = now - this.lastTime;
+        this.lastTime = now;
+        
+        passedNs = Math.max(0, passedNs);
+        passedNs = Math.min(NS_PER_SECOND, passedNs);
+        fps = NS_PER_SECOND / (float) passedNs;
+
+        // Calculate passed time and ticks
+        this.passedTime += passedNs * this.scale * TPS / NS_PER_SECOND;
+        this.ticks = (int) this.passedTime;
+
+        // Maximum ticks per update
+        this.ticks = Math.min(100, this.ticks);
+
+        // Calculate the overflow of the current tick
+        this.passedTime -= this.ticks;
+        this.partialTicks = this.passedTime;
+    }
+}

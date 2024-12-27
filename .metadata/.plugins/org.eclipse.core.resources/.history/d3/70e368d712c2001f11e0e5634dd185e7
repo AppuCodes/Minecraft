@@ -1,0 +1,37 @@
+package net.minecraft.level.gen;
+
+import net.minecraft.level.*;
+import net.minecraft.level.blocks.Blocks;
+
+public class LevelGen
+{
+    public static Chunk handle(Chunk chunk, long seed)
+    {
+        SimplexNoise a = new SimplexNoise(seed), b = new SimplexNoise(seed + 1);
+        
+        for (int x = 0; x < 16; x++)
+        {
+            for (int y = 0; y < 64; y++)
+            {
+                for (int z = 0; z < 16; z++)
+                {
+                    double realX = chunk.pos.x * 16 + x, realY = chunk.pos.y * 16 + y, realZ = chunk.pos.z * 16 + z;
+                    realX /= 32D; realY /= 32D; realZ /= 32D;
+                    
+                    double factor = 1 * a.eval(1 * realX, 1 * realY, 1 * realZ)
+                                  + 0.5 * b.eval(2 * realX, 2 * realY, 2 * realZ);
+                    
+                    factor /= 1.5;
+                    factor = Math.pow(factor, 0.1);
+                    int yLevel = (int) (y * factor);
+                    // 56 = water
+                    chunk.setBlock(x, yLevel, z, y < 58 ? Blocks.STONE.id :
+                        (y == 63 ? Blocks.GRASS.id : Blocks.DIRT.id));
+                }
+            }
+        }
+        
+        chunk.update = true;
+        return chunk;
+    }
+}

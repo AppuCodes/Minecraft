@@ -1,0 +1,25 @@
+package net.minecraft.render.global;
+
+import net.minecraft.*;
+import net.minecraft.level.Level;
+
+public class BuildyThread
+{
+    public static void start()
+    {
+        Thread buildy = new Thread(() ->
+        {
+            while (Window.isOpen())
+            {
+                Level level = Minecraft.level;
+                
+                
+                
+                Minecraft.level.build();
+            }
+        });
+        
+        buildy.setName("Buildy Thread");
+        buildy.start();
+    }
+}

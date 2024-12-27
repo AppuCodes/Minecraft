@@ -1,0 +1,434 @@
+package net.minecraft.utils;
+
+import static org.lwjgl.opengl.GL11.*;
+
+import java.nio.*;
+
+import org.lwjgl.BufferUtils;
+
+public class GLU
+{
+    private static final float[] IDENTITY_MATRIX = new float[]
+    {
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1
+    };
+    
+    private static final FloatBuffer matrix = BufferUtils.createFloatBuffer(16);
+    
+    public static void perspective(float fov, float aspect, float zNear, float zFar)
+    {
+        float sine, cotangent, deltaZ, radians = (float) (fov / 2 * Math.PI / 180);
+        deltaZ = zFar - zNear;
+        sine = (float) Math.sin(radians);
+        
+        if (deltaZ != 0 && sine != 0 && aspect != 0)
+        {
+            cotangent = (float) Math.cos(radians) / sine;
+            makeIdentity(matrix);
+            matrix.put(0, cotangent / aspect);
+            matrix.put(5, cotangent);
+            matrix.put(10, -(zFar + zNear) / deltaZ);
+            matrix.put(11, -1);
+            matrix.put(14, -2 * zNear * zFar / deltaZ);
+            matrix.put(15, 0);
+            glMultMatrixf(matrix);
+        }
+    }
+    
+    private static void makeIdentity(FloatBuffer buffer)
+    {
+        int oldPos = buffer.position();
+        buffer.put(IDENTITY_MATRIX);
+        buffer.position(oldPos);
+    }
+    
+    public static int build2DMipmaps(int target, int components, int width, int height, int format, int type, ByteBuffer data)
+    {
+        if (width < 1 || height < 1)
+            return GL_INVALID_VALUE;
+        
+        int bpp = bytesPerPixel(format, type);
+        if (bpp == 0) return GL_INVALID_ENUM;
+        int maxSize = glGetInteger(GL_MAX_TEXTURE_SIZE), w = nearestPower(width);
+        if (w > maxSize) w = maxSize;
+        int h = nearestPower(height);
+        if (h > maxSize) h = maxSize;
+        PixelStoreState pss = new PixelStoreState();
+        glPixelStorei(GL_PACK_ROW_LENGTH, 0);
+        glPixelStorei(GL_PACK_ALIGNMENT, 1);
+        glPixelStorei(GL_PACK_SKIP_ROWS, 0);
+        glPixelStorei(GL_PACK_SKIP_PIXELS, 0);
+        boolean done = false;
+        ByteBuffer image;
+        int retVal = 0;
+        
+        if (w != width || h != height)
+        {
+            image = BufferUtils.createByteBuffer((w + 4) * h * bpp);
+            int error = gluScaleImage(format, width, height, type, data, w, h, type, image);
+            
+            if (error != 0)
+            {
+                retVal = error;
+                done = true;
+            }
+            
+            glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
+            glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+            glPixelStorei(GL_UNPACK_SKIP_ROWS, 0);
+            glPixelStorei(GL_UNPACK_SKIP_PIXELS, 0);
+        }
+        
+        else image = data;
+        ByteBuffer bufferA = null, bufferB = null;
+        int level = 0;
+        
+        while (!done)
+        {
+            if (image != data)
+            {
+                glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
+                glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+                glPixelStorei(GL_UNPACK_SKIP_ROWS, 0);
+                glPixelStorei(GL_UNPACK_SKIP_PIXELS, 0);
+            }
+            
+            glTexImage2D(target, level, components, w, h, 0, format, type, image);
+            if (w == 1 && h == 1) break;
+            int newW = (w < 2) ? 1 : w >> 1, newH = (h < 2) ? 1 : h >> 1;
+            ByteBuffer newImage;
+            
+            if (bufferA == null)
+                newImage = (bufferA = BufferUtils.createByteBuffer((newW + 4) * newH * bpp));
+            else if (bufferB == null)
+                newImage = (bufferB = BufferUtils.createByteBuffer((newW + 4) * newH * bpp));
+            else
+                newImage = bufferB;
+            
+            int error =  0;
+            if (error != 0)
+            {
+                retVal = error;
+                done = true;
+            }
+            
+            image = newImage;
+            if (bufferB != null) bufferB = bufferA;
+            w = newW;
+            h = newH;
+            level++;
+        }
+        
+        pss.save();
+        return retVal;
+    }
+    
+    protected static int bytesPerPixel(int format, int type)
+    {
+        int n, m;
+        
+        switch (format)
+        {
+            case GL_COLOR_INDEX:
+            case GL_STENCIL_INDEX:
+            case GL_DEPTH_COMPONENT:
+            case GL_RED:
+            case GL_GREEN:
+            case GL_BLUE:
+            case GL_ALPHA:
+            case GL_LUMINANCE:
+                n = 1;
+                break;
+            case GL_LUMINANCE_ALPHA:
+                n = 2;
+                break;
+            case GL_RGB:
+                n = 3;
+                break;
+            case GL_RGBA:
+                n = 4;
+                break;
+            default:
+                n = 0;
+        }
+        
+        switch (type)
+        {
+            case GL_UNSIGNED_BYTE:
+                m = 1;
+                break;
+            case GL_BYTE:
+                m = 1;
+                break;
+            case GL_BITMAP:
+                m = 1;
+                break;
+            case GL_UNSIGNED_SHORT:
+                m = 2;
+                break;
+            case GL_SHORT:
+                m = 2;
+                break;
+            case GL_UNSIGNED_INT:
+                m = 4;
+                break;
+            case GL_INT:
+                m = 4;
+                break;
+            case GL_FLOAT:
+                m = 4;
+                break;
+            default:
+                m = 0;
+        }
+        
+        return n * m;
+    }
+    
+    protected static int nearestPower(int value)
+    {
+        int i = 1;
+        
+        if (value == 0)
+            return -1;
+        
+        for (;;)
+        {
+            if (value == 1)
+                return i;
+            
+            else if (value == 3)
+                return i << 2;
+            
+            value >>= 1;
+            i <<= 1;
+        }
+    }
+    
+    public static int gluScaleImage(int format, int widthIn, int heightIn, int typein, ByteBuffer dataIn, int widthOut, int heightOut, int typeOut, ByteBuffer dataOut)
+    {
+        int components = compPerPix(format);
+        if (components == -1) return GL_INVALID_ENUM;
+        int i, j, k, sizein, sizeout, rowstride, rowlen;
+        float[] tempIn = new float[widthOut * heightOut * components], tempOut = new float[widthIn * heightIn * components];
+        float sx, sy;
+        
+        switch (typein)
+        {
+            case GL_UNSIGNED_BYTE:
+                sizein = 1;
+                break;
+            case GL_FLOAT:
+                sizein = 4;
+                break;
+            default:
+                return GL_INVALID_ENUM;
+        }
+        
+        switch (typeOut)
+        {
+            case GL_UNSIGNED_BYTE:
+                sizeout = 1;
+                break;
+            case GL_FLOAT:
+                sizeout = 4;
+                break;
+            default:
+                return GL_INVALID_ENUM;
+        }
+        
+        PixelStoreState pss = new PixelStoreState();
+        if (pss.unpackRowLength > 0) rowlen = pss.unpackRowLength;
+        else rowlen = widthIn;
+        if (sizein >= pss.unpackAlignment) rowstride = components * rowlen;
+        else rowstride = pss.unpackAlignment / sizein * ceil(components * rowlen * sizein, pss.unpackAlignment);
+        
+        switch (typein)
+        {
+            case GL_UNSIGNED_BYTE:
+                k = 0;
+                dataIn.rewind();
+                
+                for (i = 0; i < heightIn; i++)
+                {
+                    int ubptr = i * rowstride + pss.unpackSkipRows * rowstride + pss.unpackSkipPixels * components;
+                    
+                    for (j = 0; j < widthIn * components; j++)
+                        tempIn[k++] = dataIn.get(ubptr++) & 0xff;
+                }
+                
+                break;
+            case GL_FLOAT:
+                k = 0;
+                dataIn.rewind();
+                
+                for (i = 0; i < heightIn; i++)
+                {
+                    int fptr = 4 * (i * rowstride + pss.unpackSkipRows * rowstride + pss.unpackSkipPixels * components);
+                    
+                    for (j = 0; j < widthIn * components; j++)
+                    {
+                        tempIn[k++] = dataIn.getFloat(fptr);
+                        fptr += 4;
+                    }
+                }
+                
+                break;
+            default:
+                return GL_INVALID_ENUM;
+        }
+        
+        sx = (float) widthIn / (float) widthOut;
+        sy = (float) heightIn / (float) heightOut;
+        float[] c = new float[components];
+        int src, dst;
+        
+        for (int iy = 0; iy < heightOut; iy++)
+        {
+            for (int ix = 0; ix < widthOut; ix++)
+            {
+                int x0 = (int) (ix * sx), x1 = (int) ((ix + 1) * sx),
+                    y0 = (int) (iy * sy), y1 = (int) ((iy + 1) * sy),
+                    readPix = 0;
+                
+                for (int ic = 0; ic < components; ic++) c[ic] = 0;
+                
+                for (int ix0 = x0; ix0 < x1; ix0++)
+                {
+                    for (int iy0 = y0; iy0 < y1; iy0++)
+                    {
+                        src = (iy0 * widthIn + ix0) * components;
+                        
+                        for (int ic = 0; ic < components; ic++)
+                            c[ic] += tempIn[src + ic];
+                        
+                        readPix++;
+                    }
+                }
+                
+                dst = (iy * widthOut + ix) * components;
+                
+                if (readPix == 0)
+                {
+                    src = (y0 * widthIn + x0) * components;
+                    
+                    for (int ic = 0; ic < components; ic++)
+                        tempOut[dst++] = tempIn[src + ic];
+                }
+                
+                else
+                {
+                    for (k = 0; k < components; k++)
+                        tempOut[dst++] = c[k] / readPix;
+                }
+            }
+        }
+        
+        if (pss.packRowLength > 0) rowlen = pss.packRowLength;
+        else rowlen = widthOut;
+        if (sizeout >= pss.packAlignment) rowstride = components * rowlen;
+        else rowstride = pss.packAlignment / sizeout * ceil(components * rowlen * sizeout, pss.packAlignment);
+        
+        switch (typeOut)
+        {
+            case GL_UNSIGNED_BYTE:
+                k = 0;
+                
+                for (i = 0; i < heightOut; i++)
+                {
+                    int ubptr = i * rowstride + pss.packSkipRows * rowstride + pss.packSkipPixels * components;
+                    
+                    for (j = 0; j < widthOut * components; j++)
+                    {
+                        dataOut.put(ubptr++, (byte) tempOut[k++]);
+                    }
+                }
+                
+                break;
+            case GL_FLOAT:
+                k = 0;
+                for (i = 0; i < heightOut; i++)
+                {
+                    int fptr = 4 * (i * rowstride + pss.unpackSkipRows * rowstride + pss.unpackSkipPixels * components);
+                    
+                    for (j = 0; j < widthOut * components; j++)
+                    {
+                        dataOut.putFloat(fptr, tempOut[k++]);
+                        fptr += 4;
+                    }
+                }
+                break;
+            default:
+                return GL_INVALID_ENUM;
+        }
+        
+        return 0;
+    }
+    
+    protected static int compPerPix(int format)
+    {
+        switch (format)
+        {
+            case GL_COLOR_INDEX:
+            case GL_STENCIL_INDEX:
+            case GL_DEPTH_COMPONENT:
+            case GL_RED:
+            case GL_GREEN:
+            case GL_BLUE:
+            case GL_ALPHA:
+            case GL_LUMINANCE:
+                return 1;
+            case GL_LUMINANCE_ALPHA:
+                return 2;
+            case GL_RGB:
+                return 3;
+            case GL_RGBA:
+                return 4;
+            default:
+                return -1;
+        }
+    }
+    
+    protected static int ceil(int a, int b)
+    {
+        return (a % b == 0 ? a / b : a / b + 1);
+    }
+    
+    static class PixelStoreState
+    {
+        public int unpackRowLength, unpackAlignment, unpackSkipRows, unpackSkipPixels,
+                   packRowLength, packAlignment, packSkipRows, packSkipPixels;
+        
+        public PixelStoreState()
+        {
+            load();
+        }
+        
+        public void load()
+        {
+            unpackRowLength = glGetInteger(GL_UNPACK_ROW_LENGTH);
+            unpackAlignment = glGetInteger(GL_UNPACK_ALIGNMENT);
+            unpackSkipRows = glGetInteger(GL_UNPACK_SKIP_ROWS);
+            unpackSkipPixels = glGetInteger(GL_UNPACK_SKIP_PIXELS);
+            packRowLength = glGetInteger(GL_PACK_ROW_LENGTH);
+            packAlignment = glGetInteger(GL_PACK_ALIGNMENT);
+            packSkipRows = glGetInteger(GL_PACK_SKIP_ROWS);
+            packSkipPixels = glGetInteger(GL_PACK_SKIP_PIXELS);
+        }
+        
+        public void save()
+        {
+            glPixelStorei(GL_UNPACK_ROW_LENGTH, unpackRowLength);
+            glPixelStorei(GL_UNPACK_ALIGNMENT, unpackAlignment);
+            glPixelStorei(GL_UNPACK_SKIP_ROWS, unpackSkipRows);
+            glPixelStorei(GL_UNPACK_SKIP_PIXELS, unpackSkipPixels);
+            glPixelStorei(GL_PACK_ROW_LENGTH, packRowLength);
+            glPixelStorei(GL_PACK_ALIGNMENT, packAlignment);
+            glPixelStorei(GL_PACK_SKIP_ROWS, packSkipRows);
+            glPixelStorei(GL_PACK_SKIP_PIXELS, packSkipPixels);
+        }
+    }
+}

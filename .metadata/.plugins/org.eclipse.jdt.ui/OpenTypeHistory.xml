@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=Minecraft/C:\/Program Files\/Java\/graalvm-jdk-22.0.1+8.1\/lib\/jrt-fs.jar`java.desktop=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/22\/docs\/api\/=/=/module=/true=/&lt;javax.swing.colorchooser(DefaultSwatchChooserPanel$MainSwatchKeyListener.class[MainSwatchKeyListener" modifiers="2" timestamp="1712373006000"/>
+    <typeInfo handle="=Minecraft/libs\/lwjgl-glfw.jar&lt;org.lwjgl.glfw(GLFWCursorPosCallback.class[GLFWCursorPosCallback" modifiers="1057" timestamp="1734610278000"/>
+    <typeInfo handle="=Minecraft/C:\/Program Files\/Java\/graalvm-jdk-22.0.1+8.1\/lib\/jrt-fs.jar`java.base=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/22\/docs\/api\/=/=/module=/true=/&lt;java.util.concurrent(ThreadLocalRandom.class[ThreadLocalRandom" modifiers="49" timestamp="1712373006000"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.utils{BoundingBox.java[BoundingBox" modifiers="1" timestamp="1734894285367"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.utils{GLU.java[GLU" modifiers="1" timestamp="1734915461493"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.render.culling{Frustum.java[Frustum" modifiers="1" timestamp="1734980062311"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.level{SimplexNoise.java[SimplexNoise" modifiers="1" timestamp="1734981401422"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.render{Textures.java[Textures" modifiers="1" timestamp="1734984499954"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.level.blocks{GrassBlock.java[GrassBlock" modifiers="1" timestamp="1735059944041"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.level.blocks{Blocks.java[Blocks[Block" modifiers="9" timestamp="1735261854248"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.level.blocks{WaterLiquid.java[WaterLiquid" modifiers="1" timestamp="1735064100619"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.level.entities{Player.java[Player" modifiers="1" timestamp="1734894337211"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.render.gui.screens{GameHud.java[GameHud" modifiers="1" timestamp="1734909817080"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.utils.vectors{Vec3i.java[Vec3i" modifiers="1" timestamp="1735157243021"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.level.lighting{LightEngine.java[LightEngine" modifiers="1" timestamp="1735261900285"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.render.gui{Gui.java[Gui" modifiers="1" timestamp="1734820170703"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.level.blocks{Blocks.java[Blocks" modifiers="1" timestamp="1735261854248"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft{TickyThread.java[TickyThread" modifiers="1" timestamp="1735262944346"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.level.gen{LevelGen.java[LevelGen" modifiers="1" timestamp="1735265935485"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.level{Chunk.java[Chunk" modifiers="1" timestamp="1735265593731"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.level{Level.java[Level" modifiers="1" timestamp="1735263951057"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.render{Tessellator.java[Tessellator" modifiers="1" timestamp="1735262360887"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.render.global{BuildyThread.java[BuildyThread" modifiers="1" timestamp="1735267600887"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.sounds.music{MusicHandler.java[MusicHandler" modifiers="1" timestamp="1735268013395"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.options{GameOptions.java[GameOptions" modifiers="1" timestamp="1735264140264"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.render.global{RenderGlobal.java[RenderGlobal" modifiers="1" timestamp="1735268168098"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.render{LevelRenderer.java[LevelRenderer" modifiers="1" timestamp="1735264630793"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft{Minecraft.java[Minecraft" modifiers="1" timestamp="1735236912003"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft{Window.java[Window" modifiers="1" timestamp="1735267250546"/>
+    <typeInfo handle="=Minecraft/&lt;net.minecraft.level.entities{Entity.java[Entity" modifiers="1" timestamp="1735264432244"/>
+</typeInfoHistroy>

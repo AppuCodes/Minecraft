@@ -1,0 +1,2116 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ff8ace82d10, pid=13840, tid=20300
+#
+# JRE version: Java(TM) SE Runtime Environment Oracle GraalVM 22.0.1+8.1 (22.0.1+8) (build 22.0.1+8-jvmci-b01)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM Oracle GraalVM 22.0.1+8.1 (22.0.1+8-jvmci-b01, mixed mode, sharing, tiered, jvmci, jvmci compiler, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# Problematic frame:
+# C  [atio6axx.dll+0x2152d10]
+#
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -XX:+ShowCodeDetailsInExceptionMessages net.minecraft.Minecraft
+
+Host: AMD Ryzen 5 5500U with Radeon Graphics         , 12 cores, 7G,  Windows 11 , 64 bit Build 26100 (10.0.26100.2454)
+Time: Tue Dec 24 11:05:01 2024 US Mountain Standard Time elapsed time: 18.846732 seconds (0d 0h 0m 18s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000001d290655760):  JavaThread "main"             [_thread_in_native, id=20300, stack(0x0000007323800000,0x0000007323900000) (1024K)]
+
+Stack: [0x0000007323800000,0x0000007323900000],  sp=0x00000073238fe888,  free space=1018k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [atio6axx.dll+0x2152d10]  (no source info available)
+C  [atio6axx.dll+0x5428c]  (no source info available)
+C  [atio6axx.dll+0x393be8]  (no source info available)
+C  [atio6axx.dll+0x393604]  (no source info available)
+C  [atio6axx.dll+0x519d96]  (no source info available)
+C  0x000001d2a39ba69c  (no source info available)
+
+The last pc belongs to native nmethod (printed below).
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J 1278  org.lwjgl.opengl.GL11C.glDrawArrays(III)V (0 bytes) @ 0x000001d2a39ba601 [0x000001d2a39ba5a0+0x0000000000000061]
+J 1378 jvmci net.minecraft.render.LevelRenderer.drawBlocks()V (177 bytes) @ 0x000001d2a3a01df0 [0x000001d2a3a010e0+0x0000000000000d10]
+J 1365 c1 net.minecraft.level.Level.draw()V (8 bytes) @ 0x000001d29c05b6d4 [0x000001d29c05b560+0x0000000000000174]
+j  net.minecraft.Minecraft.init(Lnet/minecraft/utils/Session;)V+93
+j  net.minecraft.Minecraft.main([Ljava/lang/String;)V+9
+v  ~StubRoutines::call_stub 0x000001d2a32b100d
+
+siginfo: EXCEPTION_ACCESS_VIOLATION (0xc0000005), reading address 0x000001db0180c6f0
+
+
+Registers:
+RAX=0x000001daf6c00000, RBX=0x000001daf6c00000, RCX=0x000001daf6c00000, RDX=0x000001db01738040
+RSP=0x00000073238fe888, RBP=0x00000000000d46d0, RSI=0x0000000000000001, RDI=0x000001d2803b8488
+R8 =0x00000000000d46d0, R9 =0x0000000000000001, R10=0x00007ff8aad30000, R11=0x00007ff8ace82e7f
+R12=0x0000000000000000, R13=0x0000000000000000, R14=0x0000000000000000, R15=0x0000000000000001
+RIP=0x00007ff8ace82d10, EFLAGS=0x0000000000010246
+
+
+Register to memory mapping:
+
+RAX=0x000001daf6c00000 points into unknown readable memory: 0x3f0000003f000000 | 00 00 00 3f 00 00 00 3f
+RBX=0x000001daf6c00000 points into unknown readable memory: 0x3f0000003f000000 | 00 00 00 3f 00 00 00 3f
+RCX=0x000001daf6c00000 points into unknown readable memory: 0x3f0000003f000000 | 00 00 00 3f 00 00 00 3f
+RDX=0x000001db01738040 points into unknown readable memory: 0x3f8000003f800000 | 00 00 80 3f 00 00 80 3f
+RSP=0x00000073238fe888 is pointing into the stack for thread: 0x000001d290655760
+RBP=0x00000000000d46d0 is an unknown value
+RSI=0x0000000000000001 is an unknown value
+RDI=0x000001d2803b8488 points into unknown readable memory: 0x00007ff8ad0d2af0 | f0 2a 0d ad f8 7f 00 00
+R8 =0x00000000000d46d0 is an unknown value
+R9 =0x0000000000000001 is an unknown value
+R10=0x00007ff8aad30000 atio6axx.dll
+R11=0x00007ff8ace82e7f atio6axx.dll
+R12=0x0 is null
+R13=0x0 is null
+R14=0x0 is null
+R15=0x0000000000000001 is an unknown value
+
+Top of Stack: (sp=0x00000073238fe888)
+0x00000073238fe888:   00007ff8aad8428c 0000000000000001
+0x00000073238fe898:   0000000000000000 0000000000000000
+0x00000073238fe8a8:   0000000000000000 000001d2898b0e6c
+0x00000073238fe8b8:   00007ff8ab0c3be8 000001d28a71a080
+0x00000073238fe8c8:   000001d28a8616b8 00000000000d46d0
+0x00000073238fe8d8:   000001d28a8616b8 000001d200000102
+0x00000073238fe8e8:   0000000000000001 000001d288b36378
+0x00000073238fe8f8:   000001d28a85df80 000001d2898b0958
+0x00000073238fe908:   000001d28a862670 0000000000000000
+0x00000073238fe918:   00007ff8d312a29d 000001d290655760
+0x00000073238fe928:   000001d290655760 0000000000000010
+0x00000073238fe938:   0000000000000000 0000000000000256
+0x00000073238fe948:   0000000000000007 0000000000011b3c
+0x00000073238fe958:   0000000000000000 000001d28a71a080
+0x00000073238fe968:   00007ff8ab0c3604 000001d200000001
+0x00000073238fe978:   000001d290650256 000001d28a045201
+0x00000073238fe988:   00007ff800000003 00000000000000b2
+0x00000073238fe998:   00007ff8d2f1d5c4 000001d290655760
+0x00000073238fe9a8:   000001d2f20b6500 00000073238fee18
+0x00000073238fe9b8:   000001d29c0643c4 0000000000000000
+0x00000073238fe9c8:   00007ff8d3380f30 0096009500000004
+0x00000073238fe9d8:   0000101800000078 000001d2a32bcaf8
+0x00000073238fe9e8:   000001d2f25f4b10 0000f1366193b651
+0x00000073238fe9f8:   00007ff8d2ce3d04 000001d290655760
+0x00000073238fea08:   00000000904d88b8 0000000000000000
+0x00000073238fea18:   00000000000005d8 00000073238feec0
+0x00000073238fea28:   000001d2a33ce378 00000073238feab0
+0x00000073238fea38:   000001d2f25f4b10 0000f1366193b601
+0x00000073238fea48:   00007ff8d2ce3d04 000001d290655760
+0x00000073238fea58:   00000000903044c8 0000000000000000
+0x00000073238fea68:   00000000000005d8 00000073238fef10
+0x00000073238fea78:   000001d2a33ce378 0000000045c95000 
+
+Instructions: (pc=0x00007ff8ace82d10)
+0x00007ff8ace82c10:   89 40 04 44 88 48 06 c3 4c 8b 02 8b 4a 08 44 0f
+0x00007ff8ace82c20:   b7 4a 0c 4c 89 00 89 48 08 66 44 89 48 0c c3 0f
+0x00007ff8ace82c30:   b7 0a 44 0f b6 42 02 66 89 08 44 88 40 02 c3 90
+0x00007ff8ace82c40:   4c 8b 02 8b 4a 08 44 0f b6 4a 0c 4c 89 00 89 48
+0x00007ff8ace82c50:   08 44 88 48 0c c3 4c 8b 02 0f b7 4a 08 4c 89 00
+0x00007ff8ace82c60:   66 89 48 08 c3 4c 8b 02 0f b6 4a 08 4c 89 00 88
+0x00007ff8ace82c70:   48 08 c3 4c 8b 02 8b 4a 08 4c 89 00 89 48 08 c3
+0x00007ff8ace82c80:   8b 0a 44 0f b7 42 04 89 08 66 44 89 40 04 c3 8b
+0x00007ff8ace82c90:   0a 44 0f b6 42 04 89 08 44 88 40 04 c3 48 8b 0a
+0x00007ff8ace82ca0:   48 89 08 c3 0f b6 0a 88 08 c3 8b 0a 89 08 c3 90
+0x00007ff8ace82cb0:   49 83 f8 20 77 17 f3 0f 6f 0a f3 42 0f 6f 54 02
+0x00007ff8ace82cc0:   f0 f3 0f 7f 09 f3 42 0f 7f 54 01 f0 c3 48 3b d1
+0x00007ff8ace82cd0:   73 0e 4e 8d 0c 02 49 3b c9 0f 82 41 04 00 00 90
+0x00007ff8ace82ce0:   83 3d 71 13 ef 01 03 0f 82 e3 02 00 00 49 81 f8
+0x00007ff8ace82cf0:   00 20 00 00 76 16 49 81 f8 00 00 18 00 77 0d f6
+0x00007ff8ace82d00:   05 aa 9c 06 02 02 0f 85 64 fe ff ff c5 fe 6f 02
+0x00007ff8ace82d10:   c4 a1 7e 6f 6c 02 e0 49 81 f8 00 01 00 00 0f 86
+0x00007ff8ace82d20:   c4 00 00 00 4c 8b c9 49 83 e1 1f 49 83 e9 20 49
+0x00007ff8ace82d30:   2b c9 49 2b d1 4d 03 c1 49 81 f8 00 01 00 00 0f
+0x00007ff8ace82d40:   86 a3 00 00 00 49 81 f8 00 00 18 00 0f 87 3e 01
+0x00007ff8ace82d50:   00 00 66 66 66 66 66 66 0f 1f 84 00 00 00 00 00
+0x00007ff8ace82d60:   c5 fe 6f 0a c5 fe 6f 52 20 c5 fe 6f 5a 40 c5 fe
+0x00007ff8ace82d70:   6f 62 60 c5 fd 7f 09 c5 fd 7f 51 20 c5 fd 7f 59
+0x00007ff8ace82d80:   40 c5 fd 7f 61 60 c5 fe 6f 8a 80 00 00 00 c5 fe
+0x00007ff8ace82d90:   6f 92 a0 00 00 00 c5 fe 6f 9a c0 00 00 00 c5 fe
+0x00007ff8ace82da0:   6f a2 e0 00 00 00 c5 fd 7f 89 80 00 00 00 c5 fd
+0x00007ff8ace82db0:   7f 91 a0 00 00 00 c5 fd 7f 99 c0 00 00 00 c5 fd
+0x00007ff8ace82dc0:   7f a1 e0 00 00 00 48 81 c1 00 01 00 00 48 81 c2
+0x00007ff8ace82dd0:   00 01 00 00 49 81 e8 00 01 00 00 49 81 f8 00 01
+0x00007ff8ace82de0:   00 00 0f 83 78 ff ff ff 4d 8d 48 1f 49 83 e1 e0
+0x00007ff8ace82df0:   4d 8b d9 49 c1 eb 05 47 8b 9c 9a 40 70 3c 04 4d
+0x00007ff8ace82e00:   03 da 41 ff e3 c4 a1 7e 6f 8c 0a 00 ff ff ff c4 
+
+
+Stack slot to memory mapping:
+
+stack at sp + 0 slots: 0x00007ff8aad8428c atio6axx.dll
+stack at sp + 1 slots: 0x0000000000000001 is an unknown value
+stack at sp + 2 slots: 0x0 is null
+stack at sp + 3 slots: 0x0 is null
+stack at sp + 4 slots: 0x0 is null
+stack at sp + 5 slots: 0x000001d2898b0e6c points into unknown readable memory: 00 00 00 00
+stack at sp + 6 slots: 0x00007ff8ab0c3be8 atio6axx.dll
+stack at sp + 7 slots: 0x000001d28a71a080 points into unknown readable memory: 0x00007ff8ae739128 | 28 91 73 ae f8 7f 00 00
+
+
+Compiled method (n/a) 18962 1278     n 0       org.lwjgl.opengl.GL11C::glDrawArrays (native)
+ total in heap  [0x000001d2a39ba410,0x000001d2a39ba7c8] = 952
+ relocation     [0x000001d2a39ba568,0x000001d2a39ba5a0] = 56
+ main code      [0x000001d2a39ba5a0,0x000001d2a39ba7c0] = 544
+ oops           [0x000001d2a39ba7c0,0x000001d2a39ba7c8] = 8
+
+[Constant Pool (empty)]
+
+[MachCode]
+[Entry Point]
+  # {method} {0x000001d2f25aaa18} 'glDrawArrays' '(III)V' in 'org/lwjgl/opengl/GL11C'
+  # parm0:    rdx       = int
+  # parm1:    r8        = int
+  # parm2:    r9        = int
+  #           [sp+0x80]  (sp of caller)
+  0x000001d2a39ba5a0: 448b 5208 | 49bb 0000 | 00b1 d201 | 0000 4d03 | d349 3bc2 | 0f84 0600 
+
+  0x000001d2a39ba5b8: ;   {runtime_call ic_miss_stub}
+  0x000001d2a39ba5b8: 0000 e9c1 | 4194 ff90 
+[Verified Entry Point]
+  0x000001d2a39ba5c0: 8984 2400 | 80ff ff55 | 488b ec48 | 83ec 7090 | 4181 7f20 | 0100 0000 
+
+  0x000001d2a39ba5d8: ;   {runtime_call StubRoutines (final stubs)}
+  0x000001d2a39ba5d8: 7405 e801 | 9892 ff4c | 894c 2420 | 4d8b c84c 
+
+  0x000001d2a39ba5e8: ;   {oop(a 'java/lang/Class'{0x00000000901faab8} = 'org/lwjgl/opengl/GL11C')}
+  0x000001d2a39ba5e8: 8bc2 49be | b8aa 1f90 | 0000 0000 | 4c89 7424 | 584c 8d74 | 2458 498b | d6c5 f877 
+
+  0x000001d2a39ba604: ;   {internal_word}
+  0x000001d2a39ba604: 49ba 01a6 | 9ba3 d201 | 0000 4d89 | 97a8 0300 | 0049 89a7 | a003 0000 
+
+  0x000001d2a39ba61c: ;   {external_word}
+  0x000001d2a39ba61c: 49ba 9c30 | 78d3 f87f | 0000 4180 | 3a00 0f84 | 4e00 0000 | 5241 5041 
+
+  0x000001d2a39ba634: ;   {metadata({method} {0x000001d2f25aaa18} 'glDrawArrays' '(III)V' in 'org/lwjgl/opengl/GL11C')}
+  0x000001d2a39ba634: 5148 ba10 | aa5a f2d2 | 0100 0049 | 8bcf 4883 | ec20 40f6 | c40f 0f84 | 1900 0000 | 4883 ec08 
+  0x000001d2a39ba654: ;   {runtime_call}
+  0x000001d2a39ba654: 48b8 40b5 | 28d3 f87f | 0000 ffd0 | 4883 c408 | e90c 0000 
+
+  0x000001d2a39ba668: ;   {runtime_call}
+  0x000001d2a39ba668: 0048 b840 | b528 d3f8 | 7f00 00ff | d048 83c4 | 2041 5941 | 585a 498d | 8fc0 0300 | 0041 c787 
+  0x000001d2a39ba688: 5404 0000 | 0400 0000 
+
+  0x000001d2a39ba690: ;   {runtime_call}
+  0x000001d2a39ba690: 48b8 e0d2 | b603 f97f | 0000 ffd0 | c5f8 7741 | c787 5404 | 0000 0500 | 0000 f083 | 4424 c000 
+  0x000001d2a39ba6b0: 493b af58 | 0400 000f | 870e 0000 | 0041 83bf | 5004 0000 | 000f 8423 | 0000 00c5 | f877 498b 
+  0x000001d2a39ba6d0: cf4c 8be4 | 4883 ec20 | 4883 e4f0 
+
+  0x000001d2a39ba6dc: ;   {runtime_call}
+  0x000001d2a39ba6dc: 48b8 d01e | f3d2 f87f | 0000 ffd0 | 498b e44d | 33e4 41c7 | 8754 0400 | 0008 0000 | 0041 83bf 
+  0x000001d2a39ba6fc: d004 0000 | 020f 8494 
+
+  0x000001d2a39ba704: ;   {external_word}
+  0x000001d2a39ba704: 0000 0049 | ba9c 3078 | d3f8 7f00 | 0041 803a | 000f 8444 
+
+  0x000001d2a39ba718: ;   {metadata({method} {0x000001d2f25aaa18} 'glDrawArrays' '(III)V' in 'org/lwjgl/opengl/GL11C')}
+  0x000001d2a39ba718: 0000 0048 | ba10 aa5a | f2d2 0100 | 0049 8bcf | 4883 ec20 | 40f6 c40f | 0f84 1900 | 0000 4883 
+  0x000001d2a39ba738: ;   {runtime_call}
+  0x000001d2a39ba738: ec08 48b8 | 40b5 28d3 | f87f 0000 | ffd0 4883 | c408 e90c 
+
+  0x000001d2a39ba74c: ;   {runtime_call}
+  0x000001d2a39ba74c: 0000 0048 | b840 b528 | d3f8 7f00 | 00ff d048 | 83c4 2049 | c787 a003 | 0000 0000 | 0000 49c7 
+  0x000001d2a39ba76c: 87a8 0300 | 0000 0000 | 00c5 f877 | 498b 8f30 | 0400 00c7 | 8100 0100 | 0000 0000 | 00c9 4983 
+  0x000001d2a39ba78c: 7f08 000f | 8501 0000 
+
+  0x000001d2a39ba794: ;   {runtime_call StubRoutines (initial stubs)}
+  0x000001d2a39ba794: 00c3 e965 | 678f ffc5 | f877 4c8b | e448 83ec | 2048 83e4 
+
+  0x000001d2a39ba7a8: ;   {runtime_call}
+  0x000001d2a39ba7a8: f048 b890 | ed28 d3f8 | 7f00 00ff | d049 8be4 | 4d33 e4e9 | 47ff ffff 
+[/MachCode]
+
+
+Compiled method (JVMCI) 18966 1378       4       net.minecraft.render.LevelRenderer::drawBlocks (177 bytes)
+ total in heap  [0x000001d2a3a00d90,0x000001d2a3a031c8] = 9272
+ relocation     [0x000001d2a3a00ee8,0x000001d2a3a010a8] = 448
+ constants      [0x000001d2a3a010c0,0x000001d2a3a010e0] = 32
+ main code      [0x000001d2a3a010e0,0x000001d2a3a02450] = 4976
+ stub code      [0x000001d2a3a02450,0x000001d2a3a025b0] = 352
+ oops           [0x000001d2a3a025b0,0x000001d2a3a025c0] = 16
+ metadata       [0x000001d2a3a025c0,0x000001d2a3a02660] = 160
+ scopes data    [0x000001d2a3a02660,0x000001d2a3a02a68] = 1032
+ scopes pcs     [0x000001d2a3a02a68,0x000001d2a3a02fc8] = 1376
+ dependencies   [0x000001d2a3a02fc8,0x000001d2a3a02fe0] = 24
+ nul chk table  [0x000001d2a3a02fe0,0x000001d2a3a03098] = 184
+ speculations   [0x000001d2a3a03098,0x000001d2a3a031b0] = 280
+ JVMCI data     [0x000001d2a3a031b0,0x000001d2a3a031c8] = 24
+
+
+[Constant Pool]
+             Address          hex4                    hex8      
+  0x000001d2a3a010c0:   0x00000000      0x4060000000000000      
+  0x000001d2a3a010c4:   0x40600000                              
+  0x000001d2a3a010c8:   0xf4f4f4f4      0xf4f4f4f4f4f4f4f4      
+  0x000001d2a3a010cc:   0xf4f4f4f4                              
+  0x000001d2a3a010d0:   0xf4f4f4f4      0xf4f4f4f4f4f4f4f4      
+  0x000001d2a3a010d4:   0xf4f4f4f4                              
+  0x000001d2a3a010d8:   0xf4f4f4f4      0xf4f4f4f4f4f4f4f4      
+  0x000001d2a3a010dc:   0xf4f4f4f4                              
+
+[MachCode]
+[Entry Point]
+  # {method} {0x000001d2f25f3218} 'drawBlocks' '()V' in 'net/minecraft/render/LevelRenderer'
+  #           [sp+0x70]  (sp of caller)
+  0x000001d2a3a010e0: ;   {no_reloc}
+  0x000001d2a3a010e0: 448b 5208 | 49bc 0000 | 00b1 d201 | 0000 4d03 | d44d 33e4 
+
+  0x000001d2a3a010f4: ;   {runtime_call ic_miss_stub}
+  0x000001d2a3a010f4: 493b c20f | 8583 d68f | ff66 6690 
+[Verified Entry Point]
+  0x000001d2a3a01100: 8984 2400 | 80ff ff48 | 83ec 6890 | 4181 7f20 | 0100 0000 | 0f85 2510 | 0000 4889 | 6c24 6048 
+  0x000001d2a3a01120: 8954 2438 | bae1 0d00 
+
+  0x000001d2a3a01128: ;   {static_call}
+  0x000001d2a3a01128: 0066 90e8 
+
+  0x000001d2a3a0112c: ; ImmutableOopMap {[56]=Oop }
+                      ;*invokestatic glEnable {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glEnable@1 (line 724)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@3 (line 43)
+  0x000001d2a3a0112c: 9000 fdff 
+
+  0x000001d2a3a01130: ;   {other}
+  0x000001d2a3a01130: 0f1f 8400 | a003 0000 
+
+  0x000001d2a3a01138: ;   {oop("blocks"{0x00000000901ac1a0})}
+  0x000001d2a3a01138: 48ba a0c1 | 1a90 0000 | 0000 41b8 | 0100 0000 
+
+  0x000001d2a3a01148: ;   {static_call}
+  0x000001d2a3a01148: 6666 90e8 
+
+  0x000001d2a3a0114c: ; ImmutableOopMap {[56]=Oop }
+                      ;*invokestatic load {reexecute=0 rethrow=0 return_oop=0}
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@9 (line 44)
+  0x000001d2a3a0114c: 50eb 63f8 
+
+  0x000001d2a3a01150: ;   {other}
+  0x000001d2a3a01150: 0f1f 8400 | c003 0001 
+
+  0x000001d2a3a01158: ;   {static_call}
+  0x000001d2a3a01158: 6666 90e8 
+
+  0x000001d2a3a0115c: ; ImmutableOopMap {[56]=Oop }
+                      ;*invokestatic calculate {reexecute=0 rethrow=0 return_oop=0}
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@13 (line 45)
+  0x000001d2a3a0115c: 603e 65f8 
+
+  0x000001d2a3a01160: ;   {other}
+  0x000001d2a3a01160: 0f1f 8400 | d003 0002 | ba74 8000 
+
+  0x000001d2a3a0116c: ;   {static_call}
+  0x000001d2a3a0116c: 0066 90e8 
+
+  0x000001d2a3a01170: ; ImmutableOopMap {[56]=Oop }
+                      ;*invokestatic glEnableClientState {reexecute=0 rethrow=0 return_oop=0}
+                      ; - net.minecraft.render.LevelRenderer::enableStates@18 (line 77)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@35 (line 46)
+  0x000001d2a3a01170: 4ca4 fbff 
+
+  0x000001d2a3a01174: ;   {other}
+  0x000001d2a3a01174: 0f1f 8400 | e403 0003 | ba78 8000 
+
+  0x000001d2a3a01180: ;   {static_call}
+  0x000001d2a3a01180: 0066 90e8 
+
+  0x000001d2a3a01184: ; ImmutableOopMap {[56]=Oop }
+                      ;*invokestatic glEnableClientState {reexecute=0 rethrow=0 return_oop=0}
+                      ; - net.minecraft.render.LevelRenderer::enableStates@18 (line 77)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@35 (line 46)
+  0x000001d2a3a01184: 38a4 fbff 
+
+  0x000001d2a3a01188: ;   {other}
+  0x000001d2a3a01188: 0f1f 8400 | f803 0004 | ba76 8000 
+
+  0x000001d2a3a01194: ;   {static_call}
+  0x000001d2a3a01194: 0066 90e8 
+
+  0x000001d2a3a01198: ; ImmutableOopMap {[56]=Oop }
+                      ;*invokestatic glEnableClientState {reexecute=0 rethrow=0 return_oop=0}
+                      ; - net.minecraft.render.LevelRenderer::enableStates@18 (line 77)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@35 (line 46)
+  0x000001d2a3a01198: 24a4 fbff 
+
+  0x000001d2a3a0119c: ;   {other}
+  0x000001d2a3a0119c: 0f1f 8400 | 0c04 0005 
+
+  0x000001d2a3a011a4: ;   {section_word}
+  0x000001d2a3a011a4: c5fb 1005 | 14ff ffff | c5fb 1144 | 2450 c5f1 | 57c9 c5fb | 114c 2448 
+
+  0x000001d2a3a011bc: ;   {oop(a 'java/lang/Class'{0x00000000901a50c8} = 'net/minecraft/render/culling/FrustumData')}
+  0x000001d2a3a011bc: 49ba c850 | 1a90 0000 | 0000 41bb | 0000 0000 | 488b 5424 | 38e9 220f | 0000 6666 | 0f1f 8400 
+  0x000001d2a3a011dc: 0000 0000 | 418b cb41 | 8bd0 e9f3 | 0400 0066 | 6666 0f1f | 8400 0000 | 0000 6666 | 6690 660f 
+  0x000001d2a3a011fc: 1f44 0000 | 448b 0415 | 1000 0000 | 443b c10f | 8eb8 0a00 | 0045 85c0 | 0f8c 930e | 0000 443b 
+  0x000001d2a3a0121c: c10f 8641 | 0e00 008b | 1415 1400 
+
+  0x000001d2a3a01228: ; ImmutableOopMap {rdx=NarrowOop r10=Oop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a01228: 0000 3b0c | 150c 0000 | 000f 83fa | 0d00 0044 | 8bc1 468b 
+
+  0x000001d2a3a0123c: ; ImmutableOopMap {r8=NarrowOop r10=Oop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a0123c: 4482 1042 | 813c 0508 
+
+  0x000001d2a3a01244: ;   {metadata('net/minecraft/level/Chunk')}
+  0x000001d2a3a01244: 0000 0010 | 7b02 010f | 85ad 0d00 | 0042 8b14 | 051c 0000 
+
+  0x000001d2a3a01258: ; ImmutableOopMap {rdx=NarrowOop r8=NarrowOop r10=Oop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a01258: 0044 8b0c | 1514 0000 | 008b 1415 | 0c00 0000 
+
+  0x000001d2a3a01268: ; ImmutableOopMap {rdi=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a01268: 418b 7a70 
+
+  0x000001d2a3a0126c: ; implicit exception: dispatches to 0x000001d2a3a021cc
+  0x000001d2a3a0126c: 8b34 3d0c | 0000 0085 | f60f 848b | 0d00 008b | 043d 1000 
+
+  0x000001d2a3a01280: ; ImmutableOopMap {rax=NarrowOop rdi=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a01280: 0000 833c | 050c 0000 | 0004 0f82 
+
+  0x000001d2a3a0128c: ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a0128c: 210d 0000 
+
+  0x000001d2a3a01290: ; implicit exception: deoptimizes
+                      ; ImmutableOopMap {rax=NarrowOop rdi=NarrowOop r8=NarrowOop [56]=Oop }
+  0x000001d2a3a01290: 4285 0405 | 0000 0000 | c5ea 5a14 | 0510 0000 | 00c5 e25a | 1c05 1400 | 0000 c5da | 5a24 0518 
+  0x000001d2a3a012b0: 0000 008b | eac1 e504 | c5d1 57ed | c5d3 2aed | c5d3 59f2 | c5e3 59f9 | c54b 58c7 | 418b e9c1 
+  0x000001d2a3a012d0: e504 c441 | 3157 c9c5 | 332a cdc5 | 3359 d4c4 | 413b 58da | c51a 5a24 | 051c 0000 | 00c4 4123 
+  0x000001d2a3a012f0: 58dc ffc2 | c1e2 04c4 | 4111 57ed | c513 2aea | c579 2ed9 | 0f86 ec03 | 0000 418b | c041 8bd1 
+  0x000001d2a3a01310: ffc2 c1e2 | 04c5 e957 | d2c5 eb2a | d283 fe02 | 0f82 610b | 0000 8b14 | 3d14 0000 
+
+  0x000001d2a3a0132c: ; ImmutableOopMap {rax=Oop rdx=NarrowOop rdi=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a0132c: 0083 3c15 | 0c00 0000 | 040f 824c | 0b00 00c5 | ea5a 1415 | 1000 0000 
+
+  0x000001d2a3a01344: ;   {no_reloc}
+  0x000001d2a3a01344: c5e2 5a1c | 1514 0000 | 00c5 da5a | 2415 1800 | 0000 c5eb | 59f5 c5e3 | 59f9 c54b | 58c7 c441 
+  0x000001d2a3a01364: 5b59 d1c4 | 413b 58da | c51a 5a24 | 151c 0000 | 00c4 4123 | 58dc c579 | 2ed9 0f86 | af03 0000 
+  0x000001d2a3a01384: 418b d1ff | c2c1 e204 | c5e9 57d2 | c5eb 2ad2 | 83fe 030f | 820e 0b00 | 008b 143d 
+
+  0x000001d2a3a013a0: ; ImmutableOopMap {rax=Oop rdx=NarrowOop rdi=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a013a0: 1800 0000 
+
+  0x000001d2a3a013a4: ; implicit exception: dispatches to 0x000001d2a3a02235
+  0x000001d2a3a013a4: 833c 150c | 0000 0004 | 0f82 f90a | 0000 c5ea | 5a14 1510 | 0000 00c5 | e25a 1c15 | 1400 0000 
+  0x000001d2a3a013c4: c5da 5a24 | 1518 0000 | 00c5 eb59 | f5c5 e359 | f9c5 4b58 | c7c4 415b | 59d1 c441 | 3b58 dac5 
+  0x000001d2a3a013e4: 1a5a 2415 | 1c00 0000 | c441 2358 | dcc5 792e | d90f 8676 | 0300 0041 | 8bd1 ffc2 | c1e2 04c5 
+  0x000001d2a3a01404: e957 d2c5 | eb2a d283 | fe04 0f82 | 4b0a 0000 | 8b14 3d1c 
+
+  0x000001d2a3a01418: ; ImmutableOopMap {rax=Oop rdx=NarrowOop rdi=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a01418: 0000 0083 | 3c15 0c00 | 0000 040f | 8236 0a00 | 00c5 ea5a | 1415 1000 | 0000 c5e2 | 5a1c 1514 
+  0x000001d2a3a01438: 0000 00c5 | da5a 2415 | 1800 0000 
+
+  0x000001d2a3a01444: ;   {no_reloc}
+  0x000001d2a3a01444: c5eb 59f5 | c5e3 59f9 | c54b 58c7 | c441 5b59 | d1c4 413b | 58da c51a | 5a24 151c | 0000 00c4 
+  0x000001d2a3a01464: 4123 58dc | c579 2ed9 | 0f86 3d03 | 0000 418b | d1ff c2c1 | e204 c5e9 | 57d2 c5eb | 2ad2 83fe 
+  0x000001d2a3a01484: 050f 8275 | 0a00 008b | 143d 2000 
+
+  0x000001d2a3a01490: ; ImmutableOopMap {rax=Oop rdx=NarrowOop rdi=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a01490: 0000 833c | 150c 0000 | 0004 0f82 | 600a 0000 | c5ea 5a14 | 1510 0000 | 00c5 e25a | 1c15 1400 
+  0x000001d2a3a014b0: 0000 c5da | 5a24 1518 | 0000 00c5 | eb59 f5c5 | e359 f9c5 | 4b58 c7c4 | 415b 59d1 | c441 3b58 
+  0x000001d2a3a014d0: dac5 1a5a | 2415 1c00 | 0000 c441 | 2358 dcc5 | 792e d90f | 8604 0300 | 0041 8bd1 | ffc2 c1e2 
+  0x000001d2a3a014f0: 04c5 e957 | d2c5 eb2a | d283 fe06 | 0f82 d609 | 0000 8b14 | 3d24 0000 
+
+  0x000001d2a3a01508: ; ImmutableOopMap {rax=Oop rdx=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a01508: 0083 3c15 | 0c00 0000 | 040f 82c1 | 0900 00c5 | ea5a 1415 | 1000 0000 | c5e2 5a1c | 1514 0000 
+  0x000001d2a3a01528: 00c5 da5a | 2415 1800 | 0000 c5eb | 59f5 c5e3 | 59f9 c54b | 58c7 c441 | 5b59 d1c4 
+
+  0x000001d2a3a01544: ;   {no_reloc}
+  0x000001d2a3a01544: 413b 58da | c51a 5a24 | 151c 0000 | 00c4 4123 | 58dc c579 | 2ed9 0f86 | cb02 0000 | 4280 3c05 
+  0x000001d2a3a01564: 1000 0000 | 000f 8501 | 0600 0042 | 8b34 0514 | 0000 0089 | 7424 2c41 | ffc1 41c1 | e104 c5e9 
+  0x000001d2a3a01584: 57d2 c4c1 
+
+  0x000001d2a3a01588: ; ImmutableOopMap {rax=Oop rsi=NarrowOop [44]=NarrowOop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a01588: 6b2a d18b | 1435 2c00 | 0000 85d2 | 0f84 ad09 | 0000 894c | 2440 4c8b | 0415 1000 | 0000 8b14 
+  0x000001d2a3a015a8: 1518 0000 | 0048 c1e2 | 0248 8bfa | 4903 f88b | c6ba 0300 | 0000 41b8 | 0614 0000 | 41b9 0000 
+  0x000001d2a3a015c8: 0000 4889 
+
+  0x000001d2a3a015cc: ;   {static_call}
+  0x000001d2a3a015cc: 4424 20e8 
+
+  0x000001d2a3a015d0: ; ImmutableOopMap {[32]=Oop [44]=NarrowOop [56]=Oop }
+                      ;*invokestatic nglVertexPointer {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glVertexPointer@7 (line 7940)
+                      ; - net.minecraft.render.Tessellator::draw@9 (line 49)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a015d0: ec8b fbff 
+
+  0x000001d2a3a015d4: ;   {other}
+  0x000001d2a3a015d4: 0f1f 8400 | 4408 0012 | 8b74 242c | 8b14 3530 
+
+  0x000001d2a3a015e4: ; ImmutableOopMap {rdx=NarrowOop rsi=NarrowOop [32]=Oop [44]=NarrowOop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glVertexPointer@10 (line 7941)
+                      ; - net.minecraft.render.Tessellator::draw@9 (line 49)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a015e4: 0000 004c | 8b04 1510 | 0000 008b | 1415 1800 | 0000 803c | 3529 0000 | 0000 0f84 | 0a0a 0000 
+  0x000001d2a3a01604: 48c1 e202 | 488b fa49 | 03f8 ba02 | 0000 0041 | b806 1400 | 0041 b900 
+
+  0x000001d2a3a0161c: ;   {static_call}
+  0x000001d2a3a0161c: 0000 00e8 
+
+  0x000001d2a3a01620: ; ImmutableOopMap {[32]=Oop [44]=NarrowOop [56]=Oop }
+                      ;*invokestatic nglTexCoordPointer {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glTexCoordPointer@7 (line 6624)
+                      ; - net.minecraft.render.Tessellator::draw@28 (line 52)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a01620: 9c93 fbff 
+
+  0x000001d2a3a01624: ;   {other}
+  0x000001d2a3a01624: 0f1f 8400 | 9408 0014 | 8b74 242c | 8b14 3534 
+
+  0x000001d2a3a01634: ; ImmutableOopMap {rdx=NarrowOop rsi=NarrowOop [32]=Oop [44]=NarrowOop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glTexCoordPointer@10 (line 6625)
+                      ; - net.minecraft.render.Tessellator::draw@28 (line 52)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a01634: 0000 004c | 8b04 1510 | 0000 008b | 1415 1800 | 0000 803c | 3528 0000 | 0000 0f84 | c30a 0000 
+  0x000001d2a3a01654: 48c1 e202 | 488b fa49 | 03f8 ba03 | 0000 0041 | b806 1400 | 0041 b900 
+
+  0x000001d2a3a0166c: ;   {static_call}
+  0x000001d2a3a0166c: 0000 00e8 
+
+  0x000001d2a3a01670: ; ImmutableOopMap {[32]=Oop [44]=NarrowOop [56]=Oop }
+                      ;*invokestatic nglColorPointer {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glColorPointer@7 (line 1711)
+                      ; - net.minecraft.render.Tessellator::draw@47 (line 55)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a01670: 4c97 fbff 
+
+  0x000001d2a3a01674: ;   {other}
+  0x000001d2a3a01674: 0f1f 8400 | e408 0016 | 8b74 242c | 448b 0c35 | 1800 0000 | ba07 0000 | 0041 b800 
+
+  0x000001d2a3a01690: ;   {static_call}
+  0x000001d2a3a01690: 0000 00e8 
+
+  0x000001d2a3a01694: ; ImmutableOopMap {[32]=Oop [56]=Oop }
+                      ;*invokestatic glDrawArrays {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glDrawArrays@3 (line 1826)
+                      ; - net.minecraft.render.Tessellator::draw@57 (line 57)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a01694: 288f fbff 
+
+  0x000001d2a3a01698: ;   {other}
+  0x000001d2a3a01698: 0f1f 8400 | 0809 0017 | 488b 5424 | 3844 8b52 | 188b 4c24 
+
+  0x000001d2a3a016ac: ; ImmutableOopMap {rdx=Oop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a016ac: 40ff c146 | 8b14 150c | 0000 0045 | 85d2 0f84 | 6808 0000 | 448b 5c24 | 44c5 fb10 | 4c24 48c5 
+  0x000001d2a3a016cc: fb10 4424 | 5041 8bd2 
+
+  0x000001d2a3a016d4: ;   {oop(a 'java/lang/Class'{0x00000000901a50c8} = 'net/minecraft/render/culling/FrustumData')}
+  0x000001d2a3a016d4: 49ba c850 | 1a90 0000 | 0000 448b | c145 2bc3 | 4181 f800 | 0200 000f | 8c0f fbff | ffe9 ea09 
+  0x000001d2a3a016f4: 0000 c593 | 59d2 c5eb | 58ff c441 | 4358 dac4 | 4123 58dc | c579 2ed9 | 0f87 f8fb | ffff c5e3 
+  0x000001d2a3a01714: 59d8 c5e3 | 58f6 c441 | 4b58 dac4 | 4123 58dc | c579 2ed9 | 0f87 dcfb | ffff e9b3 | 0100 00c4 
+  0x000001d2a3a01734: c16b 59d5 | c5eb 58ff | c441 4358 | dac4 4123 | 58dc c579 | 2ed9 0f87 | 34fc ffff | c5e3 59d8 
+  0x000001d2a3a01754: c5e3 58f6 | c441 4b58 | dac4 4123 | 58dc c579 | 2ed9 0f87 | 18fc ffff | e9f7 0100 | 00c4 c16b 
+  0x000001d2a3a01774: 59d5 c5eb | 58ff c441 | 4358 dac4 | 4123 58dc | c579 2ed9 | 0f87 6dfc | ffff c5e3 | 59d8 c5e3 
+  0x000001d2a3a01794: 58f6 c441 | 4b58 dac4 | 4123 58dc | c579 2ed9 | 0f87 51fc | ffff e93b | 0200 00c4 | c16b 59d5 
+  0x000001d2a3a017b4: c5eb 58ff | c441 4358 | dac4 4123 | 58dc c579 | 2ed9 0f87 | a6fc ffff | c5e3 59d8 
+
+  0x000001d2a3a017d0: ;   {no_reloc}
+  0x000001d2a3a017d0: c5e3 58f6 | c441 4b58 | dac4 4123 | 58dc c579 | 2ed9 0f87 | 8afc ffff | e97f 0200 | 00c4 c16b 
+  0x000001d2a3a017f0: 59d5 c5eb | 58ff c441 | 4358 dac4 | 4123 58dc | c579 2ed9 | 0f87 dffc | ffff c5e3 | 59d8 c5e3 
+  0x000001d2a3a01810: 58f6 c441 | 4b58 dac4 | 4123 58dc | c579 2ed9 | 0f87 c3fc | ffff e9c3 | 0200 00c4 | c16b 59d5 
+  0x000001d2a3a01830: c5eb 58ff | c441 4358 | dac4 4123 | 58dc c579 | 2ed9 0f87 | 18fd ffff | c5e3 59d8 | c5e3 58f6 
+  0x000001d2a3a01850: c441 4b58 | dac4 4123 | 58dc c579 | 2ed9 0f87 | fcfc ffff | c5eb 58d3 | c4c1 6b58 | dac4 c163 
+  0x000001d2a3a01870: 58dc c5f9 | 2ed9 0f87 | e4fc ffff | 418b d1ff | c2c1 e204 | c5e1 57db | c5e3 2ada | c5e3 59dc 
+  0x000001d2a3a01890: c4c1 6358 | e0c4 c15b | 58e4 c5f9 | 2ee1 0f87 | bcfc ffff | c5c3 58e3 | c4c1 5b58 | e4c5 f92e 
+  0x000001d2a3a018b0: e10f 87a9 | fcff ffc5 | e358 e6c4 | c15b 58e4 | c5f9 2ee1 | 0f87 96fc | ffff c5e3 | 58d2 c4c1 
+  0x000001d2a3a018d0: ;   {no_reloc}
+  0x000001d2a3a018d0: 6b58 d4c5 | f92e d10f | 8783 fcff | ff89 4c24 | 40e9 bafd | ffff c5eb | 58d3 c4c1 | 6b58 dac4 
+  0x000001d2a3a018f0: c163 58dc | c5f9 2ed9 | 0f87 0cfa | ffff 418b | d1ff c2c1 | e204 c5e1 | 57db c5e3 | 2ada c5e3 
+  0x000001d2a3a01910: 59dc c4c1 | 6358 e0c4 | c15b 58e4 | c5f9 2ee1 | 0f87 e4f9 | ffff c5c3 | 58e3 c4c1 | 5b58 e4c5 
+  0x000001d2a3a01930: f92e e10f | 87d1 f9ff | ffc5 e358 | e6c4 c15b | 58e4 c5f9 | 2ee1 0f87 | bef9 ffff | c5e3 58d2 
+  0x000001d2a3a01950: c4c1 6b58 | d4c5 f92e | d10f 87ab | f9ff ff89 | 4c24 40e9 | 38fd ffff | c5eb 58d3 | c4c1 6b58 
+  0x000001d2a3a01970: dac4 c163 | 58dc c5f9 | 2ed9 0f87 | 04fa ffff | 418b d1ff | c2c1 e204 | c5e1 57db | c5e3 2ada 
+  0x000001d2a3a01990: c5e3 59dc | c4c1 6358 | e0c4 c15b | 58e4 c5f9 | 2ee1 0f87 | dcf9 ffff | c5c3 58e3 | c4c1 5b58 
+  0x000001d2a3a019b0: e4c5 f92e | e10f 87c9 | f9ff ffc5 | e358 e6c4 | c15b 58e4 | c5f9 2ee1 | 0f87 b6f9 | ffff c5e3 
+  0x000001d2a3a019d0: ;   {no_reloc}
+  0x000001d2a3a019d0: 58d2 c4c1 | 6b58 d4c5 | f92e d10f | 87a3 f9ff | ff89 4c24 | 40e9 b6fc | ffff c5eb | 58d3 c4c1 
+  0x000001d2a3a019f0: 6b58 dac4 | c163 58dc | c5f9 2ed9 | 0f87 f9f9 | ffff 418b | d1ff c2c1 | e204 c5e1 | 57db c5e3 
+  0x000001d2a3a01a10: 2ada c5e3 | 59dc c4c1 | 6358 e0c4 | c15b 58e4 | c5f9 2ee1 | 0f87 d1f9 | ffff c5c3 | 58e3 c4c1 
+  0x000001d2a3a01a30: 5b58 e4c5 | f92e e10f | 87be f9ff | ffc5 e358 | e6c4 c15b | 58e4 c5f9 | 2ee1 0f87 | abf9 ffff 
+  0x000001d2a3a01a50: c5e3 58d2 | c4c1 6b58 | d4c5 f92e | d10f 8798 | f9ff ff89 | 4c24 40e9 | 34fc ffff | c5eb 58d3 
+  0x000001d2a3a01a70: c4c1 6b58 | dac4 c163 | 58dc c5f9 | 2ed9 0f87 | eef9 ffff | 418b d1ff | c2c1 e204 | c5e1 57db 
+  0x000001d2a3a01a90: c5e3 2ada | c5e3 59dc | c4c1 6358 | e0c4 c15b | 58e4 c5f9 | 2ee1 0f87 | c6f9 ffff | c5c3 58e3 
+  0x000001d2a3a01ab0: c4c1 5b58 | e4c5 f92e | e10f 87b3 | f9ff ffc5 | e358 e6c4 | c15b 58e4 | c5f9 2ee1 | 0f87 a0f9 
+  0x000001d2a3a01ad0: ;   {no_reloc}
+  0x000001d2a3a01ad0: ffff c5e3 | 58d2 c4c1 | 6b58 d4c5 | f92e d10f | 878d f9ff | ff89 4c24 | 40e9 b2fb | ffff c5eb 
+  0x000001d2a3a01af0: 58d3 c4c1 | 6b58 dac4 | c163 58dc | c5f9 2ed9 | 0f87 e3f9 | ffff 418b | d1ff c2c1 | e204 c5e1 
+  0x000001d2a3a01b10: 57db c5e3 | 2ada c5e3 | 59dc c4c1 | 6358 e0c4 | c15b 58e4 | c5f9 2ee1 | 0f87 bbf9 | ffff c5c3 
+  0x000001d2a3a01b30: 58e3 c4c1 | 5b58 e4c5 | f92e e10f | 87a8 f9ff | ffc5 e358 | e6c4 c15b | 58e4 c5f9 | 2ee1 0f87 
+  0x000001d2a3a01b50: 95f9 ffff | c5e3 58d2 | c4c1 6b58 | d4c5 f92e | d10f 8782 | f9ff ff89 | 4c24 40e9 | 30fb ffff 
+  0x000001d2a3a01b70: 4489 4424 | 2c89 4c24 | 4048 8bd0 | 4889 4424 
+
+  0x000001d2a3a01b80: ;   {optimized virtual_call}
+  0x000001d2a3a01b80: 3066 90e8 
+
+  0x000001d2a3a01b84: ; ImmutableOopMap {[44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*invokevirtual build {reexecute=0 rethrow=0 return_oop=0}
+                      ; - net.minecraft.level.Chunk::draw@8 (line 25)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a01b84: 185d feff 
+
+  0x000001d2a3a01b88: ;   {other}
+  0x000001d2a3a01b88: 0f1f 8400 | f80d 0019 | 448b 4424 | 2c46 8b14 | 0514 0000 | 0044 8954 
+
+  0x000001d2a3a01ba0: ; ImmutableOopMap {r10=NarrowOop [44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*aload_0 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.level.Chunk::draw@11 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a01ba0: 242c 428b | 1415 2c00 | 0000 85d2 | 0f84 bd04 | 0000 4c8b | 0415 1000 | 0000 8b14 | 1518 0000 
+  0x000001d2a3a01bc0: 0048 c1e2 | 0248 8bfa | 4903 f845 | 8bda ba03 | 0000 0041 | b806 1400 | 0041 b900 | 0000 004c 
+  0x000001d2a3a01be0: 895c 2430 
+
+  0x000001d2a3a01be4: ;   {static_call}
+  0x000001d2a3a01be4: 6666 90e8 
+
+  0x000001d2a3a01be8: ; ImmutableOopMap {[44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*invokestatic nglVertexPointer {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glVertexPointer@7 (line 7940)
+                      ; - net.minecraft.render.Tessellator::draw@9 (line 49)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a01be8: d485 fbff 
+
+  0x000001d2a3a01bec: ;   {other}
+  0x000001d2a3a01bec: 0f1f 8400 | 5c0e 001b | 448b 5424 | 2c42 8b14 | 1530 0000 
+
+  0x000001d2a3a01c00: ; ImmutableOopMap {rdx=NarrowOop r10=NarrowOop [44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glVertexPointer@10 (line 7941)
+                      ; - net.minecraft.render.Tessellator::draw@9 (line 49)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a01c00: 004c 8b04 | 1510 0000 | 008b 1415 | 1800 0000 | 4280 3c15 | 2900 0000 | 000f 841d | 0400 0048 
+  0x000001d2a3a01c20: c1e2 0248 | 8bfa 4903 | f8ba 0200 | 0000 41b8 | 0614 0000 | 41b9 0000 
+
+  0x000001d2a3a01c38: ;   {static_call}
+  0x000001d2a3a01c38: 0000 90e8 
+
+  0x000001d2a3a01c3c: ; ImmutableOopMap {[44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*invokestatic nglTexCoordPointer {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glTexCoordPointer@7 (line 6624)
+                      ; - net.minecraft.render.Tessellator::draw@28 (line 52)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a01c3c: 808d fbff 
+
+  0x000001d2a3a01c40: ;   {other}
+  0x000001d2a3a01c40: 0f1f 8400 | b00e 001d | 448b 5424 | 2c42 8b14 | 1534 0000 
+
+  0x000001d2a3a01c54: ; ImmutableOopMap {rdx=NarrowOop r10=NarrowOop [44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glTexCoordPointer@10 (line 6625)
+                      ; - net.minecraft.render.Tessellator::draw@28 (line 52)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a01c54: 004c 8b04 | 1510 0000 | 008b 1415 | 1800 0000 | 4280 3c15 | 2800 0000 | 000f 84fc | 0200 0048 
+  0x000001d2a3a01c74: c1e2 0248 | 8bfa 4903 | f8ba 0300 | 0000 41b8 | 0614 0000 | 41b9 0000 
+
+  0x000001d2a3a01c8c: ;   {static_call}
+  0x000001d2a3a01c8c: 0000 90e8 
+
+  0x000001d2a3a01c90: ; ImmutableOopMap {[44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*invokestatic nglColorPointer {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glColorPointer@7 (line 1711)
+                      ; - net.minecraft.render.Tessellator::draw@47 (line 55)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a01c90: 2c91 fbff 
+
+  0x000001d2a3a01c94: ;   {other}
+  0x000001d2a3a01c94: 0f1f 8400 | 040f 001f | 448b 5424 | 2c46 8b0c | 1518 0000 | 00ba 0700 | 0000 41b8 | 0000 0000 
+  0x000001d2a3a01cb4: ;   {static_call}
+  0x000001d2a3a01cb4: 6666 90e8 
+
+  0x000001d2a3a01cb8: ; ImmutableOopMap {[48]=Oop [56]=Oop }
+                      ;*invokestatic glDrawArrays {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glDrawArrays@3 (line 1826)
+                      ; - net.minecraft.render.Tessellator::draw@57 (line 57)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a01cb8: 0489 fbff 
+
+  0x000001d2a3a01cbc: ;   {other}
+  0x000001d2a3a01cbc: 0f1f 8400 | 2c0f 0020 | e9d7 f9ff | ff48 8b54 | 2438 448b | 520c 4489 
+
+  0x000001d2a3a01cd4: ; ImmutableOopMap {rdx=Oop r10=NarrowOop [44]=NarrowOop [56]=Oop }
+                      ;*aload_0 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@141 (line 56)
+  0x000001d2a3a01cd4: 5424 2c46 | 8b04 152c | 0000 0045 | 85c0 0f84 | aa02 0000 | 4e8b 0c05 | 1000 0000 | 468b 0405 
+  0x000001d2a3a01cf4: 1800 0000 | 49c1 e002 | 498b f849 | 03f9 458b | daba 0300 | 0000 41b8 | 0614 0000 | 41b9 0000 
+  0x000001d2a3a01d14: 0000 4c89 
+
+  0x000001d2a3a01d18: ;   {static_call}
+  0x000001d2a3a01d18: 5c24 30e8 
+
+  0x000001d2a3a01d1c: ; ImmutableOopMap {[44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*invokestatic nglVertexPointer {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glVertexPointer@7 (line 7940)
+                      ; - net.minecraft.render.Tessellator::draw@9 (line 49)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@145 (line 56)
+  0x000001d2a3a01d1c: a084 fbff 
+
+  0x000001d2a3a01d20: ;   {other}
+  0x000001d2a3a01d20: 0f1f 8400 | 900f 0022 | 448b 5424 | 2c42 8b14 | 1530 0000 
+
+  0x000001d2a3a01d34: ; ImmutableOopMap {rdx=NarrowOop r10=NarrowOop [44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glVertexPointer@10 (line 7941)
+                      ; - net.minecraft.render.Tessellator::draw@9 (line 49)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@145 (line 56)
+  0x000001d2a3a01d34: 004c 8b04 | 1510 0000 | 008b 1415 | 1800 0000 | 4280 3c15 | 2900 0000 | 000f 8465 | 0300 0048 
+  0x000001d2a3a01d54: c1e2 0248 | 8bfa 4903 | f8ba 0200 | 0000 41b8 | 0614 0000 | 41b9 0000 
+
+  0x000001d2a3a01d6c: ;   {static_call}
+  0x000001d2a3a01d6c: 0000 90e8 
+
+  0x000001d2a3a01d70: ; ImmutableOopMap {[44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*invokestatic nglTexCoordPointer {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glTexCoordPointer@7 (line 6624)
+                      ; - net.minecraft.render.Tessellator::draw@28 (line 52)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@145 (line 56)
+  0x000001d2a3a01d70: 4c8c fbff 
+
+  0x000001d2a3a01d74: ;   {other}
+  0x000001d2a3a01d74: 0f1f 8400 | e40f 0024 | 448b 5424 | 2c42 8b14 | 1534 0000 
+
+  0x000001d2a3a01d88: ; ImmutableOopMap {rdx=NarrowOop r10=NarrowOop [44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glTexCoordPointer@10 (line 6625)
+                      ; - net.minecraft.render.Tessellator::draw@28 (line 52)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@145 (line 56)
+  0x000001d2a3a01d88: 004c 8b04 | 1510 0000 | 008b 1415 | 1800 0000 | 4280 3c15 | 2800 0000 | 000f 8434 | 0200 0048 
+  0x000001d2a3a01da8: c1e2 0248 | 8bfa 4903 | f8ba 0300 | 0000 41b8 | 0614 0000 | 41b9 0000 
+
+  0x000001d2a3a01dc0: ;   {static_call}
+  0x000001d2a3a01dc0: 0000 90e8 
+
+  0x000001d2a3a01dc4: ; ImmutableOopMap {[44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*invokestatic nglColorPointer {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glColorPointer@7 (line 1711)
+                      ; - net.minecraft.render.Tessellator::draw@47 (line 55)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@145 (line 56)
+  0x000001d2a3a01dc4: f88f fbff 
+
+  0x000001d2a3a01dc8: ;   {other}
+  0x000001d2a3a01dc8: 0f1f 8400 | 3810 0026 | 448b 5424 | 2c46 8b0c | 1518 0000 | 00ba 0700 | 0000 41b8 | 0000 0000 
+  0x000001d2a3a01de8: ;   {static_call}
+  0x000001d2a3a01de8: 6666 90e8 
+
+  0x000001d2a3a01dec: ; ImmutableOopMap {[48]=Oop [56]=Oop }
+                      ;*invokestatic glDrawArrays {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glDrawArrays@3 (line 1826)
+                      ; - net.minecraft.render.Tessellator::draw@57 (line 57)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@145 (line 56)
+  0x000001d2a3a01dec: d087 fbff 
+
+  0x000001d2a3a01df0: ;   {other}
+  0x000001d2a3a01df0: 0f1f 8400 | 6010 0027 | ba74 8000 
+
+  0x000001d2a3a01dfc: ;   {static_call}
+  0x000001d2a3a01dfc: 0066 90e8 
+
+  0x000001d2a3a01e00: ; ImmutableOopMap {}
+                      ;*invokestatic glDisableClientState {reexecute=0 rethrow=0 return_oop=0}
+                      ; - net.minecraft.render.LevelRenderer::disableStates@18 (line 83)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@167 (line 57)
+  0x000001d2a3a01e00: bc9b fbff 
+
+  0x000001d2a3a01e04: ;   {other}
+  0x000001d2a3a01e04: 0f1f 8400 | 7410 0028 | ba78 8000 
+
+  0x000001d2a3a01e10: ;   {static_call}
+  0x000001d2a3a01e10: 0066 90e8 
+
+  0x000001d2a3a01e14: ; ImmutableOopMap {}
+                      ;*invokestatic glDisableClientState {reexecute=0 rethrow=0 return_oop=0}
+                      ; - net.minecraft.render.LevelRenderer::disableStates@18 (line 83)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@167 (line 57)
+  0x000001d2a3a01e14: a89b fbff 
+
+  0x000001d2a3a01e18: ;   {other}
+  0x000001d2a3a01e18: 0f1f 8400 | 8810 0029 | ba76 8000 
+
+  0x000001d2a3a01e24: ;   {static_call}
+  0x000001d2a3a01e24: 0066 90e8 
+
+  0x000001d2a3a01e28: ; ImmutableOopMap {}
+                      ;*invokestatic glDisableClientState {reexecute=0 rethrow=0 return_oop=0}
+                      ; - net.minecraft.render.LevelRenderer::disableStates@18 (line 83)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@167 (line 57)
+  0x000001d2a3a01e28: 949b fbff 
+
+  0x000001d2a3a01e2c: ;   {other}
+  0x000001d2a3a01e2c: 0f1f 8400 | 9c10 002a | bae1 0d00 
+
+  0x000001d2a3a01e38: ;   {static_call}
+  0x000001d2a3a01e38: 0066 90e8 
+
+  0x000001d2a3a01e3c: ; ImmutableOopMap {}
+                      ;*invokestatic glDisable {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glDisable@1 (line 737)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@173 (line 58)
+  0x000001d2a3a01e3c: 0006 fdff 
+
+  0x000001d2a3a01e40: ;   {other}
+  0x000001d2a3a01e40: 0f1f 8400 | b010 002b | 488b 6c24 | 6048 83c4 
+
+  0x000001d2a3a01e50: ;   {poll_return}
+  0x000001d2a3a01e50: 6849 3ba7 | 5804 0000 | 0f87 f102 | 0000 c348 | 8944 2430 | 894c 2440 | 41c7 878c | 0400 00e5 
+  0x000001d2a3a01e70: ffff ff4d | 89a7 9804 
+
+  0x000001d2a3a01e78: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a01e78: 0000 e803 
+
+  0x000001d2a3a01e7c: ; ImmutableOopMap {[48]=Oop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a01e7c: 2a90 ff0f | 1f84 0000 | 0000 0048 | 8b54 2438 | 41c7 878c | 0400 00e5 | ffff ff4d | 89a7 9804 
+  0x000001d2a3a01e9c: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a01e9c: 0000 e8df 
+
+  0x000001d2a3a01ea0: ; ImmutableOopMap {rax=Oop rdx=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a01ea0: 2990 ff0f | 1f84 0000 | 0000 0048 | 8944 2430 | 894c 2440 | 488b 5424 | 3841 c787 | 8c04 0000 
+  0x000001d2a3a01ec0: e5ff ffff | 4d89 a798 
+
+  0x000001d2a3a01ec8: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a01ec8: 0400 00e8 
+
+  0x000001d2a3a01ecc: ; ImmutableOopMap {rdx=Oop [48]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a01ecc: b229 90ff | 0f1f 8400 | 0000 0000 | 4889 4424 | 3089 4c24 | 4041 c787 | 8c04 0000 | e5ff ffff 
+  0x000001d2a3a01eec: 4d89 a798 
+
+  0x000001d2a3a01ef0: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a01ef0: 0400 00e8 
+
+  0x000001d2a3a01ef4: ; ImmutableOopMap {[48]=Oop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a01ef4: 8a29 90ff | 0f1f 8400 | 0000 0000 | 4889 4424 | 3089 4c24 | 4041 c787 | 8c04 0000 | e5ff ffff 
+  0x000001d2a3a01f14: 4d89 a798 
+
+  0x000001d2a3a01f18: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a01f18: 0400 00e8 
+
+  0x000001d2a3a01f1c: ; ImmutableOopMap {[48]=Oop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a01f1c: 6229 90ff | 0f1f 8400 | 0000 0000 | 41c7 878c | 0400 00f5 | ffff ff4d | 89a7 9804 
+
+  0x000001d2a3a01f38: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a01f38: 0000 e843 
+
+  0x000001d2a3a01f3c: ; ImmutableOopMap {[56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a01f3c: 2990 ff0f | 1f84 0000 | 0000 0048 | 8944 2430 | 894c 2440 | 41c7 878c | 0400 00f5 | ffff ff4d 
+  0x000001d2a3a01f5c: 89a7 9804 
+
+  0x000001d2a3a01f60: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a01f60: 0000 e81b 
+
+  0x000001d2a3a01f64: ; ImmutableOopMap {[48]=Oop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a01f64: 2990 ff0f | 1f84 0000 | 0000 0041 | c787 8c04 | 0000 edff | ffff 49c7 | 8798 0400 | 0014 0500 
+  0x000001d2a3a01f84: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a01f84: 00e8 f828 
+
+  0x000001d2a3a01f88: ; ImmutableOopMap {[48]=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glTexCoordPointer@10 (line 6625)
+                      ; - net.minecraft.render.Tessellator::draw@28 (line 52)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a01f88: 90ff 0f1f | 8400 0000 | 0000 41c7 | 878c 0400 | 00f5 ffff | ff4d 89a7 | 9804 0000 
+
+  0x000001d2a3a01fa4: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a01fa4: e8d9 2890 
+
+  0x000001d2a3a01fa8: ; ImmutableOopMap {[56]=Oop }
+                      ;*aload_0 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@141 (line 56)
+  0x000001d2a3a01fa8: ff0f 1f84 | 0000 0000 | 0041 bae5 | ffff ff89 | 4c24 4048 | 8b54 2438 | 4589 978c | 0400 004d 
+  0x000001d2a3a01fc8: 89a7 9804 
+
+  0x000001d2a3a01fcc: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a01fcc: 0000 e8af 
+
+  0x000001d2a3a01fd0: ; ImmutableOopMap {rdx=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a01fd0: 2890 ff0f | 1f84 0000 | 0000 0041 | c787 8c04 | 0000 edff | ffff 49c7 | 8798 0400 | 0014 0500 
+  0x000001d2a3a01ff0: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a01ff0: 00e8 8c28 
+
+  0x000001d2a3a01ff4: ; ImmutableOopMap {[48]=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glTexCoordPointer@10 (line 6625)
+                      ; - net.minecraft.render.Tessellator::draw@28 (line 52)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@145 (line 56)
+  0x000001d2a3a01ff4: 90ff 0f1f | 8400 0000 | 0000 41ba | ddff ffff | ebb1 41ba | e5ff ffff | eba9 41c7 | 878c 0400 
+  0x000001d2a3a02014: 00ed ffff | ff49 c787 | 9804 0000 | 9402 0000 
+
+  0x000001d2a3a02024: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02024: e859 2890 
+
+  0x000001d2a3a02028: ; ImmutableOopMap {[32]=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glVertexPointer@10 (line 7941)
+                      ; - net.minecraft.render.Tessellator::draw@9 (line 49)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a02028: ff0f 1f84 | 0000 0000 | 0041 bae5 | ffff ffe9 | 7bff ffff | 4c8b 5c24 | 3041 c787 | 8c04 0000 
+  0x000001d2a3a02048: edff ffff | 49c7 8798 | 0400 0094 
+
+  0x000001d2a3a02054: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02054: 0200 00e8 
+
+  0x000001d2a3a02058: ; ImmutableOopMap {r11=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glVertexPointer@10 (line 7941)
+                      ; - net.minecraft.render.Tessellator::draw@9 (line 49)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a02058: 2628 90ff | 0f1f 8400 | 0000 0000 | 41ba e4ff | ffff e948 | ffff ff41 | c787 8c04 | 0000 f5ff 
+  0x000001d2a3a02078: ffff 4d89 | a798 0400 
+
+  0x000001d2a3a02080: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02080: 00e8 fc27 
+
+  0x000001d2a3a02084: ; ImmutableOopMap {[48]=Oop [56]=Oop }
+                      ;*aload_0 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.level.Chunk::draw@11 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a02084: 90ff 0f1f | 8400 0000 | 0000 41c7 | 878c 0400 | 00f5 ffff | ff4d 89a7 | 9804 0000 
+
+  0x000001d2a3a020a0: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a020a0: e8dd 2790 
+
+  0x000001d2a3a020a4: ; ImmutableOopMap {[56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a020a4: ff0f 1f84 | 0000 0000 | 0041 bae4 | ffff ffe9 | fffe ffff | 4c8b 5c24 | 3041 c787 | 8c04 0000 
+  0x000001d2a3a020c4: edff ffff | 49c7 8798 | 0400 0094 
+
+  0x000001d2a3a020d0: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a020d0: 0200 00e8 
+
+  0x000001d2a3a020d4: ; ImmutableOopMap {r11=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glVertexPointer@10 (line 7941)
+                      ; - net.minecraft.render.Tessellator::draw@9 (line 49)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@145 (line 56)
+  0x000001d2a3a020d4: aa27 90ff | 0f1f 8400 | 0000 0000 | 894c 2440 | 488b 5424 | 384d 8b9f 
+
+  0x000001d2a3a020ec: ; ImmutableOopMap {rdx=Oop r10=Oop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a020ec: 6004 0000 
+
+  0x000001d2a3a020f0: ;   {poll}
+  0x000001d2a3a020f0: 4185 0344 | 8b5c 2440 | 4489 5c24 | 4444 8b42 
+
+  0x000001d2a3a02100: ; ImmutableOopMap {rdx=Oop r10=Oop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a02100: 1846 8b04 | 050c 0000 | 0045 85c0 | 0f85 cef0 | ffff e977 | ffff ff48 | 8b44 2420 | 41c7 878c 
+  0x000001d2a3a02120: 0400 00ed | ffff ff49 | c787 9804 | 0000 1405 
+
+  0x000001d2a3a02130: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02130: 0000 e84b 
+
+  0x000001d2a3a02134: ; ImmutableOopMap {rax=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glTexCoordPointer@10 (line 6625)
+                      ; - net.minecraft.render.Tessellator::draw@28 (line 52)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a02134: 2790 ff0f | 1f84 0000 | 0000 0048 | 896c 2460 
+
+  0x000001d2a3a02144: ;   {runtime_call StubRoutines (final stubs)}
+  0x000001d2a3a02144: e897 1c8e | ffe9 ccef | ffff f448 | 8d0d fbfc | ffff 4989 | 8f70 0400 
+
+  0x000001d2a3a0215c: ;   {runtime_call SafepointBlob}
+  0x000001d2a3a0215c: 00e9 9e35 | 90ff f441 | c787 8c04 | 0000 f5ff | ffff 49c7 | 8798 0400 | 0000 0000 
+
+  0x000001d2a3a02178: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02178: 00e8 0427 
+
+  0x000001d2a3a0217c: ; ImmutableOopMap {rdx=NarrowOop r10=Oop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a0217c: 90ff 0f1f | 8400 0000 | 0000 41c7 | 878c 0400 | 00dd ffff | ff49 c787 | 9804 0000 | 0000 0000 
+  0x000001d2a3a0219c: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a0219c: e8e1 2690 
+
+  0x000001d2a3a021a0: ; ImmutableOopMap {r8=NarrowOop r10=Oop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a021a0: ff0f 1f84 | 0000 0000 | 0041 c787 | 8c04 0000 | f5ff ffff | 49c7 8798 | 0400 0000 
+
+  0x000001d2a3a021bc: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a021bc: 0000 00e8 
+
+  0x000001d2a3a021c0: ; ImmutableOopMap {rdx=NarrowOop r8=NarrowOop r10=Oop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a021c0: be26 90ff | 0f1f 8400 | 0000 0000 | 41c7 878c | 0400 00f5 | ffff ff49 | c787 9804 | 0000 0000 
+  0x000001d2a3a021e0: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a021e0: 0000 e89b 
+
+  0x000001d2a3a021e4: ; ImmutableOopMap {rdi=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a021e4: 2690 ff0f | 1f84 0000 | 0000 0041 | c787 8c04 | 0000 f5ff | ffff 49c7 | 8798 0400 | 0000 0000 
+  0x000001d2a3a02204: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02204: 00e8 7826 
+
+  0x000001d2a3a02208: ; ImmutableOopMap {rax=NarrowOop rdi=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a02208: 90ff 0f1f | 8400 0000 | 0000 41c7 | 878c 0400 | 00f5 ffff | ff49 c787 | 9804 0000 | 0000 0000 
+  0x000001d2a3a02228: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02228: e855 2690 
+
+  0x000001d2a3a0222c: ; ImmutableOopMap {rax=Oop rdx=NarrowOop rdi=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a0222c: ff0f 1f84 | 0000 0000 | 0041 c787 | 8c04 0000 | f5ff ffff | 49c7 8798 | 0400 0000 
+
+  0x000001d2a3a02248: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02248: 0000 00e8 
+
+  0x000001d2a3a0224c: ; ImmutableOopMap {rax=Oop rdx=NarrowOop rdi=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a0224c: 3226 90ff | 0f1f 8400 | 0000 0000 | 41c7 878c | 0400 00f5 | ffff ff49 | c787 9804 | 0000 0000 
+  0x000001d2a3a0226c: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a0226c: 0000 e80f 
+
+  0x000001d2a3a02270: ; ImmutableOopMap {rax=Oop rdx=NarrowOop rdi=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a02270: 2690 ff0f | 1f84 0000 | 0000 0041 | c787 8c04 | 0000 f5ff | ffff 49c7 | 8798 0400 | 0000 0000 
+  0x000001d2a3a02290: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02290: 00e8 ec25 
+
+  0x000001d2a3a02294: ; ImmutableOopMap {rax=Oop rdx=NarrowOop rdi=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a02294: 90ff 0f1f | 8400 0000 | 0000 41c7 | 878c 0400 | 00f5 ffff | ff49 c787 | 9804 0000 | 0000 0000 
+  0x000001d2a3a022b4: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a022b4: e8c9 2590 
+
+  0x000001d2a3a022b8: ; ImmutableOopMap {rax=Oop rdx=NarrowOop r8=NarrowOop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a022b8: ff0f 1f84 | 0000 0000 | 0041 c787 | 8c04 0000 | f5ff ffff | 49c7 8798 | 0400 0000 
+
+  0x000001d2a3a022d4: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a022d4: 0000 00e8 
+
+  0x000001d2a3a022d8: ; ImmutableOopMap {rax=Oop rsi=NarrowOop [44]=NarrowOop [56]=Oop }
+                      ;*iload {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.culling.FrustumData::cubeInFrustum@427 (line 106)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@114 (line 52)
+  0x000001d2a3a022d8: a625 90ff | 0f1f 8400 | 0000 0000 | 41c7 878c | 0400 00f5 | ffff ff49 | c787 9804 | 0000 0000 
+  0x000001d2a3a022f8: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a022f8: 0000 e883 
+
+  0x000001d2a3a022fc: ; ImmutableOopMap {rdx=NarrowOop rsi=NarrowOop [32]=Oop [44]=NarrowOop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glVertexPointer@10 (line 7941)
+                      ; - net.minecraft.render.Tessellator::draw@9 (line 49)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a022fc: 2590 ff0f | 1f84 0000 | 0000 0041 | c787 8c04 | 0000 f5ff | ffff 49c7 | 8798 0400 | 0000 0000 
+  0x000001d2a3a0231c: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a0231c: 00e8 6025 
+
+  0x000001d2a3a02320: ; ImmutableOopMap {rdx=NarrowOop rsi=NarrowOop [32]=Oop [44]=NarrowOop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glTexCoordPointer@10 (line 6625)
+                      ; - net.minecraft.render.Tessellator::draw@28 (line 52)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a02320: 90ff 0f1f | 8400 0000 | 0000 41c7 | 878c 0400 | 00f5 ffff | ff49 c787 | 9804 0000 | 0000 0000 
+  0x000001d2a3a02340: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02340: e83d 2590 
+
+  0x000001d2a3a02344: ; ImmutableOopMap {rdx=Oop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a02344: ff0f 1f84 | 0000 0000 | 0041 c787 | 8c04 0000 | f5ff ffff | 49c7 8798 | 0400 0000 
+
+  0x000001d2a3a02360: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02360: 0000 00e8 
+
+  0x000001d2a3a02364: ; ImmutableOopMap {r10=NarrowOop [44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*aload_0 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.level.Chunk::draw@11 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a02364: 1a25 90ff | 0f1f 8400 | 0000 0000 | 41c7 878c | 0400 00f5 | ffff ff49 | c787 9804 | 0000 0000 
+  0x000001d2a3a02384: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02384: 0000 e8f7 
+
+  0x000001d2a3a02388: ; ImmutableOopMap {rdx=NarrowOop r10=NarrowOop [44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glVertexPointer@10 (line 7941)
+                      ; - net.minecraft.render.Tessellator::draw@9 (line 49)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a02388: 2490 ff0f | 1f84 0000 | 0000 0041 | c787 8c04 | 0000 f5ff | ffff 49c7 | 8798 0400 | 0000 0000 
+  0x000001d2a3a023a8: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a023a8: 00e8 d424 
+
+  0x000001d2a3a023ac: ; ImmutableOopMap {rdx=NarrowOop r10=NarrowOop [44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glTexCoordPointer@10 (line 6625)
+                      ; - net.minecraft.render.Tessellator::draw@28 (line 52)
+                      ; - net.minecraft.level.Chunk::draw@15 (line 27)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@121 (line 53)
+  0x000001d2a3a023ac: 90ff 0f1f | 8400 0000 | 0000 41c7 | 878c 0400 | 00f5 ffff | ff49 c787 | 9804 0000 | 0000 0000 
+  0x000001d2a3a023cc: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a023cc: e8b1 2490 
+
+  0x000001d2a3a023d0: ; ImmutableOopMap {rdx=Oop r10=NarrowOop [44]=NarrowOop [56]=Oop }
+                      ;*aload_0 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@141 (line 56)
+  0x000001d2a3a023d0: ff0f 1f84 | 0000 0000 | 0041 c787 | 8c04 0000 | f5ff ffff | 49c7 8798 | 0400 0000 
+
+  0x000001d2a3a023ec: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a023ec: 0000 00e8 
+
+  0x000001d2a3a023f0: ; ImmutableOopMap {rdx=NarrowOop r10=NarrowOop [44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glVertexPointer@10 (line 7941)
+                      ; - net.minecraft.render.Tessellator::draw@9 (line 49)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@145 (line 56)
+  0x000001d2a3a023f0: 8e24 90ff | 0f1f 8400 | 0000 0000 | 41c7 878c | 0400 00f5 | ffff ff49 | c787 9804 | 0000 0000 
+  0x000001d2a3a02410: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02410: 0000 e86b 
+
+  0x000001d2a3a02414: ; ImmutableOopMap {rdx=NarrowOop r10=NarrowOop [44]=NarrowOop [48]=Oop [56]=Oop }
+                      ;*return {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) org.lwjgl.opengl.GL11::glTexCoordPointer@10 (line 6625)
+                      ; - net.minecraft.render.Tessellator::draw@28 (line 52)
+                      ; - net.minecraft.render.LevelRenderer::drawBlocks@145 (line 56)
+  0x000001d2a3a02414: 2490 ff0f | 1f84 0000 | 0000 0041 | c787 8c04 | 0000 f5ff | ffff 49c7 | 8798 0400 | 0000 0000 
+  0x000001d2a3a02434: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02434: 00e8 4824 
+
+  0x000001d2a3a02438: ; ImmutableOopMap {rdx=Oop r10=Oop [56]=Oop }
+                      ;*iload_1 {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) net.minecraft.render.LevelRenderer::drawBlocks@127 (line 48)
+  0x000001d2a3a02438: 90ff 0f1f | 8400 0000 
+
+  0x000001d2a3a02440: ;   {runtime_call Stub<ExceptionHandlerStub.exceptionHandler>}
+  0x000001d2a3a02440: 0000 e839 | 09a6 ff90 
+[Deopt Handler Code]
+  0x000001d2a3a02448: ;   {runtime_call DeoptimizationBlob}
+  0x000001d2a3a02448: e8d3 2190 | ff90 f4f4 
+[Stub Code]
+  0x000001d2a3a02450: ;   {no_reloc}
+  0x000001d2a3a02450: 48bb 0000 | 0000 0000 
+
+  0x000001d2a3a02458: ;   {runtime_call}
+  0x000001d2a3a02458: 0000 e9fb 
+
+  0x000001d2a3a0245c: ;   {static_stub}
+  0x000001d2a3a0245c: ffff ff48 | bb00 0000 | 0000 0000 
+
+  0x000001d2a3a02468: ;   {runtime_call}
+  0x000001d2a3a02468: 00e9 fbff 
+
+  0x000001d2a3a0246c: ;   {static_stub}
+  0x000001d2a3a0246c: ffff 48bb | 0000 0000 | 0000 0000 
+
+  0x000001d2a3a02478: ;   {runtime_call}
+  0x000001d2a3a02478: e9fb ffff 
+
+  0x000001d2a3a0247c: ;   {static_stub}
+  0x000001d2a3a0247c: ff48 bb00 | 0000 0000 
+
+  0x000001d2a3a02484: ;   {runtime_call}
+  0x000001d2a3a02484: 0000 00e9 | fbff ffff 
+
+  0x000001d2a3a0248c: ;   {static_stub}
+  0x000001d2a3a0248c: 48bb 0000 | 0000 0000 
+
+  0x000001d2a3a02494: ;   {runtime_call}
+  0x000001d2a3a02494: 0000 e9fb 
+
+  0x000001d2a3a02498: ;   {static_stub}
+  0x000001d2a3a02498: ffff ff48 | bb00 0000 | 0000 0000 
+
+  0x000001d2a3a024a4: ;   {runtime_call}
+  0x000001d2a3a024a4: 00e9 fbff 
+
+  0x000001d2a3a024a8: ;   {static_stub}
+  0x000001d2a3a024a8: ffff 48bb | 0000 0000 | 0000 0000 
+
+  0x000001d2a3a024b4: ;   {runtime_call}
+  0x000001d2a3a024b4: e9fb ffff 
+
+  0x000001d2a3a024b8: ;   {static_stub}
+  0x000001d2a3a024b8: ff48 bb00 | 0000 0000 
+
+  0x000001d2a3a024c0: ;   {runtime_call}
+  0x000001d2a3a024c0: 0000 00e9 | fbff ffff 
+
+  0x000001d2a3a024c8: ;   {static_stub}
+  0x000001d2a3a024c8: 48bb 0000 | 0000 0000 
+
+  0x000001d2a3a024d0: ;   {runtime_call}
+  0x000001d2a3a024d0: 0000 e9fb 
+
+  0x000001d2a3a024d4: ;   {static_stub}
+  0x000001d2a3a024d4: ffff ff48 | bb00 0000 | 0000 0000 
+
+  0x000001d2a3a024e0: ;   {runtime_call}
+  0x000001d2a3a024e0: 00e9 fbff 
+
+  0x000001d2a3a024e4: ;   {static_stub}
+  0x000001d2a3a024e4: ffff 48bb | 0000 0000 | 0000 0000 
+
+  0x000001d2a3a024f0: ;   {runtime_call}
+  0x000001d2a3a024f0: e9fb ffff 
+
+  0x000001d2a3a024f4: ;   {static_stub}
+  0x000001d2a3a024f4: ff48 bb00 | 0000 0000 
+
+  0x000001d2a3a024fc: ;   {runtime_call}
+  0x000001d2a3a024fc: 0000 00e9 | fbff ffff 
+
+  0x000001d2a3a02504: ;   {static_stub}
+  0x000001d2a3a02504: 48bb 0000 | 0000 0000 
+
+  0x000001d2a3a0250c: ;   {runtime_call}
+  0x000001d2a3a0250c: 0000 e9fb 
+
+  0x000001d2a3a02510: ;   {static_stub}
+  0x000001d2a3a02510: ffff ff48 | bb00 0000 | 0000 0000 
+
+  0x000001d2a3a0251c: ;   {runtime_call}
+  0x000001d2a3a0251c: 00e9 fbff 
+
+  0x000001d2a3a02520: ;   {static_stub}
+  0x000001d2a3a02520: ffff 48bb | 0000 0000 | 0000 0000 
+
+  0x000001d2a3a0252c: ;   {runtime_call}
+  0x000001d2a3a0252c: e9fb ffff 
+
+  0x000001d2a3a02530: ;   {static_stub}
+  0x000001d2a3a02530: ff48 bb00 | 0000 0000 
+
+  0x000001d2a3a02538: ;   {runtime_call}
+  0x000001d2a3a02538: 0000 00e9 | fbff ffff 
+
+  0x000001d2a3a02540: ;   {static_stub}
+  0x000001d2a3a02540: 48bb 0000 | 0000 0000 
+
+  0x000001d2a3a02548: ;   {runtime_call}
+  0x000001d2a3a02548: 0000 e9fb 
+
+  0x000001d2a3a0254c: ;   {static_stub}
+  0x000001d2a3a0254c: ffff ff48 | bb00 0000 | 0000 0000 
+
+  0x000001d2a3a02558: ;   {runtime_call}
+  0x000001d2a3a02558: 00e9 fbff 
+
+  0x000001d2a3a0255c: ;   {static_stub}
+  0x000001d2a3a0255c: ffff 48bb | 0000 0000 | 0000 0000 
+
+  0x000001d2a3a02568: ;   {runtime_call}
+  0x000001d2a3a02568: e9fb ffff 
+
+  0x000001d2a3a0256c: ;   {static_stub}
+  0x000001d2a3a0256c: ff48 bb00 | 0000 0000 
+
+  0x000001d2a3a02574: ;   {runtime_call}
+  0x000001d2a3a02574: 0000 00e9 | fbff ffff 
+
+  0x000001d2a3a0257c: ;   {static_stub}
+  0x000001d2a3a0257c: 48bb 0000 | 0000 0000 
+
+  0x000001d2a3a02584: ;   {runtime_call}
+  0x000001d2a3a02584: 0000 e9fb 
+
+  0x000001d2a3a02588: ;   {static_stub}
+  0x000001d2a3a02588: ffff ff48 | bb00 0000 | 0000 0000 
+
+  0x000001d2a3a02594: ;   {runtime_call}
+  0x000001d2a3a02594: 00e9 fbff 
+
+  0x000001d2a3a02598: ;   {static_stub}
+  0x000001d2a3a02598: ffff 48bb | 0000 0000 | 0000 0000 
+
+  0x000001d2a3a025a4: ;   {runtime_call}
+  0x000001d2a3a025a4: e9fb ffff | fff4 f4f4 | f4f4 f4f4 
+[/MachCode]
+
+
+Compiled method (c1) 19006 1365       3       net.minecraft.level.Level::draw (8 bytes)
+ total in heap  [0x000001d29c05b390,0x000001d29c05b8d8] = 1352
+ relocation     [0x000001d29c05b4e8,0x000001d29c05b550] = 104
+ main code      [0x000001d29c05b560,0x000001d29c05b7a8] = 584
+ stub code      [0x000001d29c05b7a8,0x000001d29c05b800] = 88
+ oops           [0x000001d29c05b800,0x000001d29c05b808] = 8
+ metadata       [0x000001d29c05b808,0x000001d29c05b820] = 24
+ scopes data    [0x000001d29c05b820,0x000001d29c05b850] = 48
+ scopes pcs     [0x000001d29c05b850,0x000001d29c05b8c0] = 112
+ dependencies   [0x000001d29c05b8c0,0x000001d29c05b8c8] = 8
+ nul chk table  [0x000001d29c05b8c8,0x000001d29c05b8d8] = 16
+
+[Constant Pool (empty)]
+
+[MachCode]
+[Entry Point]
+  # {method} {0x000001d2f25ec8c0} 'draw' '()V' in 'net/minecraft/level/Level'
+  #           [sp+0x50]  (sp of caller)
+  0x000001d29c05b560: 448b 5208 | 49bb 0000 | 00b1 d201 | 0000 4d03 | d34c 3bd0 
+
+  0x000001d29c05b574: ;   {runtime_call ic_miss_stub}
+  0x000001d29c05b574: 0f85 0632 | 2a07 660f | 1f44 0000 
+[Verified Entry Point]
+  0x000001d29c05b580: 8984 2400 | 80ff ff55 | 4883 ec40 | 4181 7f20 | 0100 0000 
+
+  0x000001d29c05b594: ;   {runtime_call StubRoutines (final stubs)}
+  0x000001d29c05b594: 7405 e845 
+
+  0x000001d29c05b598: ;   {metadata(method data for {method} {0x000001d2f25ec8c0} 'draw' '()V' in 'net/minecraft/level/Level')}
+  0x000001d29c05b598: 8828 0748 | be10 db61 | f2d2 0100 | 008b becc | 0000 0083 | c702 89be | cc00 0000 | 81e7 fe07 
+  0x000001d29c05b5b8: 0000 85ff | 0f84 2d01 | 0000 8b72 | 1848 3b06 
+
+  0x000001d29c05b5c8: ;   {metadata(method data for {method} {0x000001d2f25ec8c0} 'draw' '()V' in 'net/minecraft/level/Level')}
+  0x000001d29c05b5c8: 488b d648 | bf10 db61 | f2d2 0100 
+
+  0x000001d29c05b5d4: ;   {metadata('net/minecraft/render/LevelRenderer')}
+  0x000001d29c05b5d4: 0049 ba70 | 2a02 b2d2 | 0100 004c | 8997 2001 | 0000 4883 | 8728 0100 
+
+  0x000001d29c05b5ec: ;   {metadata(method data for {method} {0x000001d2f25f2f38} 'draw' '()V' in 'net/minecraft/render/LevelRenderer')}
+  0x000001d29c05b5ec: 0001 48ba | e0dc 61f2 | d201 0000 | 8bba cc00 | 0000 83c7 | 0289 bacc | 0000 0081 | e7fe ff1f 
+  0x000001d29c05b60c: 0085 ff0f | 8400 0100 
+
+  0x000001d29c05b614: ;   {oop(a 'java/lang/Class'{0x00000000901001c0} = 'net/minecraft/Minecraft')}
+  0x000001d29c05b614: 0048 bac0 | 0110 9000 | 0000 008b | 5278 410f | be7f 3885 | ff0f 8507 | 0100 004c | 8bd2 4489 
+  0x000001d29c05b634: 5614 488b | fe48 33fa | 48c1 ef14 | 4883 ff00 | 0f85 0701 
+
+  0x000001d29c05b648: ;   {oop(a 'java/lang/Class'{0x0000000090100648} = 'net/minecraft/utils/Ticker')}
+  0x000001d29c05b648: 0000 48ba | 4806 1090 | 0000 0000 | c5fa 1082 | 8800 0000 
+
+  0x000001d29c05b65c: ;   {metadata(method data for {method} {0x000001d2f25f2f38} 'draw' '()V' in 'net/minecraft/render/LevelRenderer')}
+  0x000001d29c05b65c: 488b d648 | bfe0 dc61 | f2d2 0100 
+
+  0x000001d29c05b668: ;   {metadata('net/minecraft/render/LevelRenderer')}
+  0x000001d29c05b668: 0049 ba70 | 2a02 b2d2 | 0100 004c | 8997 2001 | 0000 4883 | 8728 0100 | 0001 488b | d648 8974 
+  0x000001d29c05b688: 2428 0f1f 
+
+  0x000001d29c05b68c: ;   {optimized virtual_call}
+  0x000001d29c05b68c: 4400 00e8 
+
+  0x000001d29c05b690: ; ImmutableOopMap {[40]=Oop }
+                      ;*invokevirtual translateCamera {reexecute=0 rethrow=0 return_oop=0}
+                      ; - net.minecraft.render.LevelRenderer::draw@11 (line 25)
+                      ; - net.minecraft.level.Level::draw@4 (line 26)
+  0x000001d29c05b690: 2c09 0000 
+
+  0x000001d29c05b694: ;   {other}
+  0x000001d29c05b694: 0f1f 8400 | 0403 0000 | 488b 7424 
+
+  0x000001d29c05b6a0: ;   {metadata(method data for {method} {0x000001d2f25f2f38} 'draw' '()V' in 'net/minecraft/render/LevelRenderer')}
+  0x000001d29c05b6a0: 2848 bae0 | dc61 f2d2 
+
+  0x000001d29c05b6a8: ;   {metadata('net/minecraft/render/LevelRenderer')}
+  0x000001d29c05b6a8: 0100 0049 | ba70 2a02 | b2d2 0100 | 004c 8992 | b001 0000 | 4883 82b8 | 0100 0001 | 488b 5424 
+  0x000001d29c05b6c8: 2866 0f1f 
+
+  0x000001d29c05b6cc: ;   {optimized virtual_call}
+  0x000001d29c05b6cc: 4400 00e8 
+
+  0x000001d29c05b6d0: ; ImmutableOopMap {}
+                      ;*invokevirtual drawBlocks {reexecute=0 rethrow=0 return_oop=0}
+                      ; - net.minecraft.render.LevelRenderer::draw@15 (line 26)
+                      ; - net.minecraft.level.Level::draw@4 (line 26)
+  0x000001d29c05b6d0: 2c5a 9a07 
+
+  0x000001d29c05b6d4: ;   {other}
+  0x000001d29c05b6d4: 0f1f 8400 | 4403 0001 | 4883 c440 
+
+  0x000001d29c05b6e0: ;   {poll_return}
+  0x000001d29c05b6e0: 5d49 3ba7 | 5804 0000 | 0f87 7b00 
+
+  0x000001d29c05b6ec: ;   {metadata({method} {0x000001d2f25ec8c0} 'draw' '()V' in 'net/minecraft/level/Level')}
+  0x000001d29c05b6ec: 0000 c349 | bab8 c85e | f2d2 0100 | 004c 8954 | 2408 48c7 | 0424 ffff 
+
+  0x000001d29c05b704: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000001d29c05b704: ffff e875 
+
+  0x000001d29c05b708: ; ImmutableOopMap {rdx=Oop }
+                      ;*synchronization entry
+                      ; - net.minecraft.level.Level::draw@-1 (line 26)
+  0x000001d29c05b708: 2b37 07e9 | b2fe ffff 
+
+  0x000001d29c05b710: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000001d29c05b710: e86b da36 
+
+  0x000001d29c05b714: ; ImmutableOopMap {rsi=Oop }
+                      ;*invokevirtual draw {reexecute=0 rethrow=0 return_oop=0}
+                      ; - net.minecraft.level.Level::draw@4 (line 26)
+                      ;   {metadata({method} {0x000001d2f25f2f38} 'draw' '()V' in 'net/minecraft/render/LevelRenderer')}
+  0x000001d29c05b714: 0749 ba30 | 2f5f f2d2 | 0100 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x000001d29c05b72c: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000001d29c05b72c: e84f 2b37 
+
+  0x000001d29c05b730: ; ImmutableOopMap {rsi=Oop }
+                      ;*synchronization entry
+                      ; - net.minecraft.render.LevelRenderer::draw@-1 (line 24)
+                      ; - net.minecraft.level.Level::draw@4 (line 26)
+  0x000001d29c05b730: 07e9 dffe | ffff 8b7e | 1448 83ff | 000f 84ec | feff ff48 
+
+  0x000001d29c05b744: ;   {runtime_call g1_pre_barrier_slow}
+  0x000001d29c05b744: 893c 24e8 | 3436 3707 | e9de feff | ff48 83fa | 000f 84ef | feff ff48 
+
+  0x000001d29c05b75c: ;   {runtime_call g1_post_barrier_slow}
+  0x000001d29c05b75c: 8934 24e8 | 1c3e 3707 | e9e1 feff 
+
+  0x000001d29c05b768: ;   {internal_word}
+  0x000001d29c05b768: ff49 bae1 | b605 9cd2 | 0100 004d | 8997 7004 
+
+  0x000001d29c05b778: ;   {runtime_call SafepointBlob}
+  0x000001d29c05b778: 0000 e981 | 9f2a 0749 | 8b87 0805 | 0000 49c7 | 8708 0500 | 0000 0000 | 0049 c787 | 1005 0000 
+  0x000001d29c05b798: 0000 0000 | 4883 c440 
+
+  0x000001d29c05b7a0: ;   {runtime_call unwind_exception Runtime1 stub}
+  0x000001d29c05b7a0: 5de9 daca | 3607 f4f4 
+[Stub Code]
+  0x000001d29c05b7a8: ;   {no_reloc}
+  0x000001d29c05b7a8: 0f1f 4400 
+
+  0x000001d29c05b7ac: ;   {static_stub}
+  0x000001d29c05b7ac: 0048 bb00 | 0000 0000 
+
+  0x000001d29c05b7b4: ;   {runtime_call}
+  0x000001d29c05b7b4: 0000 00e9 | fbff ffff 
+
+  0x000001d29c05b7bc: ;   {static_stub}
+  0x000001d29c05b7bc: 9048 bb00 | 0000 0000 
+
+  0x000001d29c05b7c4: ;   {runtime_call}
+  0x000001d29c05b7c4: 0000 00e9 | fbff ffff 
+[Exception Handler]
+  0x000001d29c05b7cc: ;   {runtime_call handle_exception_from_callee Runtime1 stub}
+  0x000001d29c05b7cc: e8af f736 
+
+  0x000001d29c05b7d0: ;   {external_word}
+  0x000001d29c05b7d0: 0748 b9f0 | 1850 d3f8 | 7f00 0048 
+
+  0x000001d29c05b7dc: ;   {runtime_call}
+  0x000001d29c05b7dc: 83e4 f048 | b8c0 9417 | d3f8 7f00 | 00ff d0f4 
+[Deopt Handler Code]
+  0x000001d29c05b7ec: ;   {section_word}
+  0x000001d29c05b7ec: 49ba ecb7 | 059c d201 | 0000 4152 
+
+  0x000001d29c05b7f8: ;   {runtime_call DeoptimizationBlob}
+  0x000001d29c05b7f8: e923 8e2a | 07f4 f4f4 
+[/MachCode]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x000001d28a485fa0, length=14, elements={
+0x000001d290655760, 0x000001d2b0bec400, 0x000001d2b0bece60, 0x000001d2b0bedb20,
+0x000001d2b0bef210, 0x000001d2b0bf1e20, 0x000001d2b0bf2880, 0x000001d2b0bfe060,
+0x000001d2b0c06c60, 0x000001d2f61a6ff0, 0x000001d2f61dd2e0, 0x000001d289b66880,
+0x000001d289b9f640, 0x000001d289f27d80
+}
+
+Java Threads: ( => current thread )
+=>0x000001d290655760 JavaThread "main"                              [_thread_in_native, id=20300, stack(0x0000007323800000,0x0000007323900000) (1024K)]
+  0x000001d2b0bec400 JavaThread "Reference Handler"          daemon [_thread_blocked, id=6380, stack(0x0000007324000000,0x0000007324100000) (1024K)]
+  0x000001d2b0bece60 JavaThread "Finalizer"                  daemon [_thread_blocked, id=2440, stack(0x0000007324100000,0x0000007324200000) (1024K)]
+  0x000001d2b0bedb20 JavaThread "Signal Dispatcher"          daemon [_thread_blocked, id=13984, stack(0x0000007324200000,0x0000007324300000) (1024K)]
+  0x000001d2b0bef210 JavaThread "Attach Listener"            daemon [_thread_blocked, id=11608, stack(0x0000007324300000,0x0000007324400000) (1024K)]
+  0x000001d2b0bf1e20 JavaThread "Service Thread"             daemon [_thread_blocked, id=18508, stack(0x0000007324400000,0x0000007324500000) (1024K)]
+  0x000001d2b0bf2880 JavaThread "Monitor Deflation Thread"   daemon [_thread_blocked, id=19372, stack(0x0000007324500000,0x0000007324600000) (1024K)]
+  0x000001d2b0bfe060 JavaThread "JVMCI-native CompilerThread0" daemon [_thread_blocked, id=21332, stack(0x0000007324600000,0x0000007324700000) (1024K)]
+  0x000001d2b0c06c60 JavaThread "C1 CompilerThread0"         daemon [_thread_blocked, id=14224, stack(0x0000007324700000,0x0000007324800000) (1024K)]
+  0x000001d2f61a6ff0 JavaThread "Common-Cleaner"             daemon [_thread_blocked, id=15408, stack(0x0000007324900000,0x0000007324a00000) (1024K)]
+  0x000001d2f61dd2e0 JavaThread "Notification Thread"        daemon [_thread_blocked, id=16496, stack(0x0000007324a00000,0x0000007324b00000) (1024K)]
+  0x000001d289b66880 JavaThread "Music Thread"               daemon [_thread_blocked, id=19560, stack(0x0000007325600000,0x0000007325700000) (1024K)]
+  0x000001d289b9f640 JavaThread "Ticky Thread"                      [_thread_in_Java, id=12672, stack(0x0000007325700000,0x0000007325800000) (1024K)]
+  0x000001d289f27d80 JavaThread "Java2D Disposer"            daemon [_thread_blocked, id=7804, stack(0x0000007325800000,0x0000007325900000) (1024K)]
+Total: 14
+
+Other Threads:
+  0x000001d2b0bcd320 VMThread "VM Thread"                           [id=2928, stack(0x0000007323f00000,0x0000007324000000) (1024K)]
+  0x000001d2b0bab8e0 WatcherThread "VM Periodic Task Thread"        [id=15972, stack(0x0000007323e00000,0x0000007323f00000) (1024K)]
+  0x000001d2921b01e0 WorkerThread "GC Thread#0"                     [id=16708, stack(0x0000007323900000,0x0000007323a00000) (1024K)]
+  0x000001d28a45fcc0 WorkerThread "GC Thread#1"                     [id=13192, stack(0x0000007325200000,0x0000007325300000) (1024K)]
+  0x000001d28a460480 WorkerThread "GC Thread#2"                     [id=9456, stack(0x0000007325900000,0x0000007325a00000) (1024K)]
+  0x000001d28a460c40 WorkerThread "GC Thread#3"                     [id=14068, stack(0x0000007325a00000,0x0000007325b00000) (1024K)]
+  0x000001d28a485030 WorkerThread "GC Thread#4"                     [id=10496, stack(0x0000007325b00000,0x0000007325c00000) (1024K)]
+  0x000001d28a4853e0 WorkerThread "GC Thread#5"                     [id=9808, stack(0x0000007325c00000,0x0000007325d00000) (1024K)]
+  0x000001d28a485790 WorkerThread "GC Thread#6"                     [id=10312, stack(0x0000007325d00000,0x0000007325e00000) (1024K)]
+  0x000001d28a485b40 WorkerThread "GC Thread#7"                     [id=5028, stack(0x0000007325e00000,0x0000007325f00000) (1024K)]
+  0x000001d28a488310 WorkerThread "GC Thread#8"                     [id=11252, stack(0x0000007325f00000,0x0000007326000000) (1024K)]
+  0x000001d28a488710 WorkerThread "GC Thread#9"                     [id=1280, stack(0x0000007326000000,0x0000007326100000) (1024K)]
+  0x000001d2921c0470 ConcurrentGCThread "G1 Main Marker"            [id=10068, stack(0x0000007323a00000,0x0000007323b00000) (1024K)]
+  0x000001d2921c2550 WorkerThread "G1 Conc#0"                       [id=6640, stack(0x0000007323b00000,0x0000007323c00000) (1024K)]
+  0x000001d2b0a79530 ConcurrentGCThread "G1 Refine#0"               [id=16032, stack(0x0000007323c00000,0x0000007323d00000) (1024K)]
+  0x000001d2b0a79ec0 ConcurrentGCThread "G1 Service"                [id=11304, stack(0x0000007323d00000,0x0000007323e00000) (1024K)]
+Total: 16
+
+Threads with active compile tasks:
+Total: 0
+
+VM state: not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap address: 0x000000008a400000, size: 1884 MB, Compressed Oops mode: 32-bit
+
+CDS archive(s) mapped at: [0x000001d2b1000000-0x000001d2b1c60000-0x000001d2b1c60000), size 12976128, SharedBaseAddress: 0x000001d2b1000000, ArchiveRelocationMode: 1.
+Compressed class space mapped at: 0x000001d2b2000000-0x000001d2f2000000, reserved size: 1073741824
+Narrow klass base: 0x000001d2b1000000, Narrow klass shift: 0, Narrow klass range: 0x41000000
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 5 size 8 Array Of Cards #cards 12 size 40 Howl #buckets 4 coarsen threshold 1843 Howl Bitmap #cards 512 size 80 coarsen threshold 460 Card regions per heap region 1 cards per card region 2048
+ CPUs: 12 total, 12 available
+ Memory: 7528M
+ Large Page Support: Disabled
+ NUMA Support: Disabled
+ Compressed Oops: Enabled (32-bit)
+ Heap Region Size: 1M
+ Heap Min Capacity: 8M
+ Heap Initial Capacity: 118M
+ Heap Max Capacity: 1884M
+ Pre-touch: Disabled
+ Parallel Workers: 10
+ Concurrent Workers: 3
+ Concurrent Refinement Workers: 10
+ Periodic GC: Disabled
+
+Heap:
+ garbage-first heap   total reserved 1929216K, committed 120832K, used 25740K [0x000000008a400000, 0x0000000100000000)
+  region size 1024K, 26 young (26624K), 3 survivors (3072K)
+ Metaspace       used 6211K, committed 6400K, reserved 1114112K
+  class space    used 451K, committed 512K, reserved 1048576K
+
+Heap Regions: E=young(eden), S=young(survivor), O=old, HS=humongous(starts), HC=humongous(continues), CS=collection set, F=free, TAMS=top-at-mark-start, PB=parsable bottom
+|   0|0x000000008a400000, 0x000000008a400000, 0x000000008a500000|  0%| F|  |TAMS 0x000000008a400000| PB 0x000000008a400000| Untracked |  0
+|   1|0x000000008a500000, 0x000000008a500000, 0x000000008a600000|  0%| F|  |TAMS 0x000000008a500000| PB 0x000000008a500000| Untracked |  0
+|   2|0x000000008a600000, 0x000000008a600000, 0x000000008a700000|  0%| F|  |TAMS 0x000000008a600000| PB 0x000000008a600000| Untracked |  0
+|   3|0x000000008a700000, 0x000000008a700000, 0x000000008a800000|  0%| F|  |TAMS 0x000000008a700000| PB 0x000000008a700000| Untracked |  0
+|   4|0x000000008a800000, 0x000000008a800000, 0x000000008a900000|  0%| F|  |TAMS 0x000000008a800000| PB 0x000000008a800000| Untracked |  0
+|   5|0x000000008a900000, 0x000000008a900000, 0x000000008aa00000|  0%| F|  |TAMS 0x000000008a900000| PB 0x000000008a900000| Untracked |  0
+|   6|0x000000008aa00000, 0x000000008aa00000, 0x000000008ab00000|  0%| F|  |TAMS 0x000000008aa00000| PB 0x000000008aa00000| Untracked |  0
+|   7|0x000000008ab00000, 0x000000008ab00000, 0x000000008ac00000|  0%| F|  |TAMS 0x000000008ab00000| PB 0x000000008ab00000| Untracked |  0
+|   8|0x000000008ac00000, 0x000000008ac00000, 0x000000008ad00000|  0%| F|  |TAMS 0x000000008ac00000| PB 0x000000008ac00000| Untracked |  0
+|   9|0x000000008ad00000, 0x000000008ad00000, 0x000000008ae00000|  0%| F|  |TAMS 0x000000008ad00000| PB 0x000000008ad00000| Untracked |  0
+|  10|0x000000008ae00000, 0x000000008ae00000, 0x000000008af00000|  0%| F|  |TAMS 0x000000008ae00000| PB 0x000000008ae00000| Untracked |  0
+|  11|0x000000008af00000, 0x000000008af00000, 0x000000008b000000|  0%| F|  |TAMS 0x000000008af00000| PB 0x000000008af00000| Untracked |  0
+|  12|0x000000008b000000, 0x000000008b000000, 0x000000008b100000|  0%| F|  |TAMS 0x000000008b000000| PB 0x000000008b000000| Untracked |  0
+|  13|0x000000008b100000, 0x000000008b100000, 0x000000008b200000|  0%| F|  |TAMS 0x000000008b100000| PB 0x000000008b100000| Untracked |  0
+|  14|0x000000008b200000, 0x000000008b200000, 0x000000008b300000|  0%| F|  |TAMS 0x000000008b200000| PB 0x000000008b200000| Untracked |  0
+|  15|0x000000008b300000, 0x000000008b300000, 0x000000008b400000|  0%| F|  |TAMS 0x000000008b300000| PB 0x000000008b300000| Untracked |  0
+|  16|0x000000008b400000, 0x000000008b423000, 0x000000008b500000| 13%| O|  |TAMS 0x000000008b400000| PB 0x000000008b400000| Untracked |  0
+|  17|0x000000008b500000, 0x000000008b500000, 0x000000008b600000|  0%| F|  |TAMS 0x000000008b500000| PB 0x000000008b500000| Untracked |  0
+|  18|0x000000008b600000, 0x000000008b600000, 0x000000008b700000|  0%| F|  |TAMS 0x000000008b600000| PB 0x000000008b600000| Untracked |  0
+|  19|0x000000008b700000, 0x000000008b700000, 0x000000008b800000|  0%| F|  |TAMS 0x000000008b700000| PB 0x000000008b700000| Untracked |  0
+|  20|0x000000008b800000, 0x000000008b800000, 0x000000008b900000|  0%| F|  |TAMS 0x000000008b800000| PB 0x000000008b800000| Untracked |  0
+|  21|0x000000008b900000, 0x000000008b900000, 0x000000008ba00000|  0%| F|  |TAMS 0x000000008b900000| PB 0x000000008b900000| Untracked |  0
+|  22|0x000000008ba00000, 0x000000008ba00000, 0x000000008bb00000|  0%| F|  |TAMS 0x000000008ba00000| PB 0x000000008ba00000| Untracked |  0
+|  23|0x000000008bb00000, 0x000000008bb00000, 0x000000008bc00000|  0%| F|  |TAMS 0x000000008bb00000| PB 0x000000008bb00000| Untracked |  0
+|  24|0x000000008bc00000, 0x000000008bc00000, 0x000000008bd00000|  0%| F|  |TAMS 0x000000008bc00000| PB 0x000000008bc00000| Untracked |  0
+|  25|0x000000008bd00000, 0x000000008bd00000, 0x000000008be00000|  0%| F|  |TAMS 0x000000008bd00000| PB 0x000000008bd00000| Untracked |  0
+|  26|0x000000008be00000, 0x000000008be00000, 0x000000008bf00000|  0%| F|  |TAMS 0x000000008be00000| PB 0x000000008be00000| Untracked |  0
+|  27|0x000000008bf00000, 0x000000008bf00000, 0x000000008c000000|  0%| F|  |TAMS 0x000000008bf00000| PB 0x000000008bf00000| Untracked |  0
+|  28|0x000000008c000000, 0x000000008c000000, 0x000000008c100000|  0%| F|  |TAMS 0x000000008c000000| PB 0x000000008c000000| Untracked |  0
+|  29|0x000000008c100000, 0x000000008c100000, 0x000000008c200000|  0%| F|  |TAMS 0x000000008c100000| PB 0x000000008c100000| Untracked |  0
+|  30|0x000000008c200000, 0x000000008c200000, 0x000000008c300000|  0%| F|  |TAMS 0x000000008c200000| PB 0x000000008c200000| Untracked |  0
+|  31|0x000000008c300000, 0x000000008c300000, 0x000000008c400000|  0%| F|  |TAMS 0x000000008c300000| PB 0x000000008c300000| Untracked |  0
+|  32|0x000000008c400000, 0x000000008c400000, 0x000000008c500000|  0%| F|  |TAMS 0x000000008c400000| PB 0x000000008c400000| Untracked |  0
+|  33|0x000000008c500000, 0x000000008c500000, 0x000000008c600000|  0%| F|  |TAMS 0x000000008c500000| PB 0x000000008c500000| Untracked |  0
+|  34|0x000000008c600000, 0x000000008c600000, 0x000000008c700000|  0%| F|  |TAMS 0x000000008c600000| PB 0x000000008c600000| Untracked |  0
+|  35|0x000000008c700000, 0x000000008c700000, 0x000000008c800000|  0%| F|  |TAMS 0x000000008c700000| PB 0x000000008c700000| Untracked |  0
+|  36|0x000000008c800000, 0x000000008c800000, 0x000000008c900000|  0%| F|  |TAMS 0x000000008c800000| PB 0x000000008c800000| Untracked |  0
+|  37|0x000000008c900000, 0x000000008c900000, 0x000000008ca00000|  0%| F|  |TAMS 0x000000008c900000| PB 0x000000008c900000| Untracked |  0
+|  38|0x000000008ca00000, 0x000000008ca00000, 0x000000008cb00000|  0%| F|  |TAMS 0x000000008ca00000| PB 0x000000008ca00000| Untracked |  0
+|  39|0x000000008cb00000, 0x000000008cb00000, 0x000000008cc00000|  0%| F|  |TAMS 0x000000008cb00000| PB 0x000000008cb00000| Untracked |  0
+|  40|0x000000008cc00000, 0x000000008cc00000, 0x000000008cd00000|  0%| F|  |TAMS 0x000000008cc00000| PB 0x000000008cc00000| Untracked |  0
+|  41|0x000000008cd00000, 0x000000008cd00000, 0x000000008ce00000|  0%| F|  |TAMS 0x000000008cd00000| PB 0x000000008cd00000| Untracked |  0
+|  42|0x000000008ce00000, 0x000000008ce00000, 0x000000008cf00000|  0%| F|  |TAMS 0x000000008ce00000| PB 0x000000008ce00000| Untracked |  0
+|  43|0x000000008cf00000, 0x000000008cf00000, 0x000000008d000000|  0%| F|  |TAMS 0x000000008cf00000| PB 0x000000008cf00000| Untracked |  0
+|  44|0x000000008d000000, 0x000000008d000000, 0x000000008d100000|  0%| F|  |TAMS 0x000000008d000000| PB 0x000000008d000000| Untracked |  0
+|  45|0x000000008d100000, 0x000000008d100000, 0x000000008d200000|  0%| F|  |TAMS 0x000000008d100000| PB 0x000000008d100000| Untracked |  0
+|  46|0x000000008d200000, 0x000000008d200000, 0x000000008d300000|  0%| F|  |TAMS 0x000000008d200000| PB 0x000000008d200000| Untracked |  0
+|  47|0x000000008d300000, 0x000000008d300000, 0x000000008d400000|  0%| F|  |TAMS 0x000000008d300000| PB 0x000000008d300000| Untracked |  0
+|  48|0x000000008d400000, 0x000000008d400000, 0x000000008d500000|  0%| F|  |TAMS 0x000000008d400000| PB 0x000000008d400000| Untracked |  0
+|  49|0x000000008d500000, 0x000000008d500000, 0x000000008d600000|  0%| F|  |TAMS 0x000000008d500000| PB 0x000000008d500000| Untracked |  0
+|  50|0x000000008d600000, 0x000000008d600000, 0x000000008d700000|  0%| F|  |TAMS 0x000000008d600000| PB 0x000000008d600000| Untracked |  0
+|  51|0x000000008d700000, 0x000000008d700000, 0x000000008d800000|  0%| F|  |TAMS 0x000000008d700000| PB 0x000000008d700000| Untracked |  0
+|  52|0x000000008d800000, 0x000000008d800000, 0x000000008d900000|  0%| F|  |TAMS 0x000000008d800000| PB 0x000000008d800000| Untracked |  0
+|  53|0x000000008d900000, 0x000000008d900000, 0x000000008da00000|  0%| F|  |TAMS 0x000000008d900000| PB 0x000000008d900000| Untracked |  0
+|  54|0x000000008da00000, 0x000000008da00000, 0x000000008db00000|  0%| F|  |TAMS 0x000000008da00000| PB 0x000000008da00000| Untracked |  0
+|  55|0x000000008db00000, 0x000000008db00000, 0x000000008dc00000|  0%| F|  |TAMS 0x000000008db00000| PB 0x000000008db00000| Untracked |  0
+|  56|0x000000008dc00000, 0x000000008dc00000, 0x000000008dd00000|  0%| F|  |TAMS 0x000000008dc00000| PB 0x000000008dc00000| Untracked |  0
+|  57|0x000000008dd00000, 0x000000008dd00000, 0x000000008de00000|  0%| F|  |TAMS 0x000000008dd00000| PB 0x000000008dd00000| Untracked |  0
+|  58|0x000000008de00000, 0x000000008de00000, 0x000000008df00000|  0%| F|  |TAMS 0x000000008de00000| PB 0x000000008de00000| Untracked |  0
+|  59|0x000000008df00000, 0x000000008df00000, 0x000000008e000000|  0%| F|  |TAMS 0x000000008df00000| PB 0x000000008df00000| Untracked |  0
+|  60|0x000000008e000000, 0x000000008e000000, 0x000000008e100000|  0%| F|  |TAMS 0x000000008e000000| PB 0x000000008e000000| Untracked |  0
+|  61|0x000000008e100000, 0x000000008e100000, 0x000000008e200000|  0%| F|  |TAMS 0x000000008e100000| PB 0x000000008e100000| Untracked |  0
+|  62|0x000000008e200000, 0x000000008e200000, 0x000000008e300000|  0%| F|  |TAMS 0x000000008e200000| PB 0x000000008e200000| Untracked |  0
+|  63|0x000000008e300000, 0x000000008e300000, 0x000000008e400000|  0%| F|  |TAMS 0x000000008e300000| PB 0x000000008e300000| Untracked |  0
+|  64|0x000000008e400000, 0x000000008e400000, 0x000000008e500000|  0%| F|  |TAMS 0x000000008e400000| PB 0x000000008e400000| Untracked |  0
+|  65|0x000000008e500000, 0x000000008e500000, 0x000000008e600000|  0%| F|  |TAMS 0x000000008e500000| PB 0x000000008e500000| Untracked |  0
+|  66|0x000000008e600000, 0x000000008e600000, 0x000000008e700000|  0%| F|  |TAMS 0x000000008e600000| PB 0x000000008e600000| Untracked |  0
+|  67|0x000000008e700000, 0x000000008e700000, 0x000000008e800000|  0%| F|  |TAMS 0x000000008e700000| PB 0x000000008e700000| Untracked |  0
+|  68|0x000000008e800000, 0x000000008e800000, 0x000000008e900000|  0%| F|  |TAMS 0x000000008e800000| PB 0x000000008e800000| Untracked |  0
+|  69|0x000000008e900000, 0x000000008e900000, 0x000000008ea00000|  0%| F|  |TAMS 0x000000008e900000| PB 0x000000008e900000| Untracked |  0
+|  70|0x000000008ea00000, 0x000000008ea00000, 0x000000008eb00000|  0%| F|  |TAMS 0x000000008ea00000| PB 0x000000008ea00000| Untracked |  0
+|  71|0x000000008eb00000, 0x000000008eb00000, 0x000000008ec00000|  0%| F|  |TAMS 0x000000008eb00000| PB 0x000000008eb00000| Untracked |  0
+|  72|0x000000008ec00000, 0x000000008ec00000, 0x000000008ed00000|  0%| F|  |TAMS 0x000000008ec00000| PB 0x000000008ec00000| Untracked |  0
+|  73|0x000000008ed00000, 0x000000008ed00000, 0x000000008ee00000|  0%| F|  |TAMS 0x000000008ed00000| PB 0x000000008ed00000| Untracked |  0
+|  74|0x000000008ee00000, 0x000000008ee00000, 0x000000008ef00000|  0%| F|  |TAMS 0x000000008ee00000| PB 0x000000008ee00000| Untracked |  0
+|  75|0x000000008ef00000, 0x000000008ef00000, 0x000000008f000000|  0%| F|  |TAMS 0x000000008ef00000| PB 0x000000008ef00000| Untracked |  0
+|  76|0x000000008f000000, 0x000000008f000000, 0x000000008f100000|  0%| F|  |TAMS 0x000000008f000000| PB 0x000000008f000000| Untracked |  0
+|  77|0x000000008f100000, 0x000000008f100000, 0x000000008f200000|  0%| F|  |TAMS 0x000000008f100000| PB 0x000000008f100000| Untracked |  0
+|  78|0x000000008f200000, 0x000000008f200000, 0x000000008f300000|  0%| F|  |TAMS 0x000000008f200000| PB 0x000000008f200000| Untracked |  0
+|  79|0x000000008f300000, 0x000000008f300000, 0x000000008f400000|  0%| F|  |TAMS 0x000000008f300000| PB 0x000000008f300000| Untracked |  0
+|  80|0x000000008f400000, 0x000000008f400000, 0x000000008f500000|  0%| F|  |TAMS 0x000000008f400000| PB 0x000000008f400000| Untracked |  0
+|  81|0x000000008f500000, 0x000000008f500000, 0x000000008f600000|  0%| F|  |TAMS 0x000000008f500000| PB 0x000000008f500000| Untracked |  0
+|  82|0x000000008f600000, 0x000000008f600000, 0x000000008f700000|  0%| F|  |TAMS 0x000000008f600000| PB 0x000000008f600000| Untracked |  0
+|  83|0x000000008f700000, 0x000000008f700000, 0x000000008f800000|  0%| F|  |TAMS 0x000000008f700000| PB 0x000000008f700000| Untracked |  0
+|  84|0x000000008f800000, 0x000000008f800000, 0x000000008f900000|  0%| F|  |TAMS 0x000000008f800000| PB 0x000000008f800000| Untracked |  0
+|  85|0x000000008f900000, 0x000000008f900000, 0x000000008fa00000|  0%| F|  |TAMS 0x000000008f900000| PB 0x000000008f900000| Untracked |  0
+|  86|0x000000008fa00000, 0x000000008fa00000, 0x000000008fb00000|  0%| F|  |TAMS 0x000000008fa00000| PB 0x000000008fa00000| Untracked |  0
+|  87|0x000000008fb00000, 0x000000008fb00000, 0x000000008fc00000|  0%| F|  |TAMS 0x000000008fb00000| PB 0x000000008fb00000| Untracked |  0
+|  88|0x000000008fc00000, 0x000000008fc00000, 0x000000008fd00000|  0%| F|  |TAMS 0x000000008fc00000| PB 0x000000008fc00000| Untracked |  0
+|  89|0x000000008fd00000, 0x000000008fd00000, 0x000000008fe00000|  0%| F|  |TAMS 0x000000008fd00000| PB 0x000000008fd00000| Untracked |  0
+|  90|0x000000008fe00000, 0x000000008fe00000, 0x000000008ff00000|  0%| F|  |TAMS 0x000000008fe00000| PB 0x000000008fe00000| Untracked |  0
+|  91|0x000000008ff00000, 0x0000000090000000, 0x0000000090000000|100%| S|CS|TAMS 0x000000008ff00000| PB 0x000000008ff00000| Complete |  0
+|  92|0x0000000090000000, 0x0000000090100000, 0x0000000090100000|100%| S|CS|TAMS 0x0000000090000000| PB 0x0000000090000000| Complete |  0
+|  93|0x0000000090100000, 0x0000000090200000, 0x0000000090200000|100%| S|CS|TAMS 0x0000000090100000| PB 0x0000000090100000| Complete |  0
+|  94|0x0000000090200000, 0x0000000090200000, 0x0000000090300000|  0%| F|  |TAMS 0x0000000090200000| PB 0x0000000090200000| Untracked |  0
+|  95|0x0000000090300000, 0x00000000903d02a0, 0x0000000090400000| 81%| E|  |TAMS 0x0000000090300000| PB 0x0000000090300000| Complete |  0
+|  96|0x0000000090400000, 0x0000000090500000, 0x0000000090500000|100%| E|CS|TAMS 0x0000000090400000| PB 0x0000000090400000| Complete |  0
+|  97|0x0000000090500000, 0x0000000090600000, 0x0000000090600000|100%| E|CS|TAMS 0x0000000090500000| PB 0x0000000090500000| Complete |  0
+|  98|0x0000000090600000, 0x0000000090700000, 0x0000000090700000|100%| E|CS|TAMS 0x0000000090600000| PB 0x0000000090600000| Complete |  0
+|  99|0x0000000090700000, 0x0000000090800000, 0x0000000090800000|100%| E|CS|TAMS 0x0000000090700000| PB 0x0000000090700000| Complete |  0
+| 100|0x0000000090800000, 0x0000000090900000, 0x0000000090900000|100%| E|CS|TAMS 0x0000000090800000| PB 0x0000000090800000| Complete |  0
+| 101|0x0000000090900000, 0x0000000090a00000, 0x0000000090a00000|100%| E|CS|TAMS 0x0000000090900000| PB 0x0000000090900000| Complete |  0
+| 102|0x0000000090a00000, 0x0000000090b00000, 0x0000000090b00000|100%| E|CS|TAMS 0x0000000090a00000| PB 0x0000000090a00000| Complete |  0
+| 103|0x0000000090b00000, 0x0000000090c00000, 0x0000000090c00000|100%| E|CS|TAMS 0x0000000090b00000| PB 0x0000000090b00000| Complete |  0
+| 104|0x0000000090c00000, 0x0000000090d00000, 0x0000000090d00000|100%| E|CS|TAMS 0x0000000090c00000| PB 0x0000000090c00000| Complete |  0
+| 105|0x0000000090d00000, 0x0000000090e00000, 0x0000000090e00000|100%| E|CS|TAMS 0x0000000090d00000| PB 0x0000000090d00000| Complete |  0
+| 106|0x0000000090e00000, 0x0000000090f00000, 0x0000000090f00000|100%| E|CS|TAMS 0x0000000090e00000| PB 0x0000000090e00000| Complete |  0
+| 107|0x0000000090f00000, 0x0000000091000000, 0x0000000091000000|100%| E|CS|TAMS 0x0000000090f00000| PB 0x0000000090f00000| Complete |  0
+| 108|0x0000000091000000, 0x0000000091100000, 0x0000000091100000|100%| E|CS|TAMS 0x0000000091000000| PB 0x0000000091000000| Complete |  0
+| 109|0x0000000091100000, 0x0000000091200000, 0x0000000091200000|100%| E|CS|TAMS 0x0000000091100000| PB 0x0000000091100000| Complete |  0
+| 110|0x0000000091200000, 0x0000000091300000, 0x0000000091300000|100%| E|CS|TAMS 0x0000000091200000| PB 0x0000000091200000| Complete |  0
+| 111|0x0000000091300000, 0x0000000091400000, 0x0000000091400000|100%| E|CS|TAMS 0x0000000091300000| PB 0x0000000091300000| Complete |  0
+| 112|0x0000000091400000, 0x0000000091500000, 0x0000000091500000|100%| E|CS|TAMS 0x0000000091400000| PB 0x0000000091400000| Complete |  0
+| 113|0x0000000091500000, 0x0000000091600000, 0x0000000091600000|100%| E|CS|TAMS 0x0000000091500000| PB 0x0000000091500000| Complete |  0
+| 114|0x0000000091600000, 0x0000000091700000, 0x0000000091700000|100%| E|CS|TAMS 0x0000000091600000| PB 0x0000000091600000| Complete |  0
+| 115|0x0000000091700000, 0x0000000091800000, 0x0000000091800000|100%| E|CS|TAMS 0x0000000091700000| PB 0x0000000091700000| Complete |  0
+| 116|0x0000000091800000, 0x0000000091900000, 0x0000000091900000|100%| E|CS|TAMS 0x0000000091800000| PB 0x0000000091800000| Complete |  0
+| 117|0x0000000091900000, 0x0000000091a00000, 0x0000000091a00000|100%| E|CS|TAMS 0x0000000091900000| PB 0x0000000091900000| Complete |  0
+
+Card table byte_map: [0x000001d2abe70000,0x000001d2ac220000] _byte_map_base: 0x000001d2aba1e000
+
+Marking Bits: (CMBitMap*) 0x000001d2921b1010
+ Bits: [0x000001d2ac220000, 0x000001d2adf90000)
+
+Polling page: 0x000001d2908a0000
+
+Metaspace:
+
+Usage:
+  Non-class:      5.63 MB used.
+      Class:    451.03 KB used.
+       Both:      6.07 MB used.
+
+Virtual space:
+  Non-class space:       64.00 MB reserved,       5.75 MB (  9%) committed,  1 nodes.
+      Class space:        1.00 GB reserved,     512.00 KB ( <1%) committed,  1 nodes.
+             Both:        1.06 GB reserved,       6.25 MB ( <1%) committed. 
+
+Chunk freelists:
+   Non-Class:  9.83 MB
+       Class:  15.50 MB
+        Both:  25.33 MB
+
+MaxMetaspaceSize: unlimited
+CompressedClassSpaceSize: 1.00 GB
+Initial GC threshold: 21.00 MB
+Current GC threshold: 21.00 MB
+CDS: on
+ - commit_granule_bytes: 65536.
+ - commit_granule_words: 8192.
+ - virtual_space_node_default_size: 8388608.
+ - enlarge_chunks_in_place: 1.
+ - use_allocation_guard: 0.
+
+
+Internal statistics:
+
+num_allocs_failed_limit: 0.
+num_arena_births: 154.
+num_arena_deaths: 0.
+num_vsnodes_births: 2.
+num_vsnodes_deaths: 0.
+num_space_committed: 99.
+num_space_uncommitted: 0.
+num_chunks_returned_to_freelist: 0.
+num_chunks_taken_from_freelist: 293.
+num_chunk_merges: 0.
+num_chunk_splits: 179.
+num_chunks_enlarged: 92.
+num_inconsistent_stats: 0.
+
+CodeHeap 'non-profiled nmethods': size=119488Kb used=730Kb max_used=730Kb free=118757Kb
+ bounds [0x000001d2a3960000, 0x000001d2a3bd0000, 0x000001d2aae10000]
+CodeHeap 'profiled nmethods': size=119424Kb used=2433Kb max_used=2433Kb free=116990Kb
+ bounds [0x000001d29be10000, 0x000001d29c080000, 0x000001d2a32b0000]
+CodeHeap 'non-nmethods': size=6848Kb used=2253Kb max_used=3426Kb free=4594Kb
+ bounds [0x000001d2a32b0000, 0x000001d2a3620000, 0x000001d2a3960000]
+ total_blobs=2553 nmethods=1434 adapters=1028
+ compilation: enabled
+              stopped_count=0, restarted_count=0
+ full_count=0
+
+JVMCI Events (20 events):
+Event: 15.472 Thread 0x000001d2b0bfe060 shut down JVMCI runtime 0
+Event: 15.475 Thread 0x000001d2b0bfe060 destroyed JavaVM[3]@0x000001d2f6da3270 for JVMCI runtime 0
+Event: 15.475 Thread 0x000001d2b0bfe060 releasing handles for JVMCI runtime 0: oop handles=64, metadata handles={total=120, live=113, blocks=16}
+Event: 15.475 Thread 0x000001d2b0bfe060 detached from JVMCI runtime 0
+Event: 16.909 Thread 0x000001d2b0bfe060 attached to JVMCI runtime 0
+Event: 16.915 Thread 0x000001d2b0bfe060 created JavaVM[4]@0x000001d2f6da3270 for JVMCI runtime 0
+Event: 16.915 Thread 0x000001d2b0bfe060 initializing JVMCI runtime 0
+Event: 16.915 Thread 0x000001d2b0bfe060 done waiting for JavaVM references initialization in JVMCI runtime 0
+Event: 16.915 Thread 0x000001d2b0bfe060 initialized JVMCI runtime 0
+Event: 17.939 Thread 0x000001d2b0bfe060 detaching from JVMCI runtime 0: releasing idle compiler thread (0 other threads still attached)
+Event: 17.939 Thread 0x000001d2b0bfe060 shutting down HotSpotJVMCIRuntime for JVMCI runtime 0
+Event: 17.939 Thread 0x000001d2b0bfe060 shut down JVMCI runtime 0
+Event: 17.941 Thread 0x000001d2b0bfe060 destroyed JavaVM[4]@0x000001d2f6da3270 for JVMCI runtime 0
+Event: 17.941 Thread 0x000001d2b0bfe060 releasing handles for JVMCI runtime 0: oop handles=53, metadata handles={total=90, live=78, blocks=16}
+Event: 17.941 Thread 0x000001d2b0bfe060 detached from JVMCI runtime 0
+Event: 18.618 Thread 0x000001d2b0bfe060 attached to JVMCI runtime 0
+Event: 18.624 Thread 0x000001d2b0bfe060 created JavaVM[5]@0x000001d2f6da3270 for JVMCI runtime 0
+Event: 18.624 Thread 0x000001d2b0bfe060 initializing JVMCI runtime 0
+Event: 18.624 Thread 0x000001d2b0bfe060 done waiting for JavaVM references initialization in JVMCI runtime 0
+Event: 18.624 Thread 0x000001d2b0bfe060 initialized JVMCI runtime 0
+
+Compilation events (20 events):
+Event: 12.881 Thread 0x000001d2b0c06c60 1426       3       java.nio.FloatBuffer::<init> (14 bytes)
+Event: 12.881 Thread 0x000001d2b0c06c60 nmethod 1426 0x000001d29c06e610 code [0x000001d29c06e7c0, 0x000001d29c06e910]
+Event: 12.881 Thread 0x000001d2b0c06c60 1427       3       java.nio.FloatBuffer::<init> (24 bytes)
+Event: 12.881 Thread 0x000001d2b0c06c60 nmethod 1427 0x000001d29c06ea10 code [0x000001d29c06ebc0, 0x000001d29c06ed70]
+Event: 12.881 Thread 0x000001d2b0c06c60 1428       3       java.nio.FloatBuffer::limit (6 bytes)
+Event: 12.882 Thread 0x000001d2b0c06c60 nmethod 1428 0x000001d29c06ee10 code [0x000001d29c06efc0, 0x000001d29c06f170]
+Event: 12.882 Thread 0x000001d2b0c06c60 1429       3       java.nio.FloatBuffer::position (6 bytes)
+Event: 12.882 Thread 0x000001d2b0c06c60 nmethod 1429 0x000001d29c06f290 code [0x000001d29c06f440, 0x000001d29c06f5f0]
+Event: 13.029 Thread 0x000001d2b0c06c60 1430       3       org.lwjgl.BufferUtils::createByteBuffer (11 bytes)
+Event: 13.029 Thread 0x000001d2b0c06c60 nmethod 1430 0x000001d29c06f710 code [0x000001d29c06f8e0, 0x000001d29c06fb70]
+Event: 14.446 Thread 0x000001d2b0bfe060 1431       4       java.nio.FloatBuffer::get (54 bytes)
+Event: 14.467 Thread 0x000001d2b0bfe060 nmethod 1431 0x000001d2a3a15590 code [0x000001d2a3a15700, 0x000001d2a3a15968]
+Event: 16.909 Thread 0x000001d2b0bfe060 1432       4       org.lwjgl.system.MemoryStack::push (38 bytes)
+Event: 16.928 Thread 0x000001d2b0bfe060 nmethod 1432 0x000001d2a3a15c10 code [0x000001d2a3a15d80, 0x000001d2a3a15ea0]
+Event: 18.618 Thread 0x000001d2b0bfe060 1433   !   4       org.lwjgl.system.MemoryUtil::wrapBufferDouble (74 bytes)
+Event: 18.639 Thread 0x000001d2b0bfe060 nmethod 1433 0x000001d2a3a15f90 code [0x000001d2a3a16100, 0x000001d2a3a16208]
+Event: 18.815 Thread 0x000001d2b0c06c60 1434       3       net.minecraft.render.Tessellator::vertex (182 bytes)
+Event: 18.816 Thread 0x000001d2b0c06c60 nmethod 1434 0x000001d29c06fc90 code [0x000001d29c06fec0, 0x000001d29c070380]
+Event: 18.820 Thread 0x000001d2b0bfe060 1435       4       net.minecraft.render.Tessellator::vertex (182 bytes)
+Event: 18.825 Thread 0x000001d2b0bfe060 nmethod 1435 0x000001d2a3a16310 code [0x000001d2a3a164a0, 0x000001d2a3a168b0]
+
+GC Heap History (2 events):
+Event: 1.221 GC heap before
+{Heap before GC invocations=0 (full 0):
+ garbage-first heap   total reserved 1929216K, committed 120832K, used 39936K [0x000000008a400000, 0x0000000100000000)
+  region size 1024K, 24 young (24576K), 0 survivors (0K)
+ Metaspace       used 6141K, committed 6336K, reserved 1114112K
+  class space    used 451K, committed 512K, reserved 1048576K
+}
+Event: 1.225 GC heap after
+{Heap after GC invocations=1 (full 0):
+ garbage-first heap   total reserved 1929216K, committed 120832K, used 3212K [0x000000008a400000, 0x0000000100000000)
+  region size 1024K, 3 young (3072K), 3 survivors (3072K)
+ Metaspace       used 6141K, committed 6336K, reserved 1114112K
+  class space    used 451K, committed 512K, reserved 1048576K
+}
+
+Dll operation events (10 events):
+Event: 0.009 Loaded shared library C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\java.dll
+Event: 0.035 Loaded shared library C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\jsvml.dll
+Event: 0.039 Loaded shared library C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\jvmcicompiler.dll
+Event: 0.108 Loaded shared library C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\zip.dll
+Event: 0.114 Loaded shared library C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\jimage.dll
+Event: 0.119 Loaded shared library C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\net.dll
+Event: 0.120 Loaded shared library C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\nio.dll
+Event: 0.229 Loaded shared library C:\Users\windows\AppData\Local\Temp\lwjgl_windows\3.3.5+5\x64\lwjgl.dll
+Event: 0.397 Loaded shared library C:\Users\windows\AppData\Local\Temp\lwjgl_windows\3.3.5+5\x64\lwjgl_opengl.dll
+Event: 0.978 Loaded shared library C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\awt.dll
+
+Deoptimization events (20 events):
+Event: 1.946 Thread 0x000001d289b9f640 DEOPT PACKING pc=0x000001d29c038250 sp=0x00000073257fed50
+Event: 1.946 Thread 0x000001d289b9f640 DEOPT UNPACKING pc=0x000001d2a3304c43 sp=0x00000073257fe218 mode 0
+Event: 2.298 Thread 0x000001d290655760 Uncommon trap: trap_request=0xfffffff5 fr.pc=0x000001d2a39f9cbc relative=0x000000000000011c
+Event: 2.298 Thread 0x000001d290655760 Uncommon trap: reason=null_check action=reinterpret pc=0x000001d2a39f9cbc method=net.minecraft.render.LevelRenderer.buildWaters()V @ 12 jvmci
+Event: 2.298 Thread 0x000001d290655760 DEOPT PACKING pc=0x000001d2a39f9cbc sp=0x00000073238fef50
+Event: 2.298 Thread 0x000001d290655760 DEOPT UNPACKING pc=0x000001d2a3304c43 sp=0x00000073238fe3e0 mode 3
+Event: 2.682 Thread 0x000001d290655760 Uncommon trap: trap_request=0xffffffed fr.pc=0x000001d2a39f8b7c relative=0x000000000000055c
+Event: 2.682 Thread 0x000001d290655760 Uncommon trap: reason=null_assert_or_unreached0 action=reinterpret pc=0x000001d2a39f8b7c method=net.minecraft.render.culling.FrustumData.cubeInFrustum(DDDDDD)Z @ 427 jvmci
+Event: 2.682 Thread 0x000001d290655760 DEOPT PACKING pc=0x000001d2a39f8b7c sp=0x00000073238ff070
+Event: 2.682 Thread 0x000001d290655760 DEOPT UNPACKING pc=0x000001d2a3304c43 sp=0x00000073238fe4b0 mode 3
+Event: 4.795 Thread 0x000001d290655760 DEOPT PACKING pc=0x000001d29c048c0c sp=0x00000073238ff0b0
+Event: 4.795 Thread 0x000001d290655760 DEOPT UNPACKING pc=0x000001d2a3304c43 sp=0x00000073238fe5c0 mode 0
+Event: 6.517 Thread 0x000001d289b9f640 Uncommon trap: trap_request=0xffffff14 fr.pc=0x000001d2a39c48b8 relative=0x00000000000083f8
+Event: 6.517 Thread 0x000001d289b9f640 Uncommon trap: reason=unresolved action=make_not_entrant pc=0x000001d2a39c48b8 method=net.minecraft.level.Level.tick()V @ 104 jvmci
+Event: 6.517 Thread 0x000001d289b9f640 DEOPT PACKING pc=0x000001d2a39c48b8 sp=0x00000073257feec0
+Event: 6.517 Thread 0x000001d289b9f640 DEOPT UNPACKING pc=0x000001d2a3304c43 sp=0x00000073257fe4b0 mode 3
+Event: 18.814 Thread 0x000001d290655760 Uncommon trap: trap_request=0xffffffed fr.pc=0x000001d2a39cb97b relative=0x000000000000025b
+Event: 18.814 Thread 0x000001d290655760 Uncommon trap: reason=null_assert_or_unreached0 action=reinterpret pc=0x000001d2a39cb97b method=net.minecraft.render.Tessellator.vertex(FFF)V @ 170 jvmci
+Event: 18.814 Thread 0x000001d290655760 DEOPT PACKING pc=0x000001d2a39cb97b sp=0x00000073238feed0
+Event: 18.814 Thread 0x000001d290655760 DEOPT UNPACKING pc=0x000001d2a3304c43 sp=0x00000073238fe360 mode 3
+
+Classes loaded (20 events):
+Event: 1.048 Loading class java/awt/image/WritableRenderedImage done
+Event: 1.048 Loading class java/awt/Image
+Event: 1.049 Loading class java/awt/Image done
+Event: 1.049 Loading class java/awt/image/BufferedImage done
+Event: 1.049 Loading class java/awt/ImageCapabilities
+Event: 1.049 Loading class java/awt/ImageCapabilities done
+Event: 1.049 Loading class java/awt/Image$1
+Event: 1.049 Loading class sun/awt/image/SurfaceManager$ImageAccessor
+Event: 1.049 Loading class sun/awt/image/SurfaceManager$ImageAccessor done
+Event: 1.049 Loading class java/awt/Image$1 done
+Event: 1.049 Loading class sun/awt/image/SurfaceManager
+Event: 1.049 Loading class sun/awt/image/SurfaceManager done
+Event: 1.049 Loading class java/awt/image/BufferedImage$1
+Event: 1.049 Loading class java/awt/image/BufferedImage$1 done
+Event: 1.049 Loading class sun/awt/image/IntegerComponentRaster
+Event: 1.049 Loading class sun/awt/image/IntegerComponentRaster done
+Event: 1.049 Loading class java/awt/image/IndexColorModel
+Event: 1.050 Loading class java/awt/image/IndexColorModel done
+Event: 1.050 Loading class sun/awt/image/ShortComponentRaster
+Event: 1.050 Loading class sun/awt/image/ShortComponentRaster done
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (20 events):
+Event: 0.247 Thread 0x000001d290655760 Exception <a 'java/lang/NoSuchMethodError'{0x0000000091217d28}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial(java.lang.Object, java.lang.Object, long)'> (0x0000000091217d28) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 0.248 Thread 0x000001d290655760 Exception <a 'java/lang/NoSuchMethodError'{0x000000009121b670}: 'java.lang.Object java.lang.invoke.Invokers$Holder.linkToTargetMethod(java.lang.Object, long, java.lang.Object)'> (0x000000009121b670) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 0.248 Thread 0x000001d290655760 Exception <a 'java/lang/NoSuchMethodError'{0x0000000091222768}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeStaticInit(java.lang.Object, java.lang.Object, java.lang.Object, long)'> (0x0000000091222768) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 0.267 Thread 0x000001d290655760 Exception <a 'sun/nio/fs/WindowsException'{0x00000000912cd1e0}> (0x00000000912cd1e0) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.267 Thread 0x000001d290655760 Exception <a 'sun/nio/fs/WindowsException'{0x00000000912cd560}> (0x00000000912cd560) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.274 Thread 0x000001d290655760 Exception <a 'java/lang/NoSuchMethodError'{0x00000000912e0808}: 'int java.lang.invoke.Invokers$Holder.invokeExact_MT(java.lang.Object, java.lang.Object)'> (0x00000000912e0808) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 0.389 Thread 0x000001d290655760 Exception <a 'java/lang/NoSuchMethodError'{0x0000000091158d98}: 'void java.lang.System.load(java.lang.String, java.lang.Class)'> (0x0000000091158d98) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 0.389 Thread 0x000001d290655760 Exception <a 'java/lang/NoSuchMethodError'{0x000000009115b7e8}: 'void java.lang.System.loadLibrary(java.lang.String, java.lang.Class)'> (0x000000009115b7e8) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 0.394 Thread 0x000001d290655760 Exception <a 'sun/nio/fs/WindowsException'{0x000000009116cc90}> (0x000000009116cc90) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.394 Thread 0x000001d290655760 Exception <a 'sun/nio/fs/WindowsException'{0x000000009116d048}> (0x000000009116d048) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.400 Thread 0x000001d290655760 Exception <a 'sun/nio/fs/WindowsException'{0x000000009117bd68}> (0x000000009117bd68) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.400 Thread 0x000001d290655760 Exception <a 'sun/nio/fs/WindowsException'{0x000000009117c058}> (0x000000009117c058) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.720 Thread 0x000001d290655760 Exception <a 'sun/nio/fs/WindowsException'{0x00000000910ffa48}> (0x00000000910ffa48) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.720 Thread 0x000001d290655760 Exception <a 'sun/nio/fs/WindowsException'{0x0000000090f00020}> (0x0000000090f00020) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.931 Thread 0x000001d290655760 Exception <a 'java/lang/NoSuchMethodError'{0x0000000090f36478}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial(java.lang.Object, long)'> (0x0000000090f36478) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 0.965 Thread 0x000001d290655760 Exception <a 'java/lang/ClassNotFoundException'{0x0000000090fc18e0}: sun/awt/resources/spi/awtProvider> (0x0000000090fc18e0) 
+thrown [s\open\src\hotspot\share\classfile\systemDictionary.cpp, line 313]
+Event: 0.981 Thread 0x000001d290655760 Exception <a 'java/io/FileNotFoundException'{0x0000000090ff1320}> (0x0000000090ff1320) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.982 Thread 0x000001d290655760 Exception <a 'java/io/FileNotFoundException'{0x0000000090ff2680}> (0x0000000090ff2680) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 1.018 Thread 0x000001d290655760 Exception <a 'java/lang/NoSuchMethodError'{0x0000000090d67e18}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeStaticInit(java.lang.Object, int, int, int, int)'> (0x0000000090d67e18) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 1.033 Thread 0x000001d290655760 Exception <a 'java/lang/NoSuchMethodError'{0x0000000090dbaff8}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeStaticInit(java.lang.Object, java.lang.Object, int, int, int, int)'> (0x0000000090dbaff8) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (14 events):
+Event: 0.075 Executing VM operation: HandshakeAllThreads (Deoptimize)
+Event: 0.075 Executing VM operation: HandshakeAllThreads (Deoptimize) done
+Event: 0.120 Executing VM operation: HandshakeAllThreads (Deoptimize)
+Event: 0.120 Executing VM operation: HandshakeAllThreads (Deoptimize) done
+Event: 0.958 Executing VM operation: HandshakeAllThreads (Deoptimize)
+Event: 0.958 Executing VM operation: HandshakeAllThreads (Deoptimize) done
+Event: 0.961 Executing VM operation: HandshakeAllThreads (Deoptimize)
+Event: 0.961 Executing VM operation: HandshakeAllThreads (Deoptimize) done
+Event: 1.220 Executing VM operation: G1CollectForAllocation (G1 Evacuation Pause)
+Event: 1.225 Executing VM operation: G1CollectForAllocation (G1 Evacuation Pause) done
+Event: 3.227 Executing VM operation: Cleanup
+Event: 3.227 Executing VM operation: Cleanup done
+Event: 5.243 Executing VM operation: Cleanup
+Event: 5.243 Executing VM operation: Cleanup done
+
+Events (18 events):
+Event: 0.022 Thread 0x000001d290655760 Thread added: 0x000001d290655760
+Event: 0.032 Thread 0x000001d2b0bec400 Thread added: 0x000001d2b0bec400
+Event: 0.032 Thread 0x000001d2b0bece60 Thread added: 0x000001d2b0bece60
+Event: 0.033 Thread 0x000001d2b0bedb20 Thread added: 0x000001d2b0bedb20
+Event: 0.033 Thread 0x000001d2b0bef210 Thread added: 0x000001d2b0bef210
+Event: 0.033 Thread 0x000001d2b0bf1e20 Thread added: 0x000001d2b0bf1e20
+Event: 0.033 Thread 0x000001d2b0bf2880 Thread added: 0x000001d2b0bf2880
+Event: 0.033 Thread 0x000001d2b0bfe060 Thread added: 0x000001d2b0bfe060
+Event: 0.033 Thread 0x000001d2b0c06c60 Thread added: 0x000001d2b0c06c60
+Event: 0.038 Thread 0x000001d2b0c057f0 Thread added: 0x000001d2b0c057f0
+Event: 0.069 Thread 0x000001d2f61a6ff0 Thread added: 0x000001d2f61a6ff0
+Event: 0.085 Thread 0x000001d2f61dd2e0 Thread added: 0x000001d2f61dd2e0
+Event: 0.103 Thread 0x000001d2b0c07330 Thread added: 0x000001d2b0c07330
+Event: 0.943 Thread 0x000001d289b66880 Thread added: 0x000001d289b66880
+Event: 0.948 Thread 0x000001d289b9f640 Thread added: 0x000001d289b9f640
+Event: 1.039 Thread 0x000001d289f27d80 Thread added: 0x000001d289f27d80
+Event: 4.499 Thread 0x000001d2b0c07330 Thread exited: 0x000001d2b0c07330
+Event: 4.605 Thread 0x000001d2b0c057f0 Thread exited: 0x000001d2b0c057f0
+
+
+Dynamic libraries:
+0x00007ff72a030000 - 0x00007ff72a040000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\javaw.exe
+0x00007ff93dd60000 - 0x00007ff93dfc3000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ff93c420000 - 0x00007ff93c4e8000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ff93b1f0000 - 0x00007ff93b5a2000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ff93ba70000 - 0x00007ff93bbbb000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ff935880000 - 0x00007ff935897000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\jli.dll
+0x00007ff92feb0000 - 0x00007ff92fecb000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\VCRUNTIME140.dll
+0x00007ff93c580000 - 0x00007ff93c634000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ff93c340000 - 0x00007ff93c3e9000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ff93be40000 - 0x00007ff93bee6000 	C:\WINDOWS\System32\sechost.dll
+0x00007ff93cdb0000 - 0x00007ff93cec6000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ff93db50000 - 0x00007ff93dd18000 	C:\WINDOWS\System32\USER32.dll
+0x00007ff93b730000 - 0x00007ff93b757000 	C:\WINDOWS\System32\win32u.dll
+0x00007ff93c550000 - 0x00007ff93c57a000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ff927790000 - 0x00007ff927a20000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.2454_none_3e0b68a2e331ad60\COMCTL32.dll
+0x00007ff93b810000 - 0x00007ff93b93b000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ff93b760000 - 0x00007ff93b803000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ff9346d0000 - 0x00007ff9346db000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ff93ced0000 - 0x00007ff93ceff000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ff930b90000 - 0x00007ff930b9c000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\vcruntime140_1.dll
+0x00007ff92b690000 - 0x00007ff92b71e000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\msvcp140.dll
+0x00007ff8d2b40000 - 0x00007ff8d3887000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\server\jvm.dll
+0x00007ff93d380000 - 0x00007ff93d3f4000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ff93ad30000 - 0x00007ff93ad7e000 	C:\WINDOWS\SYSTEM32\POWRPROF.dll
+0x00007ff937af0000 - 0x00007ff937b26000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ff93ad10000 - 0x00007ff93ad24000 	C:\WINDOWS\SYSTEM32\UMPDC.dll
+0x00007ff939f70000 - 0x00007ff939f8a000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ff930a30000 - 0x00007ff930a3a000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\jimage.dll
+0x00007ff938860000 - 0x00007ff938aa1000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ff93bfa0000 - 0x00007ff93c31e000 	C:\WINDOWS\System32\combase.dll
+0x00007ff93d400000 - 0x00007ff93d4d6000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ff937a90000 - 0x00007ff937ac9000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ff93b9d0000 - 0x00007ff93ba69000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ff92fcd0000 - 0x00007ff92fcee000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\java.dll
+0x00007ff93c640000 - 0x00007ff93cd40000 	C:\WINDOWS\System32\SHELL32.dll
+0x00007ff93cf60000 - 0x00007ff93d0f9000 	C:\WINDOWS\System32\ole32.dll
+0x00007ff938e20000 - 0x00007ff939651000 	C:\WINDOWS\SYSTEM32\windows.storage.dll
+0x00007ff93da70000 - 0x00007ff93db4a000 	C:\WINDOWS\System32\SHCORE.dll
+0x00007ff93c4f0000 - 0x00007ff93c54d000 	C:\WINDOWS\System32\shlwapi.dll
+0x00007ff93b040000 - 0x00007ff93b06e000 	C:\WINDOWS\SYSTEM32\profapi.dll
+0x00007ff905650000 - 0x00007ff905727000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\jsvml.dll
+0x00007ff8ceab0000 - 0x00007ff8d1a4c000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\jvmcicompiler.dll
+0x00007ff93d370000 - 0x00007ff93d378000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ff93b5b0000 - 0x00007ff93b726000 	C:\WINDOWS\System32\CRYPT32.dll
+0x00007ff93a510000 - 0x00007ff93a53b000 	C:\WINDOWS\SYSTEM32\USERENV.dll
+0x00007ff93a980000 - 0x00007ff93a9b0000 	C:\WINDOWS\SYSTEM32\ncrypt.dll
+0x00007ff939a40000 - 0x00007ff939a72000 	C:\WINDOWS\SYSTEM32\IPHLPAPI.DLL
+0x00007ff93a470000 - 0x00007ff93a4d8000 	C:\WINDOWS\SYSTEM32\MSWSOCK.dll
+0x00007ff93a930000 - 0x00007ff93a96f000 	C:\WINDOWS\SYSTEM32\NTASN1.dll
+0x00007ff92faf0000 - 0x00007ff92fb07000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\zip.dll
+0x00007ff92f670000 - 0x00007ff92f680000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\net.dll
+0x00007ff92b670000 - 0x00007ff92b686000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\nio.dll
+0x00007ff929b90000 - 0x00007ff929c0c000 	C:\Users\windows\AppData\Local\Temp\lwjgl_windows\3.3.5+5\x64\lwjgl.dll
+0x00007ff90c660000 - 0x00007ff90c6e8000 	C:\Users\windows\AppData\Local\Temp\lwjgl_windows\3.3.5+5\x64\glfw.dll
+0x00007ff905930000 - 0x00007ff90597b000 	C:\WINDOWS\SYSTEM32\dinput8.dll
+0x00007ff92b650000 - 0x00007ff92b662000 	C:\WINDOWS\SYSTEM32\xinput1_4.dll
+0x00007ff93adc0000 - 0x00007ff93ae1f000 	C:\WINDOWS\SYSTEM32\cfgmgr32.dll
+0x00007ff93ad90000 - 0x00007ff93adbd000 	C:\WINDOWS\SYSTEM32\DEVOBJ.dll
+0x00007ff938250000 - 0x00007ff93827e000 	C:\WINDOWS\SYSTEM32\dwmapi.dll
+0x00007ff92f910000 - 0x00007ff92faed000 	C:\WINDOWS\SYSTEM32\inputhost.dll
+0x00007ff937570000 - 0x00007ff937695000 	C:\WINDOWS\SYSTEM32\CoreMessaging.dll
+0x00007ff937f70000 - 0x00007ff93801d000 	C:\WINDOWS\system32\uxtheme.dll
+0x00007ff93d100000 - 0x00007ff93d25c000 	C:\WINDOWS\System32\MSCTF.dll
+0x00007ff93a730000 - 0x00007ff93a73c000 	C:\WINDOWS\SYSTEM32\CRYPTBASE.DLL
+0x00007ff90caf0000 - 0x00007ff90cbfc000 	C:\WINDOWS\SYSTEM32\opengl32.dll
+0x00007ff9292a0000 - 0x00007ff9292cd000 	C:\WINDOWS\SYSTEM32\GLU32.dll
+0x00007ff938050000 - 0x00007ff938097000 	C:\WINDOWS\SYSTEM32\dxcore.dll
+0x00007ff9380a0000 - 0x00007ff9380fc000 	C:\WINDOWS\SYSTEM32\directxdatabasehelper.dll
+0x00007ff927cc0000 - 0x00007ff927cda000 	C:\WINDOWS\SYSTEM32\windows.staterepositorycore.dll
+0x00007ff92c8c0000 - 0x00007ff92c8ee000 	C:\WINDOWS\System32\DriverStore\FileRepository\u0407329.inf_amd64_829c662e97449b38\B404884\atig6pxx.dll
+0x00007ff8aad30000 - 0x00007ff8af20d000 	C:\WINDOWS\System32\DriverStore\FileRepository\u0407329.inf_amd64_829c662e97449b38\B404884\atio6axx.dll
+0x00007ff93d5e0000 - 0x00007ff93da66000 	C:\WINDOWS\System32\SETUPAPI.dll
+0x00007ff931ea0000 - 0x00007ff931ed5000 	C:\WINDOWS\SYSTEM32\amdihk64.dll
+0x00007ff93b940000 - 0x00007ff93b9bf000 	C:\WINDOWS\System32\WINTRUST.dll
+0x00007ff93a830000 - 0x00007ff93a843000 	C:\WINDOWS\SYSTEM32\MSASN1.dll
+0x00007ff93a9c0000 - 0x00007ff93a9e6000 	C:\WINDOWS\SYSTEM32\BCrypt.dll
+0x00007ff903b60000 - 0x00007ff903bbf000 	C:\Users\windows\AppData\Local\Temp\lwjgl_windows\3.3.5+5\x64\lwjgl_opengl.dll
+0x00007ff92eed0000 - 0x00007ff92f016000 	C:\WINDOWS\SYSTEM32\textinputframework.dll
+0x00007ff935050000 - 0x00007ff935333000 	C:\WINDOWS\SYSTEM32\CoreUIComponents.dll
+0x00007ff934e30000 - 0x00007ff934f98000 	C:\WINDOWS\SYSTEM32\wintypes.dll
+0x00007ff925490000 - 0x00007ff92550c000 	C:\WINDOWS\system32\Oleacc.dll
+0x00007ff8f0d80000 - 0x00007ff8f0f86000 	C:\Users\windows\AppData\Local\Temp\lwjgl_windows\3.3.5+5\x64\OpenAL.dll
+0x00007ff9355f0000 - 0x00007ff9355fb000 	C:\WINDOWS\SYSTEM32\AVRT.dll
+0x00007ff93bef0000 - 0x00007ff93bf98000 	C:\WINDOWS\System32\clbcatq.dll
+0x00007ff92ca10000 - 0x00007ff92caa0000 	C:\WINDOWS\System32\MMDevApi.dll
+0x00007ff912360000 - 0x00007ff912517000 	C:\WINDOWS\SYSTEM32\AUDIOSES.DLL
+0x00007ff9385d0000 - 0x00007ff9385e4000 	C:\WINDOWS\SYSTEM32\resourcepolicyclient.dll
+0x00007ff8f0bf0000 - 0x00007ff8f0d7e000 	C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\awt.dll
+0x00007ff937940000 - 0x00007ff9379dc000 	C:\WINDOWS\SYSTEM32\apphelp.dll
+0x00007ff93a710000 - 0x00007ff93a72c000 	C:\WINDOWS\SYSTEM32\CRYPTSP.dll
+0x00007ff939ed0000 - 0x00007ff939f08000 	C:\WINDOWS\system32\rsaenh.dll
+0x00007ff93c330000 - 0x00007ff93c33a000 	C:\WINDOWS\System32\NSI.dll
+0x00007ff929990000 - 0x00007ff9299ed000 	C:\WINDOWS\system32\ApplicationTargetedFeatureDatabase.dll
+0x00007ff930cf0000 - 0x00007ff930f27000 	C:\Windows\System32\twinapi.appcore.dll
+0x00007ff90f650000 - 0x00007ff90f6cf000 	C:\WINDOWS\system32\Ninput.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.2454_none_3e0b68a2e331ad60;C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin\server;C:\Users\windows\AppData\Local\Temp\lwjgl_windows\3.3.5+5\x64;C:\WINDOWS\System32\DriverStore\FileRepository\u0407329.inf_amd64_829c662e97449b38\B404884
+
+VM Arguments:
+jvm_args: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -XX:+ShowCodeDetailsInExceptionMessages 
+java_command: net.minecraft.Minecraft
+java_class_path (initial): C:\Projects\Minecraft\Minecraft;C:\Projects\Minecraft\Minecraft\libs\lwjgl.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-glfw.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-glfw-natives-linux.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-glfw-natives-linux-arm32.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-glfw-natives-linux-arm64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-glfw-natives-linux-ppc64le.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-glfw-natives-linux-riscv64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-glfw-natives-macos.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-glfw-natives-macos-arm64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-glfw-natives-windows.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-glfw-natives-windows-arm64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-glfw-natives-windows-x86.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-glfw-sources.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-natives-linux.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-natives-linux-arm32.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-natives-linux-arm64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-natives-linux-ppc64le.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-natives-linux-riscv64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-natives-macos.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-natives-macos-arm64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-natives-windows.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-natives-windows-arm64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-natives-windows-x86.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-openal.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-openal-natives-linux.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-openal-natives-linux-arm32.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-openal-natives-linux-arm64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-openal-natives-linux-ppc64le.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-openal-natives-linux-riscv64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-openal-natives-macos.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-openal-natives-macos-arm64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-openal-natives-windows.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-openal-natives-windows-arm64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-openal-natives-windows-x86.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-openal-sources.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-opengl.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-opengl-natives-linux.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-opengl-natives-linux-arm32.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-opengl-natives-linux-arm64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-opengl-natives-linux-ppc64le.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-opengl-natives-linux-riscv64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-opengl-natives-macos.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-opengl-natives-macos-arm64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-opengl-natives-windows.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-opengl-natives-windows-arm64.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-opengl-natives-windows-x86.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-opengl-sources.jar;C:\Projects\Minecraft\Minecraft\libs\lwjgl-sources.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 3                                         {product} {ergonomic}
+     bool EnableJVMCIProduct                       = true                                {JVMCI product} {jimage}
+     uint G1ConcRefinementThreads                  = 10                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+   size_t InitialHeapSize                          = 123731968                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 1975517184                                {product} {ergonomic}
+   size_t MaxNewSize                               = 1184890880                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 6979620                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122339310                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122339310                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool ShowCodeDetailsInExceptionMessages       = true                                   {manageable} {command line}
+   size_t SoftMaxHeapSize                          = 1975517184                             {manageable} {ergonomic}
+      int ThreadPriorityPolicy                     = 1                                         {product} {jimage}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\graalvm-jdk-22.0.1+8.1
+PATH=C:/Program Files/Eclipse//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530/jre/bin/server;C:/Program Files/Eclipse//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530/jre/bin;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;%JAVA_HOME%\bin;C:\Program Files\playit_gg\bin\;C:\Program Files\dotnet\;C:\MinGW\bin\;C:\Users\windows\AppData\Local\Programs\Python\Python313\Scripts\;C:\Users\windows\AppData\Local\Programs\Python\Python313\;C:\Python312;C:\Users\windows\AppData\Local\Microsoft\WindowsApps;C:\Users\windows\AppData\Local\Programs\Python\Python311\Scripts;C:\Program Files\Java\graalvm-jdk-22.0.1+8.1\bin;C:\Users\windows\.dotnet\tools;C:\Users\windows\AppData\Local\GitHubDesktop\bin;C:\Users\windows\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Eclipse;
+USERNAME=windows
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD
+TMP=C:\Users\windows\AppData\Local\Temp
+TEMP=C:\Users\windows\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 26100 (10.0.26100.2454)
+OS uptime: 9 days 23:55 hours
+Hyper-V role detected
+
+CPU: total 12 (initial active 12) (12 cores per cpu, 2 threads per core) family 23 model 104 stepping 1 microcode 0x8608108, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4a, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, clmul, bmi1, bmi2, adx, sha, fma, vzeroupper, clflush, clflushopt, hv, rdtscp, rdpid, f16c
+Processor Information for all 12 processors :
+  Max Mhz: 2100, Current Mhz: 2100, Mhz Limit: 2100
+
+Memory: 4k page, system-wide physical 7528M (2744M free)
+TotalPageFile size 16232M (AvailPageFile size 7151M)
+current process WorkingSet (physical memory assigned to process): 479M, peak: 491M
+current process commit charge ("private bytes"): 606M, peak: 617M
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (22.0.1+8-jvmci-b01) for windows-amd64 JRE (22.0.1+8-jvmci-b01), built on 2024-03-14T00:23:29Z by "OCIWIN08Buildbot" with MS VC++ 17.6 (VS2022)
+
+END.

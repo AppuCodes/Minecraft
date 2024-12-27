@@ -1,0 +1,6 @@
+package net.minecraft.sound;
+
+public class SoundSource
+{
+
+}
