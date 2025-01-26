@@ -7,10 +7,11 @@ import net.minecraft.utils.vectors.Vec3i;
 
 public class Chunk
 {
-    private Tessellator tessel = new Tessellator(256 * 256);
-    private byte[][][] blocks = new byte[16][128][16];
+    private byte[][][] blocks = new byte[CHUNK_SIZE][128][CHUNK_SIZE];
+    private Tessellator tessel = new Tessellator(512 * 256);
+    public int light = 16, top = 0, bottom = 128;
+    public static final int CHUNK_SIZE = 32;
     public boolean update = false;
-    public int light = 16;
     public Vec3i pos;
     
     /* pos is in chunk coordinates */
@@ -24,22 +25,24 @@ public class Chunk
         tessel.draw();
     }
     
-    protected void build()
+    public void build()
     {
         LevelRenderer renderer = Minecraft.level.renderer;
+        top = 0; bottom = 128;
         tessel.begin();
         
-        for (int x = 0; x < 16; x++)
+        for (int x = 0; x < CHUNK_SIZE; x++)
         {
             for (int y = 0; y < 128; y++)
             {
-                for (int z = 0; z < 16; z++)
+                for (int z = 0; z < CHUNK_SIZE; z++)
                 {
                     byte block = getBlock(x, y, z);
                     
                     if (block != 0)
                     {
-                        int renderX = pos.x * 16, renderY = pos.y * 16, renderZ = pos.z * 16;
+                        int renderX = pos.x * CHUNK_SIZE, renderY = pos.y * CHUNK_SIZE, renderZ = pos.z * CHUNK_SIZE;
+                        if (top < y) top = y; if (bottom > y) bottom = y;
                         
                         if (block == Blocks.WATER.id)
                             renderer.waters.add(new WaterPos(renderX + x, renderY + y, renderZ + z, this));
@@ -56,15 +59,15 @@ public class Chunk
     
     public byte getBlock(int x, int y, int z)
     {
-        x %= 16; z %= 16;
-        if (x < 0) x = 16 + x; if (z < 0) z = 16 + z;
+        x %= CHUNK_SIZE; z %= CHUNK_SIZE;
+        if (x < 0) x = CHUNK_SIZE + x; if (z < 0) z = CHUNK_SIZE + z;
         return y < 0 ? 0 : blocks[x][y][z];
     }
     
     public void setBlock(int x, int y, int z, byte block)
     {
-        x %= 16; z %= 16;
-        if (x < 0) x = 16 + x; if (z < 0) z = 16 + z;
+        x %= CHUNK_SIZE; z %= CHUNK_SIZE;
+        if (x < 0) x = CHUNK_SIZE + x; if (z < 0) z = CHUNK_SIZE + z;
         if (y >= 0) blocks[x][y][z] = block;
     }
     

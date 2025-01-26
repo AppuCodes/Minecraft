@@ -30,6 +30,7 @@ public class RenderGlobal
             updateSky(color, brightened);
         }
         
+        updateSky(color, brightened);
         drawSky(partialTicks);
         prevColor = color;
     }
@@ -64,17 +65,27 @@ public class RenderGlobal
         sky.vertex(1, 0, -0.2F);
         sky.vertex(-1, 0, -0.2F);
         sky.vertex(-1, -1, -0.2F);
+        sky.vertex(-1, -1, -0.2F);
         sky.vertex(1, -1, -0.2F);
+        sky.vertex(1, 0, -0.2F);
+        
         sky.color(color.x, color.y, color.z);
         sky.vertex(1, 0.05F, -0.2F);
         sky.vertex(-1, 0.05F, -0.2F);
         sky.color(brightened.x, brightened.y, brightened.z);
         sky.vertex(-1, 0, -0.2F);
+        sky.vertex(-1, 0, -0.2F);
         sky.vertex(1, 0, -0.2F);
+        sky.color(color.x, color.y, color.z);
+        sky.vertex(1, 0.05F, -0.2F);
+        
+        sky.color(brightened.x, brightened.y, brightened.z);
         sky.vertex(-1, -0.2F, 1);
         sky.vertex(1, -0.2F, 1);
         sky.vertex(1, -0.2F, -1);
+        sky.vertex(1, -0.2F, -1);
         sky.vertex(-1, -0.2F, -1);
+        sky.vertex(-1, -0.2F, 1);
         sky.end();
     }
     

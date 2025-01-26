@@ -1,6 +1,0 @@
-package net.minecraft.utils.vectors;
-
-public class Vec3d
-{
-
-}

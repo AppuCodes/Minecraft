@@ -8,11 +8,10 @@ import org.lwjgl.BufferUtils;
 
 public class Tessellator
 {
-    private FloatBuffer vertexBuffer = null, texBuffer = null, colorBuffer = null, cachedVertex = null, cachedTex = null, cachedColor = null;
+    private FloatBuffer vertexBuffer = null, texBuffer = null, colorBuffer = null;
     private boolean colored = false, textured = false, building = false;
-    private int vertices = 0, size = 0, cachedCount = 0;
-    private float red = 1, green = 1, blue = 1;
-    private float texU = 0, texV = 0;
+    private float red = 1, green = 1, blue = 1, texU = 0, texV = 0;
+    private int vertices = 0, size = 0;
     
     public Tessellator(int size)
     {
@@ -46,24 +45,22 @@ public class Tessellator
     
     public void draw()
     {
-        if (!(building && cachedVertex == null))
-        {
-            glVertexPointer(3, GL_FLOAT, GL_POINTS, building ? cachedVertex : vertexBuffer);
-            
-            if (textured && !(building && cachedTex == null))
-                glTexCoordPointer(2, GL_FLOAT, GL_POINTS, building ? cachedTex : texBuffer);
-            
-            if (colored && !(building && cachedColor == null))
-                glColorPointer(3, GL_FLOAT, GL_POINTS, building ? cachedColor : colorBuffer);
-            
-            glDrawArrays(GL_QUADS, GL_POINTS, building ? cachedCount : vertices);
-        }
+        glVertexPointer(3, GL_FLOAT, GL_POINTS, vertexBuffer);
+        
+        if (textured)
+            glTexCoordPointer(2, GL_FLOAT, GL_POINTS, texBuffer);
+        
+        if (colored)
+            glColorPointer(3, GL_FLOAT, GL_POINTS, colorBuffer);
+        
+        glDrawArrays(GL_TRIANGLES, GL_POINTS, vertices);
     }
     
-    public void tex(float texU, float texV)
+    public Tessellator tex(float texU, float texV)
     {
         textured = true;
         this.texU = texU; this.texV = texV;
+        return this;
     }
     
     public void color(float red, float green, float blue)
@@ -84,10 +81,14 @@ public class Tessellator
         vertexBuffer.flip();
         texBuffer.flip();
         building = false;
-        
-        cachedVertex = vertexBuffer;
-        cachedTex = texBuffer;
-        cachedColor = colorBuffer;
-        cachedCount = vertices;
+    }
+    
+    public void copyState(Tessellator tessel)
+    {
+        vertexBuffer = tessel.vertexBuffer; colorBuffer = tessel.colorBuffer; texBuffer = tessel.texBuffer;
+        colored = tessel.colored; textured = tessel.textured; building = tessel.building;
+        red = tessel.red; green = tessel.green; blue = tessel.blue;
+        vertices = tessel.vertices; size = tessel.size;
+        texU = tessel.texU; texV = tessel.texV;
     }
 }

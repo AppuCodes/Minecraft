@@ -18,13 +18,13 @@ public class LevelGen
     
     public Chunk handle(Chunk chunk)
     {
-        for (int x = 0; x < 16; x++)
+        for (int x = 0; x < Chunk.CHUNK_SIZE; x++)
         {
             for (int y = 0; y < 64; y++)
             {
-                for (int z = 0; z < 16; z++)
+                for (int z = 0; z < Chunk.CHUNK_SIZE; z++)
                 {
-                    double realX = chunk.pos.x * 16 + x, realY = chunk.pos.y * 16 + y, realZ = chunk.pos.z * 16 + z;
+                    double realX = (chunk.pos.x * Chunk.CHUNK_SIZE) + x, realY = (chunk.pos.y * Chunk.CHUNK_SIZE) + y, realZ = (chunk.pos.z * Chunk.CHUNK_SIZE) + z;
                     realX /= 16D; realY /= 16D; realZ /= 16D;
                     
                     double factor = 1 * a.eval(1 * realX, 1 * realY, 1 * realZ)
@@ -37,8 +37,8 @@ public class LevelGen
                     chunk.setBlock(x, yLevel, z, y < 58 ? Blocks.STONE.id :
                         (y == 63 && yLevel > 56 ? (yLevel == 57 ? Blocks.SAND.id : Blocks.GRASS.id) : Blocks.DIRT.id));
                     
-                    if (y < 58 && y > 48 && chunk.getBlock(x, y, z) == 0)
-                        chunk.setBlock(x, y, z, Blocks.WATER.id);
+                    if (y < 58 && chunk.getBlock(x, y, z) == 0)
+                        chunk.setBlock(x, y, z, y > 48 ? Blocks.WATER.id : Blocks.STONE.id);
                 }
             }
         }

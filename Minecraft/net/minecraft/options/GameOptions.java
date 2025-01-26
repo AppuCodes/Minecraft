@@ -10,7 +10,7 @@ public class GameOptions
             KEY_RIGHT = new KeyBinding("Right", GLFW_KEY_D),
             KEY_JUMP = new KeyBinding("Jump", GLFW_KEY_SPACE);
     
-    public static final SliderOption RENDER_DISTANCE = new SliderOption("Render Distance", 2, 4, 12);
+    public static final SliderOption RENDER_DISTANCE = new SliderOption("Render Distance", 2, 6, 12);
     
     public static final KeyBinding[] KEYS = new KeyBinding[]
     {

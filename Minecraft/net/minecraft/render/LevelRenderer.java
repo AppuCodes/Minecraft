@@ -13,7 +13,7 @@ import net.minecraft.render.culling.Frustum;
 
 public class LevelRenderer
 {
-    private Tessellator tessel = new Tessellator(256 * 256);
+    private Tessellator tessel = new Tessellator(512 * 256), cache = new Tessellator(512 * 256);
     public ArrayList<WaterPos> waters = new ArrayList<>();
     private Player player;
     private Level level;
@@ -47,11 +47,11 @@ public class LevelRenderer
         {
             Chunk chunk = level.chunks.get(i);
             
-            if (chunk != null && Frustum.cubeInFrustum(chunk.pos.x * 16, 0, chunk.pos.z * 16, (chunk.pos.x + 1) * 16, 128, (chunk.pos.z + 1) * 16))
+            if (chunk != null && Frustum.cubeInFrustum(chunk.pos.x * Chunk.CHUNK_SIZE, chunk.bottom, chunk.pos.z * Chunk.CHUNK_SIZE, (chunk.pos.x + 1) * Chunk.CHUNK_SIZE, chunk.top + 1, (chunk.pos.z + 1) * Chunk.CHUNK_SIZE))
                 chunk.draw();
         }
         
-        tessel.draw();
+        cache.draw();
         glDisable(GL_TEXTURE_2D);
     }
     
@@ -72,6 +72,7 @@ public class LevelRenderer
         }
         
         tessel.end();
+        cache.copyState(tessel);
     }
     
     public float celestialAngle(float partialTicks)

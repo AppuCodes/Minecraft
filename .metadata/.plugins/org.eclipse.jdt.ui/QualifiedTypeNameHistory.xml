@@ -36,4 +36,6 @@
     <fullyQualifiedTypeName name="net.minecraft.level.blocks.Blocks"/>
     <fullyQualifiedTypeName name="net.minecraft.options.GameOptions"/>
     <fullyQualifiedTypeName name="net.minecraft.render.Textures"/>
+    <fullyQualifiedTypeName name="net.minecraft.render.tessellator.LoanRenderer"/>
+    <fullyQualifiedTypeName name="org.lwjgl.opengl.GL20"/>
 </qualifiedTypeNameHistroy>

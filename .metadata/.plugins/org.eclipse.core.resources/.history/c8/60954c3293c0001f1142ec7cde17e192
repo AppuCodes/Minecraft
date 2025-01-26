@@ -1,7 +1,0 @@
-package net.minecraft.options;
-
-public class SliderOption
-{
-    public float min, value, max;
-    public final String name;
-}

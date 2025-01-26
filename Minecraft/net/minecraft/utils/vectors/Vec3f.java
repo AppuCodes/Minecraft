@@ -1,5 +1,7 @@
 package net.minecraft.utils.vectors;
 
+import net.minecraft.level.Chunk;
+
 public class Vec3f
 {
     public float x, y, z;
@@ -14,8 +16,8 @@ public class Vec3f
     /* converts to chunk coordinates */
     public Vec3f chunkify()
     {
-        if (x < 0) x -= 16; if (z < 0) z -= 16;
-        x /= 16; y = 0; z /= 16;
+        if (x < 0) x -= Chunk.CHUNK_SIZE; if (z < 0) z -= Chunk.CHUNK_SIZE;
+        x /= Chunk.CHUNK_SIZE; y = 0; z /= Chunk.CHUNK_SIZE;
         return this;
     }
     

@@ -1,3 +1,0 @@
-package net.minecraft.options;
-
-public record KeyBinding(String name, int key) {}

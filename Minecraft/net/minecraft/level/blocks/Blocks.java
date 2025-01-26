@@ -42,29 +42,24 @@ public class Blocks
         
         public void draw(int x, int y, int z, Tessellator tessel, Level level)
         {
+            byte block;
             int[] texes = getTex();
+            float rx1 = x, rx2 = x + 1, ry1 = y, ry2 = y + blockHeight(), rz1 = z, rz2 = z + 1;
+            
             float u1 = texes[0] / 16F, u2 = u1 + 16 / 256F,
                   v1 = 0, v2 = v1 + 16 / 256F,
                   shadeX = 0.6F, shadeY = 1, shadeZ = 0.8F;
-            
-            float rx1 = x + 0, rx2 = x + 1,
-                  ry1 = y + 0, ry2 = y + blockHeight(),
-                  rz1 = z + 0, rz2 = z + 1;
-            
-            byte block;
             
             if ((block = level.getBlock(x, y - 1, z)) == 0 || (block == Blocks.WATER.id && !(this instanceof WaterLiquid)))
             {
                 shadeY = LightEngine.getLight(x, y - 1, z, level) / 16F;
                 tessel.color(shadeY, shadeY, shadeY);
-                tessel.tex(u1, v2);
-                tessel.vertex(rx1, ry1, rz2);
-                tessel.tex(u1, v1);
-                tessel.vertex(rx1, ry1, rz1);
-                tessel.tex(u2, v1);
-                tessel.vertex(rx2, ry1, rz1);
-                tessel.tex(u2, v2);
-                tessel.vertex(rx2, ry1, rz2);
+                tessel.tex(u1, v2).vertex(rx1, ry1, rz2);
+                tessel.tex(u1, v1).vertex(rx1, ry1, rz1);
+                tessel.tex(u2, v1).vertex(rx2, ry1, rz1);
+                tessel.tex(u2, v1).vertex(rx2, ry1, rz1);
+                tessel.tex(u2, v2).vertex(rx2, ry1, rz2);
+                tessel.tex(u1, v2).vertex(rx1, ry1, rz2);
             }
             
             if (texes[1] != texes[0])
@@ -77,14 +72,12 @@ public class Blocks
             {
                 shadeY = LightEngine.getLight(x, y + 1, z, level) / 16F;
                 tessel.color(shadeY, shadeY, shadeY);
-                tessel.tex(u2, v2);
-                tessel.vertex(rx2, ry2, rz2);
-                tessel.tex(u2, v1);
-                tessel.vertex(rx2, ry2, rz1);
-                tessel.tex(u1, v1);
-                tessel.vertex(rx1, ry2, rz1);
-                tessel.tex(u1, v2);
-                tessel.vertex(rx1, ry2, rz2);
+                tessel.tex(u2, v2).vertex(rx2, ry2, rz2);
+                tessel.tex(u2, v1).vertex(rx2, ry2, rz1);
+                tessel.tex(u1, v1).vertex(rx1, ry2, rz1);
+                tessel.tex(u1, v1).vertex(rx1, ry2, rz1);
+                tessel.tex(u1, v2).vertex(rx1, ry2, rz2);
+                tessel.tex(u2, v2).vertex(rx2, ry2, rz2);
             }
             
             if (texes[2] != texes[1])
@@ -97,14 +90,12 @@ public class Blocks
             {
                 shadeZ = (LightEngine.getLight(x, y, z - 1, level) / 16F) * 0.8F;
                 tessel.color(shadeZ, shadeZ, shadeZ);
-                tessel.tex(u2, v1);
-                tessel.vertex(rx1, ry2, rz1);
-                tessel.tex(u1, v1);
-                tessel.vertex(rx2, ry2, rz1);
-                tessel.tex(u1, v2);
-                tessel.vertex(rx2, ry1, rz1);
-                tessel.tex(u2, v2);
-                tessel.vertex(rx1, ry1, rz1);
+                tessel.tex(u2, v1).vertex(rx1, ry2, rz1);
+                tessel.tex(u1, v1).vertex(rx2, ry2, rz1);
+                tessel.tex(u1, v2).vertex(rx2, ry1, rz1);
+                tessel.tex(u1, v2).vertex(rx2, ry1, rz1);
+                tessel.tex(u2, v2).vertex(rx1, ry1, rz1);
+                tessel.tex(u2, v1).vertex(rx1, ry2, rz1);
             }
             
             if (texes[3] != texes[2])
@@ -117,14 +108,12 @@ public class Blocks
             {
                 shadeZ = (LightEngine.getLight(x, y, z + 1, level) / 16F) * 0.8F;
                 tessel.color(shadeZ, shadeZ, shadeZ);
-                tessel.tex(u1, v1);
-                tessel.vertex(rx1, ry2, rz2);
-                tessel.tex(u1, v2);
-                tessel.vertex(rx1, ry1, rz2);
-                tessel.tex(u2, v2);
-                tessel.vertex(rx2, ry1, rz2);
-                tessel.tex(u2, v1);
-                tessel.vertex(rx2, ry2, rz2);
+                tessel.tex(u1, v1).vertex(rx1, ry2, rz2);
+                tessel.tex(u1, v2).vertex(rx1, ry1, rz2);
+                tessel.tex(u2, v2).vertex(rx2, ry1, rz2);
+                tessel.tex(u2, v2).vertex(rx2, ry1, rz2);
+                tessel.tex(u2, v1).vertex(rx2, ry2, rz2);
+                tessel.tex(u1, v1).vertex(rx1, ry2, rz2);
             }
             
             if (texes[4] != texes[3])
@@ -137,14 +126,12 @@ public class Blocks
             {
                 shadeX = (LightEngine.getLight(x - 1, y, z, level) / 16F) * 0.6F;
                 tessel.color(shadeX, shadeX, shadeX);
-                tessel.tex(u2, v1);
-                tessel.vertex(rx1, ry2, rz2);
-                tessel.tex(u1, v1);
-                tessel.vertex(rx1, ry2, rz1);
-                tessel.tex(u1, v2);
-                tessel.vertex(rx1, ry1, rz1);
-                tessel.tex(u2, v2);
-                tessel.vertex(rx1, ry1, rz2);
+                tessel.tex(u2, v1).vertex(rx1, ry2, rz2);
+                tessel.tex(u1, v1).vertex(rx1, ry2, rz1);
+                tessel.tex(u1, v2).vertex(rx1, ry1, rz1);
+                tessel.tex(u1, v2).vertex(rx1, ry1, rz1);
+                tessel.tex(u2, v2).vertex(rx1, ry1, rz2);
+                tessel.tex(u2, v1).vertex(rx1, ry2, rz2);
             }
             
             if (texes[5] != texes[4])
@@ -157,14 +144,12 @@ public class Blocks
             {
                 shadeX = (LightEngine.getLight(x + 1, y, z, level) / 16F) * 0.6F;
                 tessel.color(shadeX, shadeX, shadeX);
-                tessel.tex(u1, v2);
-                tessel.vertex(rx2, ry1, rz2);
-                tessel.tex(u2, v2);
-                tessel.vertex(rx2, ry1, rz1);
-                tessel.tex(u2, v1);
-                tessel.vertex(rx2, ry2, rz1);
-                tessel.tex(u1, v1);
-                tessel.vertex(rx2, ry2, rz2);
+                tessel.tex(u1, v2).vertex(rx2, ry1, rz2);
+                tessel.tex(u2, v2).vertex(rx2, ry1, rz1);
+                tessel.tex(u2, v1).vertex(rx2, ry2, rz1);
+                tessel.tex(u2, v1).vertex(rx2, ry2, rz1);
+                tessel.tex(u1, v1).vertex(rx2, ry2, rz2);
+                tessel.tex(u1, v2).vertex(rx2, ry1, rz2);
             }
         }
         

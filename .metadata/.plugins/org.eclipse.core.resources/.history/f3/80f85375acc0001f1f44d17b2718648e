@@ -1,8 +1,0 @@
-package net.minecraft.render;
-
-import java.util.HashMap;
-
-public class Textures
-{
-    private static HashMap<String, Integer> textureIDs = new HashMap<>();
-}

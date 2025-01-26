@@ -1,8 +1,0 @@
-package net.minecraft.options;
-
-import org.lwjgl.glfw.GLFW;
-
-public class GameOptions
-{
-    public static KeyBinding KEY_FORWARD = new KeyBinding("Forward", GLFW.GLFW_KEY_W);
-}

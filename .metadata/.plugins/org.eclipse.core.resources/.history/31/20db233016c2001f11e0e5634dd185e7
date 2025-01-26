@@ -1,8 +1,0 @@
-package net.minecraft.level.blocks;
-
-import net.minecraft.level.blocks.Blocks.Block;
-
-public class WaterLiquid extends Block
-{
-
-}

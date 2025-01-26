@@ -40,7 +40,7 @@ public class Level
     public void build()
     {
         Vec3i pos = new Vec3i((int) Minecraft.player.x, (int) Minecraft.player.y, (int) Minecraft.player.z).chunkify();
-        int distance = (int) GameOptions.RENDER_DISTANCE.getValue();
+        int distance = (int) (GameOptions.RENDER_DISTANCE.getValue() / (Chunk.CHUNK_SIZE / 16F));
         
         for (int i = 0; i < chunks.size(); i++)
         {
@@ -132,7 +132,6 @@ public class Level
     {
         Chunk chunk = new Chunk(pos);
         chunks.add(gen.handle(chunk));
-        chunk.build();
         return chunk;
     }
     
